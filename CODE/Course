@@ -4,7 +4,7 @@ public class Course {
 	private String CourseID;
 	private String CourseName;
 	private String CourseCoordinatorName;
-  private ArrayList<Lecture> CourseLecture;
+  	private ArrayList<Lecture> CourseLecture;
 	private Assessment CourseAssessment;
 	
 	public Course(String CourseID, String CourseName, String CourseCoordinator) {
@@ -33,7 +33,7 @@ public class Course {
 	
 	public void addLecture(Lecture lecture1) {this.CourseLecture.add(lecture1);}
   
-  public void removeLecture(Lecture lecture1) {this.CourseLecture.remove(lecture1);}
+  	public void removeLecture(Lecture lecture1) {this.CourseLecture.remove(lecture1);}
     
 	//for assessment?
 	
