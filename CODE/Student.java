@@ -5,9 +5,8 @@ public class Student {
 	private String studentID;
 	private String faculty;
 	private int year;
-	private ArrayList<Course> registeredCourse;
-	private ArrayList<Grade> studentGrade;
-
+	private ArrayList<StudentCourse> registeredCourse;
+	
 	public Student(String studentName, String studentID, String faculty, int year){
 		this.studentName = studentName;
 		this.studentID = studentID;
@@ -55,12 +54,4 @@ public class Student {
 		return (this.registeredCourse);
 	}
 	
-	public void addStudentGrade() { // parameters still not sure
-		
-	}
-	
-	public void getStudentGrade() {
-		// for each registered course, print out the corresponding grade to it
-		// maybe match the index with the course (like in arraylist registered course index 0 -> index 0 of grade)
-	}
 }
