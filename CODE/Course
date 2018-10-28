@@ -4,7 +4,7 @@ public class Course {
 	private String CourseID;
 	private String CourseName;
 	private String CourseCoordinatorName;
-  private ArrayList<Lecture> CourseLecture;
+  	private ArrayList<Lecture> CourseLecture;
 	private Assessment CourseAssessment;
 	
 	public Course(String CourseID, String CourseName, String CourseCoordinator) {
