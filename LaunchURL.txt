@@ -1,0 +1,1 @@
+https://secure.amd.com/di?pt=radeon&VID1=1002&DID1=682b&PID1=AMD%20Radeon%20Graphics%20Processor&SSVID1=1b0a&SSID1=90f4&os=WindowsRS&osbit=64&cpu=Intel(R)%20Core(TM)%20i5-7500%20CPU%20@%203.40GHz
