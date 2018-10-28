@@ -35,7 +35,7 @@ public class Course {
   
   	public void removeLecture(Lecture lecture1) {this.CourseLecture.remove(lecture1);}
     
-	//for assessment?
+	//for assessment??
 	
 	public ArrayList<Lecture> getCourseLecture() {return CourseLecture;}
 
