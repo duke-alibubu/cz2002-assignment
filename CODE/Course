@@ -35,10 +35,11 @@ public class Course {
   
   	public void removeLecture(Lecture lecture1) {this.CourseLecture.remove(lecture1);}
     
-	//for assessment?
+	public void addAssessment(Assessment assessment1) {this.CourseAssessment.add(assessment1);}
+    	
+	public void removeAssessment(Assessment assessment1) {this.CourseAssessment.remove(assessment1);}
 	
 	public ArrayList<Lecture> getCourseLecture() {return CourseLecture;}
 
-	//public Assessment getCourseAssessment() {return CourseAssessment;}
-	//public void setCourseAssessment(Assessment CourseAssessment) {this.CourseAssessment = CourseAssessment;}
+	public Assessment getCourseAssessment() {return CourseAssessment;}
 }
