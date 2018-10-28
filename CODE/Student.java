@@ -14,44 +14,61 @@ public class Student {
 		this.year = year;
 	}
 	
-	public void setStudentName(String StudentName) {
-		this.studentName = StudentName;
-	}
-	
-	public String getStudentName() {
+	public String getName() {
 		return this.studentName;
 	}
 	
-	public void setStudentID(String StudentID) {
-		this.studentID = StudentID;
-	}
-	
-	public String getStudentID() {
+	public String getID() {
 		return this.studentID;
-	}
-	
-	public void setFaculty(String Faculty) {
-		this.faculty = Faculty;
 	}
 	
 	public String getFaculty() {
 		return this.faculty;
 	}
 	
-	public void setYear(int year) {
-		this.year = year;
-	}
-	
 	public int getYear() {
 		return this.year;
 	}
 	
-	public void addCourse(Course course1) {
-		this.registeredCourse.add(course1);
+	public boolean addCourse(Course aCourse, int index) {
+		Iterator iter = registeredCourse.iterator();
+		while (iter.hasNext()) {
+			if 	(aCourse == iter.next()) {  //if found, break and return false
+				return false;
+			}
+		}
+		this.registeredCourse.add(new StudentCourse(aCourse,index)); // if not found, add it into the list of registered courses
+		return true;
 	}
-	
+
 	public ArrayList getRegisteredCourse() {
 		return (this.registeredCourse);
 	}
 	
+	public boolean changeCourseIndex(Course aCourse, int index) {
+		int indexOfStudentCourse = 0;
+		Iterator iter = registeredCourse.iterator();
+		while (iter.hasNext()) {
+			if (aCourse == iter.next()) {
+				registeredCourse.remove(indexOfStudentCourse);
+				registeredCourse.add(indexOfStudentCourse, new StudentCourse(aCourse,index));
+				return true;
+			}
+			indexOfStudentCourse ++;
+		}
+		return false;
+	}
+	
+	public boolean removeCourse(Course aCourse) {
+		int indexOfStudentCourse = 0;
+		Iterator iter = registeredCourse.iterator();
+		while (iter.hasNext()) {
+			if (aCourse == iter.next()) {
+				registeredCourse.remove(indexOfStudentCourse);
+				return true;
+			}
+			indexOfStudentCourse ++;
+		}
+		return false;
+	}
 }
