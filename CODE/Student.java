@@ -51,11 +51,8 @@ public class Student {
 		this.registeredCourse.add(course1);
 	}
 	
-	public void getRegisteredCourse() {
-		Iterator itr = this.registeredCourse.iterator();
-		while (itr.hasNext()) {
-			System.out.println(itr.next());
-		}
+	public ArrayList getRegisteredCourse() {
+		return (this.registeredCourse);
 	}
 	
 	public void addStudentGrade() { // parameters still not sure
