@@ -21,15 +21,15 @@ public class Course {
 	
 	public String getCourseID() {return CourseID;}
   
-	public void setCourseID(String CourseID) {this.CourseID = CourseID;}
+	public void setCourseID(String CourseID) {this.CourseID = new String(CourseID);}
   
 	public String getCourseName() {return CourseName;}
   
-	public void setCourseName(String CourseName) {this.CourseName = CourseName;}
+	public void setCourseName(String CourseName) {this.CourseName = new String(CourseName);}
   
 	public String getCourseCoordinatoerName() {return CourseCoordinatorName;}
   
-	public void setCourseCoordinatorName(String CourseCoordinatorName) {this.CourseCoordinatorName = CourseCoordinatorName;}
+	public void setCourseCoordinatorName(String CourseCoordinatorName) {this.CourseCoordinatorName = new String(CourseCoordinatorName);}
 	
 	public void addLecture(Lecture lecture1) {this.CourseLecture.add(lecture1);}
   
