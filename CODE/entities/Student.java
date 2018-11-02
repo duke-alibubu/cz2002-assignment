@@ -63,6 +63,15 @@ public class Student {
 		this.RegisteredCourses.add(new StudentCourse(aCourse, index));
 		return true;
 	}
+	public boolean removeCourse(Course aCourse)
+	{
+		int index = find(aCourse);
+		if (-1 == index)
+			return false;
+
+		RegisteredCourses.remove(aCourse);
+		return true;
+	}
 
 	public ArrayList<StudentCourse> getRegisteredCourses()
 	{
