@@ -6,7 +6,7 @@ public class Student {
 	private String StudentID;
 	private String Faculty;
 	private int Year;
-	public ArrayList<StudentCourse> RegisteredCourses;
+	private ArrayList<StudentCourse> RegisteredCourses;
 	
 	public Student(String studentName, String studentID, String faculty, int year){
 		this.StudentName = studentName;
