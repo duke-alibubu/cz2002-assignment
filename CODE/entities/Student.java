@@ -5,7 +5,7 @@ public class Student {
 	public String studentID;
 	private String faculty;
 	private int year;
-	private ArrayList<StudentCourse> registeredCourse;
+	public ArrayList<StudentCourse> registeredCourse;
 	
 	public Student(String studentName, String studentID, String faculty, int year){
 		this.studentName = studentName;
@@ -84,5 +84,16 @@ public class Student {
 		return false;
 	}
 	
+	public boolean editCourseGrade(String CourseID) {
+		Iterator iter = registeredCourse.iterator();
+		int loop = 0;
+		while (iter.hasNext()) {
+			StudentCourse edit = registeredCourse.get(loop);
+			if (CourseID == edit.getCourse().getCourseID()) {
+				boolean grade = edit.setGrade();
+				return grade;
+			}
+		}
+		return false;
+	}
 }
-
