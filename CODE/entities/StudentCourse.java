@@ -23,5 +23,11 @@ public class StudentCourse {
 	{
 		return aGrade.editComponent(ComponentName, Value);
 	}
+	public int getIndex(){
+		return this.anIndex;
+	}
+	public void setIndex(int index){
+		this.anIndex = index;
+	}
 }
 
