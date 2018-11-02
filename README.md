@@ -16,6 +16,8 @@ https://github.com/clarencecastillo/NTUOSS-GitWorkshop
 
 - editGrade in StudentCourse
 
+- remove ChangeCourseIndex in Student
+
 # New Modification
 - Course , Tutorial , Lecture and TimeSlot now have their own printing function
 (e.g public void printCourse())
