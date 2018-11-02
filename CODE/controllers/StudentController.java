@@ -1,25 +1,53 @@
+package controllers;
 import java.util.*;
 
 public class StudentController {
 	private ArrayList<Student> StudentList;
 
-	
-	public void AddStudent(String Name, String ID, String faculty, int year) {
-		this.StudentList.add(new Student(Name, ID, faculty, year));
+	private int find(Student aStudent)
+	{
+		return StudentList.indexOf(aStudent);
+	}
+	private int find(String ID)
+	{
+		int index = -1;
+		for (int i=0; i<StudentList.get(i); i++)
+		{
+			if (ID.equals(StudentList.get(i).getID()))
+			{
+				index = i;
+				break;
+			}
+		}
+		return index;
 	}
 	
-	public boolean RemoveStudent(String ID) {
-		Iterator iter = StudentList.iterator();
-		int loop=0;
-		while (iter.hasNext()) {
-			Student check = StudentList.get(loop);
-			if (check.studentID == ID) {
-				this.StudentList.remove(loop);
-				return true;
-			}
-			loop ++;
-		}
-		return false;
+	public Student getStudent(String ID)
+	{
+		return StudentList.get(find(ID));
+	}
+
+	public boolean addStudent(String Name, String ID, String Faculty, int Year)
+	{
+		if (find(ID) != -1)
+			return false;
+		Student aStudent = new Student(Name, ID, Faculty, Year);
+		StudentList.add(aStudent);
+		return true;
+	}
+	
+	public boolean removeStudent(Student aStudent)
+	{
+		int index = find(aStudent);
+		if (index == -1)
+			return false;
+		StudentList.remove(index);
+		return true;
+	}
+
+	public boolean removeStudent(String ID)
+	{
+		return removeStudent(getStudent(ID));
 	}
 	
 	public boolean EditParticulars(String ID, String Name, String Faculty, int Year) {
