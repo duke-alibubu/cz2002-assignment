@@ -22,3 +22,5 @@ https://github.com/clarencecastillo/NTUOSS-GitWorkshop
 - Course , Tutorial , Lecture and TimeSlot now have their own printing function
 (e.g public void printCourse())
 - CourseController class need to be edited a lot 
+- Added a Copy constructor for TimeSlot class
+- Lecture and Tutorial classed got new setLabTimeSlot , setTutTimeSlot , setLectureTime which accepts only a TimeSlot object as pass-in parameter
