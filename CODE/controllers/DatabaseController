@@ -12,7 +12,7 @@ public class DatabaseController {
 		String filePath = Filenames.toString();  //file path to be declared
 		 
 		// Content to append.
-		String contentToAppend = "\r\n" + Name + "; " + Value.charAt(0) + "; " + Value.charAt(0);
+		String contentToAppend = "\r\n" + Name + "; " + Value.charAt(0) + "; " + Value.charAt(1);
 		 
 		// Set the second parameter of FileWriter to "true" to append to file.
 		try (Writer fileWriter = new FileWriter(filePath, true)){
