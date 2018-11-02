@@ -83,4 +83,18 @@ public class Student {
 		}
 		return false;
 	}
-}
+	
+	public boolean editCourseGrade() {
+		System.out.println("Please enter the course ID to be edited: ");
+		Scanner scan = new Scanner(System.in);
+		String ID = scan.next();
+		Iterator iter = registeredCourse.iterator();
+		int loop = 0;
+		while (iter.hasNext()) {
+			StudentCourse check = registeredCourse.get(loop);
+			if (ID == check.getCourseID()) {
+				// edit grade;
+			}
+		}
+		return false;
+	}
