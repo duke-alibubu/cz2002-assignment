@@ -14,3 +14,7 @@ https://github.com/clarencecastillo/NTUOSS-GitWorkshop
 
 - in Field removeComponent should return boolean
 
+# New Modification
+- public void printTimeSlot() function in TimeSlot class
+- public void printLecture() function in Course class
+
