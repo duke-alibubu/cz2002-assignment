@@ -1,20 +1,22 @@
-package LectureAndTutorial;
+package entities;
 
-import java.util.*;
+import java.util.ArrayList;
 
 public class Course {
 	private String CourseID;
 	private String CourseName;
 	private String CourseCoordinatorName;
-  	private ArrayList<Lecture> CourseLecture;
+  	private ArrayList<Lecture> CourseLectures;
 	private Assessment CourseAssessment;
 	
-	public Course(String CourseID, String CourseName, String CourseCoordinator) {
+	public Course(String CourseID, String CourseName, String CourseCoordinator)
+	{
 		CourseLecture = new ArrayList<Lecture>(); //instantiate the CourseLecture
 		CourseAssessment = new Assessment();
 		this.CourseID = new String(CourseID); 
 		this.CourseName = new String(CourseName); 
-		this.CourseCoordinatorName = new String (CourseCoordinator);}
+		this.CourseCoordinatorName = new String(CourseCoordinator);
+	}
     
 	public Course() {
 		CourseLecture = new ArrayList<Lecture>(); //instantiate the CourseLecture
