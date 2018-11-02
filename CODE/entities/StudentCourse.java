@@ -11,7 +11,7 @@ public class StudentCourse {
 		this.anIndex = anIndex;
 	}
 	
-	public String getCourse()
+	public Course getCourse()
 	{
 		return this.aCourse;
 	}

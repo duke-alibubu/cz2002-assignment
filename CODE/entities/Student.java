@@ -1,99 +1,71 @@
-import java.util.*;
+package entities;
+import java.util.ArrayList;
 
 public class Student {
-	private String studentName;
-	public String studentID;
-	private String faculty;
-	private int year;
-	public ArrayList<StudentCourse> registeredCourse;
+	private String StudentName;
+	private String StudentID;
+	private String Faculty;
+	private int Year;
+	public ArrayList<StudentCourse> RegisteredCourses;
 	
 	public Student(String studentName, String studentID, String faculty, int year){
-		this.studentName = studentName;
-		this.studentID = studentID;
-		this.faculty = faculty;
-		this.year = year;
+		this.StudentName = studentName;
+		this.StudentID = studentID;
+		this.Faculty = faculty;
+		this.Year = year;
 	}
 	
-	public void editName(String studentName) {
-		this.studentName = studentName;
+	public void setName(String studentName) {
+		this.StudentName = new String(studentName);
 	}
 	
-	public void editFaculty(String faculty) {
-		this.faculty = faculty;
+	public void setFaculty(String faculty) {
+		this.Faculty = new String(faculty);
 	}
 	
-	public void editYear(int year) {
-		this.year = year;
+	public void setYear(int year) {
+		this.Year = year;
 	}
 	
 	public String getName() {
-		return this.studentName;
+		return new String(this.StudentName);
 	}
 	
 	public String getID() {
-		return this.studentID;
+		return this.StudentID;
 	}
 	
 	public String getFaculty() {
-		return this.faculty;
+		return new String(this.Faculty);
 	}
 	
 	public int getYear() {
 		return this.year;
 	}
 	
-	public boolean addCourse(Course aCourse, int index) {
-		Iterator iter = registeredCourse.iterator();
-		while (iter.hasNext()) {
-			if 	(aCourse == iter.next()) {  //if found, break and return false
-				return false;
+	private int find(Course aCourse)
+	{
+		int index = -1;
+		for (int i=0; i<RegistedCourses.size(); i++)
+		{
+			if (aCourse == RegistedCourses.get(i).getCourse())
+			{
+				index = i;
+				break;
 			}
 		}
-		this.registeredCourse.add(new StudentCourse(aCourse,index)); // if not found, add it into the list of registered courses
+		return index;
+	}
+	public boolean addCourse(Course aCourse, int index)
+	{
+		if (-1 != find(aCourse))
+			return false;
+		this.RegisteredCourses.add(new StudentCourse(aCourse, index));
 		return true;
 	}
 
-	public ArrayList getRegisteredCourse() {
-		return (this.registeredCourse);
-	}
-	
-	public boolean changeCourseIndex(Course aCourse, int index) {
-		int indexOfStudentCourse = 0;
-		Iterator iter = registeredCourse.iterator();
-		while (iter.hasNext()) {
-			if (aCourse == iter.next()) {
-				registeredCourse.remove(indexOfStudentCourse);
-				registeredCourse.add(indexOfStudentCourse, new StudentCourse(aCourse,index));
-				return true;
-			}
-			indexOfStudentCourse ++;
-		}
-		return false;
-	}
-	
-	public boolean removeCourse(Course aCourse) {
-		int indexOfStudentCourse = 0;
-		Iterator iter = registeredCourse.iterator();
-		while (iter.hasNext()) {
-			if (aCourse == iter.next()) {
-				registeredCourse.remove(indexOfStudentCourse);
-				return true;
-			}
-			indexOfStudentCourse ++;
-		}
-		return false;
-	}
-	
-	public boolean editCourseGrade(String CourseID, String component, int value) {
-		Iterator iter = registeredCourse.iterator();
-		int loop = 0;
-		while (iter.hasNext()) {
-			StudentCourse edit = registeredCourse.get(loop);
-			if (CourseID == edit.getCourse().getCourseID()) {
-				boolean grade = edit.setGrade(component, value);
-				return grade;
-			}
-		}
-		return false;
-	}
+	public ArrayList<StudentCourse> getRegisteredCourses()
+	{
+		return RegisteredCourses;
+	}	
 }
