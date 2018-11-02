@@ -1,0 +1,25 @@
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Writer;
+import java.util.ArrayList;
+
+public class DatabaseController {
+	
+	private ArrayList<String> Filenames; //file name to be declared
+	
+	public void addRecord(String Name, String Value) {
+		// File location.
+		String filePath = Filenames.toString();  //file path to be declared
+		 
+		// Content to append.
+		String contentToAppend = "\r\n" + Name + "; " + Value.charAt(0) + "; " + Value.charAt(0);
+		 
+		// Set the second parameter of FileWriter to "true" to append to file.
+		try (Writer fileWriter = new FileWriter(filePath, true)){
+			fileWriter.write(contentToAppend);
+		} catch (IOException e) {
+			System.out.println("Problem occurs when deleting the directory : " + filePath);
+			e.printStackTrace();}
+	
+	}
+}
