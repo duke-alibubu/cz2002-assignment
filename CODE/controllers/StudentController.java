@@ -22,45 +22,17 @@ public class StudentController {
 		return false;
 	}
 	
-	public boolean EditParticulars(String ID) {
+	public boolean EditParticulars(String ID, String Name, String Faculty, int Year) {
 		Iterator iter = StudentList.iterator();
 		int loop=0;
 		while (iter.hasNext()) {
 			Student edit = StudentList.get(loop);
-			if (edit.studentID == ID) {
-				while (true) {
-					System.out.println("Please choose the particulars that you want to edit: ");
-					System.out.println("Input 1 to edit name, Input 2 to edit faculty, Input 3 to edit , Input -1 to terminate edit function: ");
-					int select = scan.nextInt();
-					if (select == -1) {
-						break;
-					}
-					switch (select) {
-					case 1:
-						System.out.println("Please enter the name: ");
-						String name = scan.next();
-						edit.editName(name);
-						this.StudentList.remove(loop);
-						this.StudentList.add(loop, edit);
-						break;
-					case 2:
-						System.out.println("Please enter the faculty: ");
-						String faculty = scan.next();
-						edit.editFaculty(faculty);
-						this.StudentList.remove(loop);
-						this.StudentList.add(loop, edit);
-						break;
-					case 3:	
-						System.out.println("Please enter the faculty: ");
-						int year = scan.nextInt();
-						edit.editYear(year);
-						this.StudentList.remove(loop);
-						this.StudentList.add(loop, edit);
-						break;
-					default:
-						System.out.println("Please enter correct values: ");
-					}
-				}
+			if (edit.getID() == ID) {
+				edit.setName(Name);
+				edit.setFaculty(Faculty);
+				edit.setYear(Year);
+				this.StudentList.remove(loop);
+				this.StudentList.add(loop, edit);
 				return true;
 			}
 			loop ++;
