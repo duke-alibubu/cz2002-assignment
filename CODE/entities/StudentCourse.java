@@ -5,15 +5,22 @@ public class StudentCourse {
 	private Grade aGrade;
 	private int anIndex;
 	
-	public StudentCourse(Course aCourse, int anIndex) {
+	public StudentCourse(Course aCourse, int anIndex)
+	{
 		this.aCourse = aCourse;
 		this.anIndex = anIndex;
 	}
 	
-	public String getCourse() {
+	public String getCourse()
+	{
 		return this.aCourse;
 	}
-	public boolean editGrade(String ComponentName, float Value){
+	public Grade getGrade()
+	{
+		return aGrade;
+	}
+	public boolean setGrade(String ComponentName, float Value)
+	{
 		return aGrade.editComponent(ComponentName, Value);
 	}
 }
