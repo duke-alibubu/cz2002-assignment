@@ -84,13 +84,13 @@ public class Student {
 		return false;
 	}
 	
-	public boolean editCourseGrade(String CourseID) {
+	public boolean editCourseGrade(String CourseID, String component, int value) {
 		Iterator iter = registeredCourse.iterator();
 		int loop = 0;
 		while (iter.hasNext()) {
 			StudentCourse edit = registeredCourse.get(loop);
 			if (CourseID == edit.getCourse().getCourseID()) {
-				boolean grade = edit.setGrade();
+				boolean grade = edit.setGrade(component, value);
 				return grade;
 			}
 		}
