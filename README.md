@@ -10,4 +10,7 @@ https://github.com/clarencecastillo/NTUOSS-GitWorkshop
 
 - Add databaseController class
 
-- 
+- in Component, edit -> setValue(), getName, getValue;
+
+- in Field removeComponent should return boolean
+
