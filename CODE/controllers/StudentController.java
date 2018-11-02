@@ -68,13 +68,13 @@ public class StudentController {
 		return false;
 	}
 	
-	public boolean EditGrade(String studentID, String CourseID) {
+	public boolean EditGrade(String studentID, String CourseID, String component, int value) {
 		Iterator iter = StudentList.iterator();
 		int loop=0;
 		while (iter.hasNext()) {
 			Student check = StudentList.get(loop);
 			if (check.studentID == studentID) {
-				boolean grade = check.editCourseGrade(CourseID);
+				boolean grade = check.editCourseGrade(CourseID, component, value);
 				return grade;
 			}
 			loop ++;
