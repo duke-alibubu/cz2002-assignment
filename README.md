@@ -8,4 +8,6 @@ https://github.com/clarencecastillo/NTUOSS-GitWorkshop
 
 - Change array to ArrayList
 
+- Add databaseController class
+
 - 
