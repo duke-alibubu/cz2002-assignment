@@ -14,7 +14,9 @@ https://github.com/clarencecastillo/NTUOSS-GitWorkshop
 
 - in Field removeComponent should return boolean
 
-# New Modification
-- public void printTimeSlot() function in TimeSlot class
-- public void printLecture() function in Course class
+- editGrade in StudentCourse
 
+# New Modification
+- Course , Tutorial , Lecture and TimeSlot now have their own printing function
+(e.g public void printCourse())
+- CourseController class need to be edited a lot 
