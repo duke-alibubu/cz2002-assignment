@@ -1,4 +1,4 @@
-import java.util.*;
+package entities;
 
 public class StudentCourse {
 	private Course aCourse;
@@ -10,11 +10,11 @@ public class StudentCourse {
 		this.anIndex = anIndex;
 	}
 	
-	public String getCourseID() {
-		return this.aCourse.getCourseID();
+	public String getCourse() {
+		return this.aCourse;
 	}
-	public void addGrade(){
-		// haven't implement
+	public boolean editGrade(String ComponentName, float Value){
+		return aGrade.editComponent(ComponentName, Value);
 	}
 }
 
