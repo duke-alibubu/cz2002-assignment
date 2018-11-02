@@ -2,7 +2,7 @@ import java.util.*;
 
 public class StudentController {
 	private ArrayList<Student> StudentList;
-	Scanner scan = new Scanner(System.in);
+
 	
 	public void AddStudent(String Name, String ID, String faculty, int year) {
 		this.StudentList.add(new Student(Name, ID, faculty, year));
