@@ -2,7 +2,7 @@ import java.util.*;
 
 public class Student {
 	private String studentName;
-	private String studentID;
+	public String studentID;
 	private String faculty;
 	private int year;
 	private ArrayList<StudentCourse> registeredCourse;
@@ -11,6 +11,18 @@ public class Student {
 		this.studentName = studentName;
 		this.studentID = studentID;
 		this.faculty = faculty;
+		this.year = year;
+	}
+	
+	public void editName(String studentName) {
+		this.studentName = studentName;
+	}
+	
+	public void editFaculty(String faculty) {
+		this.faculty = faculty;
+	}
+	
+	public void editYear(int year) {
 		this.year = year;
 	}
 	
