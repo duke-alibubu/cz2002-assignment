@@ -6,14 +6,7 @@ public class Field
 	protected ArrayList<Component> Distribution;
 	private int find(String Name)
 	{
-		int index = -1;
-		for (int i=0; i<Distribution.size(); i++)
-			if (Name.equals(Distribution.get(i).getName()))
-			{
-				index = i;
-				break;
-			}
-		return index;
+		return this.Distribution.indexOf(Name);
 	}
 	public ArrayList<Component> emptyDistribution()
 	{
