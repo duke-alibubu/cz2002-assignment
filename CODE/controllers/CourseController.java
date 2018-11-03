@@ -124,7 +124,7 @@ public class CourseController {
 	public boolean RemoveAssessmentComponent(Course c , String compname , float weight ) {
 		Assessment assess;
 		assess = c.getCourseAssessment();
-		return assess.removeComponent(compname,weight);
+		return assess.removeComponent(compname);
 	}
 	
 }
