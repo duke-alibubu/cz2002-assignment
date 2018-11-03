@@ -1,5 +1,6 @@
 package controllers;
 import java.util.*;
+import entities.*;
 
 public class StudentController {
 	private ArrayList<Student> StudentList;
@@ -73,7 +74,7 @@ public class StudentController {
 		int loop=0;
 		while (iter.hasNext()) {
 			Student check = StudentList.get(loop);
-			if (check.studentID == studentID) {
+			if (check.getID() == studentID) {
 				boolean grade = check.editCourseGrade(CourseID, component, value);
 				return grade;
 			}
