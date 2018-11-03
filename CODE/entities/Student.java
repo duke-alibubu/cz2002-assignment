@@ -40,15 +40,15 @@ public class Student {
 	}
 	
 	public int getYear() {
-		return this.year;
+		return this.Year;
 	}
 	
 	private int find(Course aCourse)
 	{
 		int index = -1;
-		for (int i=0; i<RegistedCourses.size(); i++)
+		for (int i=0; i<RegisteredCourses.size(); i++)
 		{
-			if (aCourse == RegistedCourses.get(i).getCourse())
+			if (aCourse == RegisteredCourses.get(i).getCourse())
 			{
 				index = i;
 				break;
