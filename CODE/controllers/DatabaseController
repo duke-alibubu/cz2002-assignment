@@ -1,33 +1,40 @@
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.Writer;
-import java.util.ArrayList;
-import java.io.File;
+import java.util.*;
+import java.io.*;
 
 public class DatabaseController {
 	
-	public class Table{
-		private ArrayList<String> Filenames;
-		private ArrayList<String> Attributes;
+	public void addRecord(ArrayList<Object> List, String FileNames) {
+		
+		try{
+	         FileOutputStream fos= new FileOutputStream(FileNames);
+	         ObjectOutputStream oos= new ObjectOutputStream(fos);
+	         oos.writeObject(List);
+	         oos.close();
+	         fos.close();
+	       }catch(IOException ioe){
+	            ioe.printStackTrace();
+	        }
 	}
 	
-	public void addRecord(String Name, String Value, Table table) {
-		// File location.
-		String filePath = table.Filenames.toString();  //file path to be declared
+	public ArrayList<Object> readRecord(String FileNames){
 		
-		File file = new File(filePath);
-		 
-		// Content to append.
-		String contentToAppend = "\r\n" + Name + "; " + Value.charAt(0) + "; " + Value.charAt(1);
-		 
-		// Set the second parameter of FileWriter to "true" to append to file.
-		try (Writer fileWriter = new FileWriter(filePath, true)){
-			if(file.exists()) {
-			 fileWriter.write(contentToAppend);}
-			else {fileWriter.write(table.Attributes.toString() + contentToAppend);};
-		} catch (IOException e) {
-			System.out.println("Problem occurs when deleting the directory : " + filePath);
-			e.printStackTrace();}
-	
+		ArrayList<Object> arraylist = new ArrayList<Object>();
+		
+		try
+        {
+            FileInputStream fis = new FileInputStream(FileNames);
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            arraylist = (ArrayList) ois.readObject();
+            ois.close();
+            fis.close();
+            return arraylist;
+         }catch(IOException ioe){
+             ioe.printStackTrace();
+             return null;
+          }catch(ClassNotFoundException c){
+             System.out.println("Class not found");
+             c.printStackTrace();
+             return null;
+          }
 	}
 }
