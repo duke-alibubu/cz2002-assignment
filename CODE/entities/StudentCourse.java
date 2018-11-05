@@ -1,4 +1,5 @@
 package entities;
+
  public class StudentCourse {
 	private Course aCourse;
 	private Grade aGrade;

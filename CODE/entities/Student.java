@@ -56,6 +56,7 @@ public class Student {
 		}
 		return index;
 	}
+	
 	public boolean addCourse(Course aCourse, int index)
 	{
 		if (-1 != find(aCourse))
@@ -63,6 +64,7 @@ public class Student {
 		this.RegisteredCourses.add(new StudentCourse(aCourse, index));
 		return true;
 	}
+	
 	public boolean removeCourse(Course aCourse)
 	{
 		int index = find(aCourse);
