@@ -1,93 +1,43 @@
 package entities;
-import java.util.ArrayList;
 
-public class Tutorial {
-	private String TutorName;
-	private ArrayList<Student> StudentList;;
-	private int Vacancy; 
-	private String LabSupervisorName ;
-	private TimeSlot LabTimeSlot ;
-	private TimeSlot TutTimeSlot ;
-	private int Index;
-	
-	public Tutorial(String TutorName, int Vacancy, String LabSupervisorName, TimeSlot LabTime, TimeSlot TutTime, int Index)
-	{
-		this.TutorName = new String(TutorName);
-		this.Vacancy = Vacancy;
-		this.LabSupervisorName = new String(LabSupervisorName);
-		this.LabTimeSlot = new TimeSlot(LabTime);
-		this.TutTimeSlot = new TimeSlot(TutTime);
-		this.Index = Index;
+public class TimeSlot {
+	private String WeekDay;
+	private long StartTime;
+	private long FinishTime;
+	public TimeSlot(String weekDay , long startTime , long finishTime) {
+		this.WeekDay = new String(weekDay);
+		this.StartTime = startTime ;
+		this.FinishTime = finishTime;
 	}
-	
-	public int getIndex() {
-		return Index;
+	public TimeSlot(TimeSlot t) {
+		this.WeekDay = new String(t.WeekDay);
+		this.StartTime = t.StartTime;
+		this.FinishTime = t.FinishTime;
 	}
-	public void setIndex(int Index) {
-		this.Index = Index;
+	public long getStart() {
+		return StartTime;
 	}
-	public String getTutorName() {
-		return TutorName;
-	}	
-	public void setTutorName (String TutorName) {
-		this.TutorName = null;
-		this.TutorName = new String(TutorName);
+	public void setStart(long startTime) {
+		this.StartTime = startTime;
 	}
-	
-	public int getVacancy(){
-		return Vacancy;
+	public long getFinish() {
+		return FinishTime;
 	}
-	public void setVacancy(int Vacancy) {
-		this.Vacancy = Vacancy;
+	public void setFinish(long finishTime) {
+		this.FinishTime = finishTime;
 	}
-	
-	public String getLabSupervisorName() {
-		return LabSupervisorName;
+	public String getweekDay() {
+		return this.WeekDay;
 	}
-	public void setLabSupervisorName (String LabSupervisorName) {
-		this.LabSupervisorName = new String(LabSupervisorName);
+	public void setWeekDay(String weekDay) {
+		this.WeekDay = new String(weekDay);
 	}
-	
-	// manipulate the StudentList
-	public boolean addStudent( Student stud ) {
-		if (!(StudentList.contains(stud))) {
-			StudentList.add(stud);
-			return true;
-		}
-		return false;
-	}
-	public boolean removeStudent( Student stud ) {
-		if (StudentList.contains(stud)) {
-			StudentList.remove(stud);
-			return true;
-		}
-		return false;
-	}
-	public ArrayList<Student> getStudentList()
-	{
-		return StudentList;
-	}
-	public TimeSlot getTutTimeSlot()
-	{
-		return TutTimeSlot;
-	}
-	public void setTutTimeSlot(TimeSlot time)
-	{
-		this.TutTimeSlot = null;
-		this.TutTimeSlot = new TimeSlot(time);
-	}	
-	public TimeSlot getLabTimeSlot()
-	{
-		return LabTimeSlot;
-	}
-	public void setLabTimeSlot(TimeSlot time)
-	{
-		this.LabTimeSlot = null;
-		this.LabTimeSlot = new TimeSlot(time);
-	}
-	public String detailTutorial() {
-		String detailTS = TutTimeSlot.detailTimeSlot();
-		return "Index : " + Integer.toString(Index) + '\n' + "Tutor Name : " + TutorName + '\n' + "Tutorial Time Slot : " + detailTS  + '\n' + 
-				"Vacancy : " + Integer.toString(Vacancy) ;
+	public String detailTimeSlot() {
+		int shour , sminute , fhour , fminute;
+		shour = (int)StartTime;
+		sminute = (int)((StartTime - (long)shour)*60) ;
+		fhour = (int)FinishTime;
+		fminute = (int)((FinishTime - (long)fhour)*60) ;
+		return (WeekDay + " From " + Integer.toString(shour) + "h"+ Integer.toString(sminute) +"m to " + Integer.toString(fhour) + "h"+ Integer.toString(fminute)+"m" );
 	}
 }
