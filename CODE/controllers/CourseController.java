@@ -4,8 +4,13 @@ import java.util.ArrayList;
 import entities.*;
 
 public class CourseController {
-	private ArrayList<Course> CourseList = new ArrayList<Course>();
-	public boolean AddCourse(String courseID,String courseName,String courseCoordinator) {
+	private ArrayList<Course> CourseList;
+	public CourseController()
+	{	
+		CourseList = new ArrayList<Course>();
+	}
+	
+	public boolean AddCourse(String courseID, String courseName, String courseCoordinator ) {
 		for(Course check : CourseList) {	
 			String checkid = check.getCourseID();
 			if (courseID.equals(checkid)) {
@@ -15,6 +20,7 @@ public class CourseController {
 		CourseList.add(new Course(courseID, courseName, courseCoordinator));
 		return true;
 	}
+	
 	public boolean EditCourse(Course c , String cname , String cid , String coorname) {
 		if (CourseList.contains(c)) {
 		c.setCourseName(cname);

@@ -31,7 +31,7 @@ public class IOInterface {
 				NewStudent();
 				break;				
 			case 2:
-				
+				NewCourse();
 				break;
 				
 			case 3:
