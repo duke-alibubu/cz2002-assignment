@@ -27,6 +27,9 @@ public class Lecture {
 		this.LectureTime.setStart(start);
 		this.LectureTime.setFinish(finish);
 	}
+	public void setLectureTime(TimeSlot t) {
+		LectureTime = new TimeSlot(t);
+	}
 
 	
 	
@@ -39,17 +42,6 @@ public class Lecture {
 	}
 	public void removeTutorial(Tutorial tut) {
 		tutorial.remove(tut);
-	}
-	public void printLecture() {
-		System.out.println("Lecturer Name : " + ProfessorName);
-		System.out.println("Lecture Time : ");
-		LectureTime.printTimeSlot();
-		for (Tutorial tut : tutorial) {
-			tut.printTutorial();
-		}
-	}
-	public void setLectureTime(TimeSlot t) {
-		LectureTime = new TimeSlot(t);
 	}
 	public boolean addStudenttoLec(Student stud , int index) {
 		for (Tutorial tut : tutorial) {

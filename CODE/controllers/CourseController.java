@@ -41,8 +41,20 @@ public class CourseController {
 			return false;
 		}
 	}
-	
-	public boolean AddTutorial(Course c , Lecture l , Tutorial t) {
+	public TimeSlot createTimeSlot(String WeekDay, long StartTime, long FinishTime)
+	{
+		return new TimeSlot(WeekDay, StartTime, FinishTime);
+	}
+	public Lecture createLecture(String ProfessorName, TimeSlot Time)
+	{
+		return new Lecture(ProfessorName, Time);
+	}
+	public Tutorial createTutorial(String TutorName, int Vacancy, String LabSupervisorName, TimeSlot LabTime, TimeSlot TutTime, int Index)
+	{
+		return new Tutorial(TutorName, Vacancy, LabSupervisorName, LabTime, TutTime, Index);
+	}
+
+	public boolean AddTutorialToLecture(Course c , Lecture l , Tutorial t) {
 		if (CourseList.contains(c)) {
 			ArrayList<Lecture> CourseLecture;
 			CourseLecture = c.getCourseLecture();
@@ -88,7 +100,7 @@ public class CourseController {
 			return false;
 		}
 	}
-	public boolean AddLecture(Course c , Lecture l) {
+	public boolean AddLectureToCourse(Course c , Lecture l) {
 		if (CourseList.contains(c)) {
 		    c.addLecture(l);
 		    return true;

@@ -3,36 +3,42 @@ import java.util.ArrayList;
 
 public class Tutorial {
 	private String TutorName;
-	private ArrayList<Student> StudentList = new ArrayList<Student>() ;
-	private int vacancy ; 
+	private ArrayList<Student> StudentList;;
+	private int Vacancy; 
 	private String LabSupervisorName ;
 	private TimeSlot LabTimeSlot ;
 	private TimeSlot TutTimeSlot ;
 	private int Index;
 	
-	public Tutorial() {
-		TutTimeSlot = new TimeSlot();
+	public Tutorial(String TutorName, int Vacancy, String LabSupervisorName, TimeSlot LabTime, TimeSlot TutTime, int Index)
+	{
+		this.TutorName = new String(TutorName);
+		this.Vacancy = Vacancy;
+		this.LabSupervisorName = new String(LabSupervisorName);
+		this.LabTimeSlot = new TimeSlot(LabTime);
+		this.TutTimeSlot = new TimeSlot(TutTime);
+		this.Index = Index;
 	}
 	
 	public int getIndex() {
 		return Index;
 	}
-	public void setIndex(int index) {
-		this.Index = index;
+	public void setIndex(int Index) {
+		this.Index = Index;
 	}
 	public String getTutorName() {
 		return TutorName;
-	}
-	
+	}	
 	public void setTutorName (String TutorName) {
+		this.TutorName = null;
 		this.TutorName = new String(TutorName);
 	}
 	
-	public int getvacancy() {
-		return vacancy;
+	public int getVacancy(){
+		return Vacancy;
 	}
-	public void setvacancy(int vacancy) {
-		this.vacancy = vacancy;
+	public void setVacancy(int Vacancy) {
+		this.Vacancy = Vacancy;
 	}
 	
 	public String getLabSupervisorName() {
@@ -57,47 +63,28 @@ public class Tutorial {
 		}
 		return false;
 	}
-	public ArrayList<Student> getStudentList(){
+	public ArrayList<Student> getStudentList()
+	{
 		return StudentList;
 	}
-	
-	//manipulate the TutTimeSlot
-	public TimeSlot getTutTimeSlot(){
+	public TimeSlot getTutTimeSlot()
+	{
 		return TutTimeSlot;
 	}
-	
-	public void setTutTimeSlot(String day , long start , long finish) {
-		this.TutTimeSlot.setWeekDay(day);
-		this.TutTimeSlot.setStart(start);
-		this.TutTimeSlot.setFinish(finish);
-	}
-
-	
-	//manipulate the LabTimeSlot
-	public TimeSlot getLabTimeSlot(){
+	public void setTutTimeSlot(TimeSlot time)
+	{
+		this.TutTimeSlot = null;
+		this.TutTimeSlot = new TimeSlot(time);
+	}	
+	public TimeSlot getLabTimeSlot()
+	{
 		return LabTimeSlot;
 	}
-	public void setLabTimeSlot(String day , long start , long finish) {
-		this.LabTimeSlot.setWeekDay(day);
-		this.LabTimeSlot.setStart(start);
-		this.LabTimeSlot.setFinish(finish);
+	public void setLabTimeSlot(TimeSlot time)
+	{
+		this.LabTimeSlot = null;
+		this.LabTimeSlot = new TimeSlot(time);
 	}
-	
-	public void printTutorial() {
-		System.out.println("Tutorial index : " + Index);
-		System.out.println("Tutor Name : " + TutorName);
-		System.out.println("Vacancy : " + vacancy);
-		System.out.println("Tutorial Time Slot : ");
-		TutTimeSlot.printTimeSlot();
-		System.out.println("Lab Supervisor Name : " + LabSupervisorName);
-		System.out.println("Lab Time Slot : ");
-		LabTimeSlot.printTimeSlot();
-	}
-	public void setTutTimeSlot(TimeSlot t) {
-		TutTimeSlot = new TimeSlot(t);
-	}
-	public void setLabTimeSlot(TimeSlot t) {
-		LabTimeSlot = new TimeSlot(t);
 	}
 
 	

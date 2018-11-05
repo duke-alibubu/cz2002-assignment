@@ -10,38 +10,26 @@ public class TimeSlot {
 		this.FinishTime = finishTime;
 	}
 	public TimeSlot(TimeSlot t) {
-		this.WeekDay = t.WeekDay;
+		this.WeekDay = new String(t.WeekDay);
 		this.StartTime = t.StartTime;
 		this.FinishTime = t.FinishTime;
-	}
-	public TimeSlot() {}
-	public void setStart(long startTime) {
-		this.StartTime = startTime;
 	}
 	public long getStart() {
 		return StartTime;
 	}
-	public void setFinish(long finishTime) {
-		this.FinishTime = finishTime;
+	public void setStart(long startTime) {
+		this.StartTime = startTime;
 	}
 	public long getFinish() {
 		return FinishTime;
 	}
-	public void setWeekDay(String weekDay) {
-		this.WeekDay = new String(weekDay);
+	public void setFinish(long finishTime) {
+		this.FinishTime = finishTime;
 	}
 	public String getweekDay() {
 		return this.WeekDay;
 	}
-	public void printTimeSlot() {
-		System.out.println("Day : " + WeekDay);
-		int shour , sminute , fhour , fminute;
-		shour = (int)StartTime;
-		sminute = (int)((StartTime - (long)shour)*60) ;
-		fhour = (int)FinishTime;
-		fminute = (int)((FinishTime - (long)fhour)*60) ;
-		System.out.println("Start Time : " + shour + "h "+sminute +"m");
-		System.out.println("Finish Time : " + fhour + "h "+fminute +"m");
+	public void setWeekDay(String weekDay) {
+		this.WeekDay = new String(weekDay);
 	}
-
 }
