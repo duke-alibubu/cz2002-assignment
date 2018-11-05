@@ -58,50 +58,28 @@ public class CourseController {
 			return false;
 		}
 	}
-	public boolean addLectureToCourse(Course c , Lecture l) {
-		if (CourseList.contains(c)) {
-		    c.addLecture(l);
-		    return true;
-		}
-		else {
-			return false;
-		}
+	public void addLectureToCourse(Course c , Lecture l) {
+		c.addLecture(l);
 	}
 	public void editLecture(Lecture l , String ProfessorName , TimeSlot LectureTime ) {
 		l.setProfessorName(ProfessorName);
 		l.setLectureTime(LectureTime);
 	}
-	public boolean removeLecture(Course c , Lecture l) {
-		if (CourseList.contains(c)) {
-			ArrayList<Lecture> CourseLecture;
-			CourseLecture = c.getCourseLecture();
-			if (CourseLecture.contains(l)) {
-				c.removeLecture(l);
-				return true;
-			}
-			else {
-				return false;
-			}
+	public boolean removeLecture(Course c , Lecture l)
+	{
+		ArrayList<Lecture> CourseLecture = c.getCourseLecture();
+		if (CourseLecture.contains(l))
+		{
+			c.removeLecture(l);
+			return true;
 		}
-		else {
+		else
+		{
 			return false;
 		}
 	}
-	public boolean addTutorialToLecture(Course c , Lecture l , Tutorial t) {
-		if (CourseList.contains(c)) {
-			ArrayList<Lecture> CourseLecture;
-			CourseLecture = c.getCourseLecture();
-			if (CourseLecture.contains(l)) {
-				l.addTutorial(t);
-				return true;
-			}
-			else {
-				return false;
-			}
-		}
-		else {
-			return false;
-		}
+	public void addTutorialToLecture(Lecture l , Tutorial t) {
+		l.addTutorial(t);
 	}
 	public void editTutorial(Tutorial t , String TutorName , String LabSupName , int index , TimeSlot TutTime , TimeSlot LabTime) {
 		t.setTutorName(TutorName);
@@ -110,26 +88,15 @@ public class CourseController {
 		t.setTutTimeSlot(TutTime);
 		t.setLabTimeSlot(LabTime);
 	}
-	public boolean removeTutorial(Course c , Lecture l , Tutorial t) {
-		if (CourseList.contains(c)) {
-			ArrayList<Lecture> CourseLecture;
-			CourseLecture = c.getCourseLecture();
-			if (CourseLecture.contains(l)) {
-				ArrayList<Tutorial> tutorial;
-				tutorial = l.getTutorial();
-				if (tutorial.contains(t)) {
-					tutorial.remove(t);
-					return true;
-				}
-				else {
-					return false;
-				}
-			}
-			else {
-				return false;
-			}
+	public boolean removeTutorial(Lecture l , Tutorial t) {
+		ArrayList<Tutorial> tutorial = l.getTutorial();
+		if (tutorial.contains(t))
+		{
+			tutorial.remove(t);
+			return true;
 		}
-		else {
+		else
+		{
 			return false;
 		}
 	}
