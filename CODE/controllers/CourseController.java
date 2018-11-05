@@ -5,15 +5,14 @@ import entities.*;
 
 public class CourseController {
 	private ArrayList<Course> CourseList = new ArrayList<Course>();
-	public boolean AddCourse(Course c) {
-		String courseid = c.getCourseID();
+	public boolean AddCourse(String courseID,String courseName,String courseCoordinator) {
 		for(Course check : CourseList) {	
 			String checkid = check.getCourseID();
-			if (courseid.equals(checkid)) {
+			if (courseID.equals(checkid)) {
 				return false;
 			}
 		}
-		CourseList.add(c);
+		CourseList.add(new Course(courseID, courseName, courseCoordinator));
 		return true;
 	}
 	public boolean EditCourse(Course c , String cname , String cid , String coorname) {

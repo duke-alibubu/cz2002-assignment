@@ -4,8 +4,13 @@ import entities.*;
 import java.util.Scanner;
 
 public class IOInterface {
+	static CourseController crs;
+	static StudentController std;
+	static Scanner sc;
 	public static void main(String args[]) {
-		Scanner sc = new Scanner(System.in);
+		std = new StudentController();
+		crs = new CourseController();
+		sc = new Scanner(System.in);
 		int choice;
 		do {
 			System.out.println("Please choose on one of the following function(-1 to terminate): ");
@@ -23,9 +28,8 @@ public class IOInterface {
 			
 			switch(choice) {
 			case 1:
-				
-				break;
-				
+				NewStudent();
+				break;				
 			case 2:
 				
 				break;
@@ -53,43 +57,38 @@ public class IOInterface {
 		} while (choice != -1);
 	}
 	
-	private boolean NewStudent() {
-		return false;
+	private static void NewStudent() {
+		System.out.println("Please enter the name of the new student:");
+		String studentName = sc.next();
+		System.out.println("Please enter the id of the new student:");
+		String studentID = sc.next();
+		System.out.println("Please enter the faculty of the new student:");
+		String faculty = sc.next();
+		System.out.println("Please enter the year of the new student:");
+		int year = sc.nextInt();
+		boolean result = std.addStudent(studentName, studentID, faculty, year);
+		if (result == true) {
+			System.out.println("Successfully added the new student");
+		}
+		else {
+			System.out.println("Student with the same studentID exists");
+		}
 	}
 	
-	private boolean NewCourse() {
-		return false;
-	}
-	
-	private boolean RegisterCourse() {
-		return false;
-	}
-	
-	private boolean CheckSlot() {
-		return false;
-	}
-	
-	private boolean PrintStudentList() {
-		return false;
-	}
-	
-	private boolean EnterComponentsWeightage() {
-		return false;
-	}
-	
-	private boolean EnterCourseworkMark() {
-		return false;
-	}
-	
-	private boolean EnterExamMark() {
-		return false;
-	}
-	
-	private boolean PrintCourseStatistics() {
-		return false;
-	}
-	
-	private boolean PrintStudentTranscript() {
-		return false;
+	private static void NewCourse() {
+		System.out.println("Please enter the ID for the new course: ");
+		String courseID = sc.next();
+		System.out.println("Please enter the name for the new course: ");
+		String courseName = sc.next();
+		System.out.println("Please enter the coordinator name for the new course: ");
+		String coordinatorName = sc.next();
+		boolean result = crs.AddCourse(courseID, courseName, coordinatorName);
+		if (result) {
+			System.out.println("Add lecture ");
+			System.out.println("Add one assessment");
+		}
+		else {
+			System.out.println("Course with the same courseID exists");
+		}
 	}
 }
