@@ -90,4 +90,6 @@ public class Tutorial {
 		return "Index : " + Integer.toString(Index) + '\n' + "Tutor Name : " + TutorName + '\n' + "Tutorial Time Slot : " + detailTS  + '\n' + 
 				"Vacancy : " + Integer.toString(Vacancy) ;
 	}
+
 }
+
