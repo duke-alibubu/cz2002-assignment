@@ -60,4 +60,8 @@ public class Lecture {
 		}
 		return false;
 	}
+	public String detailLecture() {
+		String detailTS = LectureTime.detailTimeSlot();
+		return "Professor Name : " + ProfessorName + '\n' + "Lecture Time Slot : " + detailTS ;
+	}
 }
