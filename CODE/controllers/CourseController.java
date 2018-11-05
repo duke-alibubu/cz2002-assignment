@@ -30,11 +30,11 @@ public class CourseController {
 	public boolean addCourse(Course aCourse) {
 		for(Course check : CourseList) {	
 			String checkid = check.getCourseID();
-			if (aCourse.getCourseID(courseID).equals(checkid)) {
+			if (aCourse.getCourseID().equals(checkid)) {
 				return false;
 			}
 		}
-		CourseList.add(new Course(courseID, courseName, courseCoordinator));
+		CourseList.add(aCourse);
 		return true;
 	}
 	
