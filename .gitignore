@@ -2,3 +2,4 @@
 *.class
 .recommenders*
 .metadata*
+bin

@@ -1,2 +1,0 @@
-INDEX VERSION 1.131+C:\Users\ahlee\Desktop\2002 assignment\assignment\cz2002-assignment\.metadata\.plugins\org.eclipse.jdt.core
-1527109607.index
