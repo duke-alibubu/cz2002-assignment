@@ -4,7 +4,11 @@ import java.util.ArrayList;
 import entities.*;
 
 public class CourseController {
-	private ArrayList<Course> CourseList = new ArrayList<Course>();
+	private ArrayList<Course> CourseList;
+	public CourseController()
+	{	
+		CourseList = new ArrayList<Course>();
+	}
 	public boolean AddCourse(Course c) {
 		String courseid = c.getCourseID();
 		for(Course check : CourseList) {	
