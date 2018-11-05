@@ -115,5 +115,13 @@ public class CourseController {
 		assess = c.getCourseAssessment();
 		return assess.removeComponent(compname);
 	}
+	public Course checkCourse(String CourseID) {
+		for (Course c : CourseList) {
+			if (c.getCourseID().equals(CourseID)){
+				return c;
+			}
+		}
+		return null;
+	}
 	
 }
