@@ -84,7 +84,8 @@ public class IOInterface {
 		String coordinatorName = sc.next();
 		boolean result = crs.AddCourse(courseID, courseName, coordinatorName);
 		if (result) {
-			System.out.println("Add lecture ");
+			System.out.println();
+			System.out.println("Add lecture: ");
 			System.out.println("Add one assessment");
 		}
 		else {

@@ -5,11 +5,12 @@ public class Lecture {
 	private String ProfessorName;
 	private TimeSlot LectureTime ;
 	private ArrayList<Tutorial> tutorial;
-	public Lecture() {
+	public Lecture(String ProfessorName, TimeSlot LectureTime) {
+		this.ProfessorName = new String(ProfessorName);
+		this.LectureTime = new TimeSlot(LectureTime);
 		tutorial = new ArrayList<Tutorial>();
-		LectureTime = new TimeSlot();
 	}
-	
+
 	public String getProfessorName() {
 		return ProfessorName;
 	}
