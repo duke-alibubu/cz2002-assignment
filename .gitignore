@@ -1,3 +1,4 @@
 *.vpp.bak*
 *.class
 .recommenders*
+.metadata*
