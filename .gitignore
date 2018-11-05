@@ -1,1 +1,3 @@
 *.vpp.bak*
+/bin/
+/.metadata/
