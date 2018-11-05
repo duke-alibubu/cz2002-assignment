@@ -1,7 +1,3 @@
 *.vpp.bak*
-<<<<<<< HEAD
-/bin/
-/.metadata/
-=======
 *.class
->>>>>>> b43457913ee2d846f2125ead2bab0d883bef0f89
+.recommenders*
