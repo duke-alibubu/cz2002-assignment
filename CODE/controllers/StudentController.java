@@ -5,6 +5,11 @@ import entities.*;
 public class StudentController {
 	private ArrayList<Student> StudentList;
 
+	public StudentController()
+	{
+		StudentList = new ArrayList<Student>();
+	}
+
 	private int find(Student aStudent)
 	{
 		return StudentList.indexOf(aStudent);
