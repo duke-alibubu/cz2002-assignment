@@ -39,9 +39,6 @@ public class Lecture {
 	public void removeTutorial(Tutorial tut) {
 		tutorial.remove(tut);
 	}
-	public ArrayList<Tutorial> getTutList(){
-		return this.tutorial;
-	}
 	public void printLecture() {
 		System.out.println("Lecturer Name : " + ProfessorName);
 		System.out.println("Lecture Time : ");
