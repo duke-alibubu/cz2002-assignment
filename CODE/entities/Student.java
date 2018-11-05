@@ -76,5 +76,13 @@ public class Student {
 	public ArrayList<StudentCourse> getRegisteredCourses()
 	{
 		return RegisteredCourses;
-	}	
+	}
+	
+	public boolean EditCourseGrade(Course aCourse, String componentName, float grade) {
+		int index = find(aCourse);
+		if (-1 == index)
+			return false;
+	
+		return RegisteredCourses.get(index).setGrade(componentName, grade);
+	}
 }

@@ -1,12 +1,13 @@
 package controllers;
 import java.util.ArrayList;
+
 import entities.*;
 
 public class CourseController {
 	private ArrayList<Course> CourseList = new ArrayList<Course>();
 	public boolean AddCourse(Course c) {
 		String courseid = c.getCourseID();
-		for(Course check : CourseList) {
+		for(Course check : CourseList) {	
 			String checkid = check.getCourseID();
 			if (courseid.equals(checkid)) {
 				return false;
@@ -121,7 +122,7 @@ public class CourseController {
 		assess = c.getCourseAssessment();
 		return assess.addComponent(compname,weight);
 	}	
-	public boolean RemoveAssessmentComponent(Course c , String compname ) {
+	public boolean RemoveAssessmentComponent(Course c , String compname , float weight ) {
 		Assessment assess;
 		assess = c.getCourseAssessment();
 		return assess.removeComponent(compname);

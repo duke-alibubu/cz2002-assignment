@@ -12,7 +12,7 @@ public class StudentController {
 	private int find(String ID)
 	{
 		int index = -1;
-		for (int i=0; i<StudentList.get(i); i++)
+		for (int i=0; i < StudentList.size(); i++)
 		{
 			if (ID.equals(StudentList.get(i).getID()))
 			{
@@ -69,14 +69,13 @@ public class StudentController {
 		return false;
 	}
 	
-	public boolean EditGrade(String studentID, String CourseID, String component, int value) {
+	public boolean EditGrade(String studentID, Course aCourse, String component, float value) {
 		Iterator iter = StudentList.iterator();
 		int loop=0;
 		while (iter.hasNext()) {
 			Student check = StudentList.get(loop);
 			if (check.getID() == studentID) {
-				boolean grade = check.editCourseGrade(CourseID, component, value);
-				return grade;
+				return check.EditCourseGrade(aCourse, component, value);
 			}
 			loop ++;
 		}
