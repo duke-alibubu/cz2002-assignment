@@ -46,16 +46,6 @@ public class Course {
 	public ArrayList<Lecture> getCourseLecture() {return CourseLecture;}
 
 	public Assessment getCourseAssessment() {return CourseAssessment;}
-	public void printCourse() {
-		System.out.println("Course Name : "+CourseName+ " ID " + CourseID);
-		System.out.println("Course Coordinator Name : "+ CourseCoordinatorName);
-		int leccount = 1;
-		for (Lecture lec : CourseLecture) {
-			System.out.println("Lecture " + leccount + ":");
-			lec.printLecture();
-			leccount++;
-			}
-	}
 	public boolean addStudenttoCourse(Student stud , int index) {
 		for (Lecture lec : CourseLecture) {
 			if (lec.addStudenttoLec(stud, index)) {

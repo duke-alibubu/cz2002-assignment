@@ -85,8 +85,4 @@ public class Tutorial {
 		this.LabTimeSlot = null;
 		this.LabTimeSlot = new TimeSlot(time);
 	}
-	}
-
-	
-	
 }
