@@ -1,11 +1,7 @@
-<<<<<<< HEAD:CODE/boundary/IOInterface.java
-package boundary;
+package boundaries;
 import controllers.*;
 import entities.*;
 import java.util.Scanner;
-=======
-package boundaries;
->>>>>>> b43457913ee2d846f2125ead2bab0d883bef0f89:CODE/boundaries/IOInterface.java
 
 public class IOInterface {
 	public static void main(String args[]) {
@@ -19,7 +15,7 @@ public class IOInterface {
 			System.out.println("4. Check Available Slots");
 			System.out.println("5. Print Student List of a Course");
 			System.out.println("6. Enter course assessment components weightage");
-			System.out.println("7. Enter coursework mark ¨C inclusive of its components");
+			System.out.println("7. Enter coursework mark C inclusive of its components");
 			System.out.println("8. Enter exam mark");
 			System.out.println("9. Print course statistics");
 			System.out.println("10. Print student transcript");
