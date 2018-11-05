@@ -20,9 +20,9 @@ public class IOInterface {
 			System.out.println("2. Add Course"); //done
 			System.out.println("3. Add lecture/tutorial/lab slot"); //done
 			System.out.println("4. Add course assessment"); // done
-			System.out.println("5. Register Course"); // done, left checking any vacancy left
-			System.out.println("6. Check Available Slots");
-			System.out.println("7. Print Student List of a Course");
+			System.out.println("5. Register Course"); // done, left checking vacancy
+			System.out.println("6. Check Available Slots");// done, left vacancy checking
+			System.out.println("7. Print Student List of a Course");// done, left how to iterate and print student
 			System.out.println("8. Enter course assessment components weightage");
 			System.out.println("9. Enter coursework mark C inclusive of its components");
 			System.out.println("10. Enter exam mark");
@@ -68,19 +68,40 @@ public class IOInterface {
 				break;
 				
 			case 6:
+				CheckVacancy(); // actually checkVacancy function can be used in registerCourse, if needed then input courseID will be at here
 				break;
+				
 			case 7:
+				PrintStudent();
 				break;
+				
 			case 8:
 				break;
+				
 			case 9:
 				break;
+				
 			case 10:
 				break;
+				
 			case 11:	
 				break;
+				
 			case 12:
 				break;
+				
+			case 13:
+				break;
+				
+			case 14:
+				break;
+				
+			case 15:
+				break;
+				
+			case 16:
+				break;
+			
 			default:
 				break;
 			}
@@ -311,4 +332,39 @@ public class IOInterface {
 		// if yes, enrollCourse(stu, c, index)    , and vacancy - 1
 	}
 	
+	private static void CheckVacancy() {
+		Course c;
+		while (true) {
+			System.out.println("Please enter the courseID that you want to insert the new section into: ");
+			String ID = sc.next();
+			c = crs.checkCourse(ID);
+			if (c == null) {
+				System.out.println("Invalid courseID");
+			}
+			else {
+				break;
+			}
+		}
+		System.out.println("Please enter the index: "); // or we just print all indexes with all vacancies?
+		int index = sc.nextInt();
+		//check index is inside or not
+		//if yes, check vacancy
+	}
+	
+	private static void PrintStudent() {
+		Course c;
+		while (true) {
+			System.out.println("Please enter the courseID that you want to insert the new section into: ");
+			String ID = sc.next();
+			c = crs.checkCourse(ID);
+			if (c == null) {
+				System.out.println("Invalid courseID");
+			}
+			else {
+				break;
+			}
+		}
+		//for all index in the course, print studentlist from tutorial
+		//iterate through arraylist of lecture, iterate through array list of tutorial and print studentlist
+	}
 }
