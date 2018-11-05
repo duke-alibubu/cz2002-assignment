@@ -1,2 +1,2 @@
-javac CODE\boundaries\* CODE\controllers\* CODE\entities\*
+javac CODE\boundaries\*.java CODE\controllers\*.java CODE\entities\*.java
 java CODE\boundaries\IOInterface
