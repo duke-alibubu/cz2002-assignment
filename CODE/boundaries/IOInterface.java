@@ -1,7 +1,11 @@
+<<<<<<< HEAD:CODE/boundary/IOInterface.java
 package boundary;
 import controllers.*;
 import entities.*;
 import java.util.Scanner;
+=======
+package boundaries;
+>>>>>>> b43457913ee2d846f2125ead2bab0d883bef0f89:CODE/boundaries/IOInterface.java
 
 public class IOInterface {
 	public static void main(String args[]) {
