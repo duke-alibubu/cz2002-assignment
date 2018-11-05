@@ -85,4 +85,9 @@ public class Tutorial {
 		this.LabTimeSlot = null;
 		this.LabTimeSlot = new TimeSlot(time);
 	}
+	public String detailTutorial() {
+		String detailTS = TutTimeSlot.detailTimeSlot();
+		return "Index : " + Integer.toString(Index) + '\n' + "Tutor Name : " + TutorName + '\n' + "Tutorial Time Slot : " + detailTS  + '\n' + 
+				"Vacancy : " + Integer.toString(Vacancy) ;
+	}
 }

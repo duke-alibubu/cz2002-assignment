@@ -1,7 +1,9 @@
 package boundaries;
 import controllers.*;
 import entities.*;
+
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class IOInterface {
 	static CourseController crs;
@@ -16,9 +18,9 @@ public class IOInterface {
 			System.out.println("Please choose on one of the following function(-1 to terminate): ");
 			System.out.println("1. Add Student"); //done
 			System.out.println("2. Add Course"); //done
-			System.out.println("3. Add lecture/tutorial/lab slot"); //done main, left NewTutorial and NewLab
-			System.out.println("4. Add course component");
-			System.out.println("5. Register Course");
+			System.out.println("3. Add lecture/tutorial/lab slot"); //done
+			System.out.println("4. Add course assessment"); // done
+			System.out.println("5. Register Course"); // done, left checking any vacancy left
 			System.out.println("6. Check Available Slots");
 			System.out.println("7. Print Student List of a Course");
 			System.out.println("8. Enter course assessment components weightage");
@@ -47,9 +49,24 @@ public class IOInterface {
 				break;
 				
 			case 4:
+				while (true) {
+					System.out.println("Please enter the courseID that you want to insert the new section into: ");
+					String ID = sc.next();
+					Course c = crs.checkCourse(ID);
+					if (c == null) {
+						System.out.println("Invalid courseID");
+					}
+					else {
+						NewAssessment(c);
+						break;
+					}
+				}
 				break;
+				
 			case 5:
+				RegisterCourse();
 				break;
+				
 			case 6:
 				break;
 			case 7:
@@ -100,14 +117,9 @@ public class IOInterface {
 		boolean result = crs.addCourse(c);
 		if (result) {
 			NewLecture(c);
-			// then after adding lecture, user can add tutorial and lab
-			int loop = 0;
-			System.out.println("Add a component in the course:");
-			while (loop == 0) {
-				NewAssessment(c);
-				System.out.println("Do you want to add another component? (0 to add another, -1 to terminate) ");
-				loop = sc.nextInt();
-			}
+			NewTutorial(c);
+			NewLab(c);
+			NewAssessment(c);
 		}
 		else {
 			System.out.println("Course with the same courseID exists");
@@ -130,17 +142,101 @@ public class IOInterface {
 	}
 	
 	private static void NewTutorial(Course c) {
+		int count = 1;
+		ArrayList<Lecture> CourseLecture = c.getCourseLecture();
+		for (Lecture lec : CourseLecture) {
+			System.out.println("Lecture " + count + ':');
+			System.out.println(lec.detailLecture());
+			count++;
+		}
+		System.out.println("Enter the lecture where you want to add a new tuturial in : ");
+		int lecno = sc.nextInt(); 
+		//Handle errors where user does not input a valid lecture number 
+		while ((lecno < 1)||(lecno > CourseLecture.size())){
+			System.out.println("Lecture not valid ! Enter the lecture where you want to add a new tuturial in : ");
+			lecno = sc.nextInt(); 
+		}
+		System.out.println("Add tutorial day: "); 
+		String weekDay = sc.next();
+		System.out.println("Add tutorial start time: ");
+		long startTime = sc.nextLong();
+		System.out.println("Add tutorial end time: ");
+		long endTime = sc.nextLong();
+		TimeSlot ts = crs.createTimeSlot(weekDay, startTime, endTime);
+		System.out.println("Enter the name of the tutor for this tutorial section: ");
+		String tutor = sc.next();
+		System.out.println("Enter the index of this tutorial section: ");
+		int index = sc.nextInt();
+		System.out.println("Enter the vacancy for this tutorial section: ");
+		int vacancy = sc.nextInt();
+		Tutorial newTut = crs.createTutorial(tutor, vacancy, null, null, ts, index);
+		//no Lab is created yet
+		crs.addTutorialToLecture(CourseLecture.get(lecno-1), newTut);
 		
 	}
 	
 	private static void NewLab(Course c) {
-		
+		int count = 1;
+		ArrayList<Lecture> CourseLecture = c.getCourseLecture();
+		for (Lecture lec : CourseLecture) {
+			System.out.println("Lecture " + count + ':');
+			System.out.println(lec.detailLecture());
+			count++;
+		}
+		System.out.println("Enter the lecture where you want to add a new lab in : ");
+		int lecno = sc.nextInt(); 
+		//Handle errors where user does not input a valid lecture number 
+		while ((lecno < 1)||(lecno > CourseLecture.size())){
+			System.out.println("Lecture not valid ! Enter the lecture where you want to add a new lab in : ");
+			lecno = sc.nextInt(); 
+		}
+		System.out.println("Tutorials in this lecture : ");
+		ArrayList<Tutorial> tutorial = CourseLecture.get(lecno-1).getTutorial();
+		for (Tutorial tut : tutorial) {
+			System.out.println(tut.detailTutorial());
+			System.out.println();
+		} 
+		boolean check = false;
+		//Handle errors where user does not input a valid tutorial index
+		do {
+			System.out.println("Enter the tutorial index where you want to add a new lab in : ");
+			int checkindex = sc.nextInt();
+			for (Tutorial tut : tutorial) {
+			if (tut.getIndex()==checkindex) {
+				System.out.println("Enter the Lab Supervisor Name : ");
+				String LabSupervisorName = sc.next();
+				System.out.println("Add lab day: "); 
+				String weekDay = sc.next();
+				System.out.println("Add lab start time: ");
+				long startTime = sc.nextLong();
+				System.out.println("Add lab end time: ");
+				long endTime = sc.nextLong();
+				TimeSlot ts = crs.createTimeSlot(weekDay, startTime, endTime);
+				tut.setLabSupervisorName(LabSupervisorName);
+				tut.setLabTimeSlot(ts);
+				check = true;
+				break;
+			}
+			if (check == false) {
+				System.out.println("Index not available ! ");
+			}
+		}
+		}while (check == false);
 	}
 	
 	private static void NewSection() {
-		System.out.println("Please enter the courseID that you want to insert the new section into: ");
-		String ID = sc.next();
-		Course c = crs.checkCourse(ID); //ERROR HERE, need a function to check for the course and return it using the courseID
+		Course c;
+		while (true) {
+			System.out.println("Please enter the courseID that you want to insert the new section into: ");
+			String ID = sc.next();
+			c = crs.checkCourse(ID);
+			if (c == null) {
+				System.out.println("Invalid courseID");
+			}
+			else {
+				break;
+			}
+		}
 		int choice;
 		do {
 			System.out.println("Please choose the section you want to insert");
@@ -163,17 +259,56 @@ public class IOInterface {
 	}
 	
 	private static void NewAssessment(Course c) {
-		System.out.println("Please enter the name of the component: ");
-		String componentName = sc.next();
-		System.out.println("Please enter the weightage of the component: ");
-		float weightage = sc.nextFloat();
-		boolean result = crs.addAssessmentComponent(c, componentName, weightage);
-		if(result) {
-			System.out.println("Successfully added!");
+		int loop = 0;
+		System.out.println("Add a component in the course:");
+		while (loop == 0) {
+			System.out.println("Please enter the name of the component: ");
+			String componentName = sc.next();
+			System.out.println("Please enter the weightage of the component: ");
+			float weightage = sc.nextFloat();
+			boolean result = crs.addAssessmentComponent(c, componentName, weightage);
+			if(result) {
+				System.out.println("Successfully added!");
+			}
+			else {
+				System.out.println("Error");
+			}
+			System.out.println("Do you want to add another component? (0 to add another, -1 to terminate) ");
+			loop = sc.nextInt();
 		}
-		else {
-			System.out.println("Error");
+		
+	}
+	
+	private static void RegisterCourse() {
+		Student stu;
+		while(true) {
+			System.out.println("Please enter the Student ID to register course: ");
+			String studentID = sc.next();
+			stu = std.checkStudent(studentID);
+			if (stu == null) {
+				System.out.println("Invalid studentID");
+			}
+			else {
+				break;
+			}
 		}
+		Course c;
+		while (true) {
+			System.out.println("Please enter the courseID that you want to insert the new section into: ");
+			String ID = sc.next();
+			c = crs.checkCourse(ID);
+			if (c == null) {
+				System.out.println("Invalid courseID");
+			}
+			else {
+				break;
+			}
+		}
+		
+		// print available timeslot with the amount of vacancy
+		int index; // ->the chosen index
+		// check vacancy before adding
+		// if yes, enrollCourse(stu, c, index)    , and vacancy - 1
 	}
 	
 }

@@ -32,4 +32,12 @@ public class TimeSlot {
 	public void setWeekDay(String weekDay) {
 		this.WeekDay = new String(weekDay);
 	}
+	public String detailTimeSlot() {
+		int shour , sminute , fhour , fminute;
+		shour = (int)StartTime;
+		sminute = (int)((StartTime - (long)shour)*60) ;
+		fhour = (int)FinishTime;
+		fminute = (int)((FinishTime - (long)fhour)*60) ;
+		return (WeekDay + " From " + Integer.toString(shour) + "h"+ Integer.toString(sminute) +"m to " + Integer.toString(fhour) + "h"+ Integer.toString(fminute)+"m" );
+	}
 }

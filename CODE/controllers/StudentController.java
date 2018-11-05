@@ -86,5 +86,12 @@ public class StudentController {
 		}
 		return false;
 	}
-	
+	public Student checkStudent(String StudentID) {
+		for (Student std : StudentList) {
+			if (std.getID().equals(StudentID)){
+				return std;
+			}
+		}
+		return null;
+	}
 }
