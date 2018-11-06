@@ -2,9 +2,9 @@ package entities;
 
 public class TimeSlot {
 	private String WeekDay;
-	private long StartTime;
-	private long FinishTime;
-	public TimeSlot(String weekDay , long startTime , long finishTime) {
+	private float StartTime;
+	private float FinishTime;
+	public TimeSlot(String weekDay , float startTime , float finishTime) {
 		this.WeekDay = new String(weekDay);
 		this.StartTime = startTime ;
 		this.FinishTime = finishTime;
@@ -14,16 +14,16 @@ public class TimeSlot {
 		this.StartTime = t.StartTime;
 		this.FinishTime = t.FinishTime;
 	}
-	public long getStart() {
+	public float getStart() {
 		return StartTime;
 	}
-	public void setStart(long startTime) {
+	public void setStart(float startTime) {
 		this.StartTime = startTime;
 	}
-	public long getFinish() {
+	public float getFinish() {
 		return FinishTime;
 	}
-	public void setFinish(long finishTime) {
+	public void setFinish(float finishTime) {
 		this.FinishTime = finishTime;
 	}
 	public String getweekDay() {
@@ -35,9 +35,9 @@ public class TimeSlot {
 	public String detailTimeSlot() {
 		int shour , sminute , fhour , fminute;
 		shour = (int)StartTime;
-		sminute = (int)((StartTime - (long)shour)*60) ;
+		sminute = (int)((StartTime - (float)shour)*60) ;
 		fhour = (int)FinishTime;
-		fminute = (int)((FinishTime - (long)fhour)*60) ;
+		fminute = (int)((FinishTime - (float)fhour)*60) ;
 		return (WeekDay + " From " + Integer.toString(shour) + "h"+ Integer.toString(sminute) +"m to " + Integer.toString(fhour) + "h"+ Integer.toString(fminute)+"m" );
 	}
 }
