@@ -10,7 +10,7 @@ public class CourseController {
 		CourseList = new ArrayList<Course>();
 	}
 	
-	public TimeSlot createTimeSlot(String WeekDay, long StartTime, long FinishTime)
+	public TimeSlot createTimeSlot(String WeekDay, float StartTime, float FinishTime)
 	{
 		return new TimeSlot(WeekDay, StartTime, FinishTime);
 	}
@@ -122,5 +122,56 @@ public class CourseController {
 			}
 		}
 		return null;
+	}
+	public void printTutorialStudentList(Tutorial tut) {
+		System.out.println(tut.detailStudentList());
+	}
+	public void printLectureStudentList(Lecture lec ) {
+		ArrayList<Tutorial> tutorial = lec.getTutorial();
+		for (Tutorial tut : tutorial) {
+			System.out.println(tut.detailStudentList());
+		}
+	}
+	public void printCourseStudentList(Course c) {
+		ArrayList<Lecture> CourseLecture = c.getCourseLecture();
+		for (Lecture lec : CourseLecture) {
+			printLectureStudentList(lec);
+		}
+	}
+	public void printTutorialDetails(Tutorial tut) {
+		System.out.println(tut.detailTutorial());
+	}
+	//print only lecture details , not details of tutorials in lecture
+	public void printLectureDetails(Lecture lec) {
+		System.out.println(lec.detailLecture());
+	}
+	public void printTutorialInLecture(Lecture lec) {
+		ArrayList<Tutorial> tutorial = lec.getTutorial();
+		for (Tutorial tut : tutorial) {
+			printTutorialDetails(tut);
+			System.out.println();
+		}
+	}
+	public Tutorial checkTutorialinLecture(Lecture lec , int index) {
+		ArrayList<Tutorial> tutorial = lec.getTutorial();
+		for (Tutorial tut : tutorial) {
+			if (tut.getIndex()==index) return tut;
+		}
+		return null;
+	}
+	public void printTutorialVacancy(Tutorial tut) {
+		System.out.println("Tutorial "+Integer.toString(tut.getIndex())+" : Vacancy = " +Integer.toString(tut.getVacancy()));
+	}
+	public void printLectureVacancy(Lecture lec) {
+		ArrayList<Tutorial> tutorial = lec.getTutorial();
+		for (Tutorial tut : tutorial) {
+			printTutorialVacancy(tut);
+		}
+	}
+	public void printCourseVacancy(Course c) {
+		ArrayList<Lecture> CourseLecture = c.getCourseLecture();
+		for (Lecture lec : CourseLecture) {
+			printLectureVacancy(lec);
+		}
 	}
 }
