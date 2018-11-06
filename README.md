@@ -17,6 +17,9 @@ https://github.com/clarencecastillo/NTUOSS-GitWorkshop
 - editGrade in StudentCourse
 
 - in Student, move Edit grade, remove Course, change Index into enrolment controller
+# Notes
+- when scanning String inputs , use nextLine() instead of next() (better)
+- sc.nextLine() after scanning an integer 
 
 # New Modification
 - Course , Tutorial , Lecture and TimeSlot now have their own printing function
@@ -29,3 +32,19 @@ https://github.com/clarencecastillo/NTUOSS-GitWorkshop
 - Tutorial : modified detailTutorial func , added detailStudenList func
 - StudenController : added checkStudent(String StudentID) func
 - IoInterface : Completed RegisterCourse , CheckVacancy() , PrintStudent() function 
+# Duke , Modification Evening 6th 2018
+- fixed input scanning bugs
+- StudentController : added printStudentDetail() function
+- CourseController : added checkTutorialinLecture (Lecture lec , int index)
+                     printTutorialStudentList(Tutorial tut)
+                     printLectureStudentList(Lecture lec )
+                     printCourseStudentList(Course c)
+                     printTutorialDetails(Tutorial tut)
+                     printLectureDetails(Lecture lec)
+                     printTutorialInLecture(Lecture lec)
+                     printTutorialVacancy(Tutorial tut)
+                     printLectureVacancy(Lecture lec)
+                     printCourseVacancy(Course c)
+ - TimeSlot : changed StartTime & FinishTime data types from long to float 
+              also changed the createTimeSlot() func in CourseController due to related issues
+                     
