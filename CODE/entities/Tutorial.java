@@ -52,6 +52,8 @@ public class Tutorial {
 	public boolean addStudent( Student stud ) {
 		if (!(StudentList.contains(stud))) {
 			StudentList.add(stud);
+			if (Vacancy == 0) return false;
+			Vacancy--;
 			return true;
 		}
 		return false;
@@ -59,6 +61,7 @@ public class Tutorial {
 	public boolean removeStudent( Student stud ) {
 		if (StudentList.contains(stud)) {
 			StudentList.remove(stud);
+			Vacancy++;
 			return true;
 		}
 		return false;
@@ -87,9 +90,21 @@ public class Tutorial {
 	}
 	public String detailTutorial() {
 		String detailTS = TutTimeSlot.detailTimeSlot();
+		if (LabTimeSlot != null) {
+		String detailLab = LabTimeSlot.detailTimeSlot();
 		return "Index : " + Integer.toString(Index) + '\n' + "Tutor Name : " + TutorName + '\n' + "Tutorial Time Slot : " + detailTS  + '\n' + 
+				"Vacancy : " + Integer.toString(Vacancy) + '\n' + "Lab Supervisor Name : " + LabSupervisorName + '\n' + "Lab Time Slot : "
+				+ detailLab;
+		}
+		else return "Index : " + Integer.toString(Index) + '\n' + "Tutor Name : " + TutorName + '\n' + "Tutorial Time Slot : " + detailTS  + '\n' + 
 				"Vacancy : " + Integer.toString(Vacancy) ;
 	}
-
+	public String detailStudentList() {
+		String detailSL = new String();
+		for (Student stud : StudentList) {
+			detailSL += stud.detailStudent();
+			detailSL += '\n';
+		}
+		return detailSL;
+	}
 }
-
