@@ -8,10 +8,12 @@ import java.util.ArrayList;
 public class IOInterface {
 	static CourseController crs;
 	static StudentController std;
+	static EnrollmentController enr;
 	static Scanner sc;
 	public static void main(String args[]) {
 		std = new StudentController();
 		crs = new CourseController();
+		enr = new EnrollmentController();
 		sc = new Scanner(System.in);
 		int choice;
 		do {
@@ -315,21 +317,35 @@ public class IOInterface {
 		}
 		Course c;
 		while (true) {
-			System.out.println("Please enter the courseID that you want to insert the new section into: ");
+			System.out.println("Please enter the courseID that you want to add the student into: ");
 			String ID = sc.next();
 			c = crs.checkCourse(ID);
 			if (c == null) {
-				System.out.println("Invalid courseID");
+				System.out.println("Invalid courseID!");
 			}
 			else {
 				break;
 			}
 		}
-		
-		// print available timeslot with the amount of vacancy
-		int index; // ->the chosen index
-		// check vacancy before adding
-		// if yes, enrollCourse(stu, c, index)    , and vacancy - 1
+
+		// print out the lecture and tutorial details for the user to choose the index
+		ArrayList<Lecture> CourseLecture = c.getCourseLecture();
+		for (Lecture lec : CourseLecture ) {
+			System.out.println(lec.detailLecture());
+			ArrayList<Tutorial> tutorial = lec.getTutorial();
+			for (Tutorial tut : tutorial) {
+				System.out.println(tut.detailTutorial());
+			}
+		} 
+		int index;
+        while(true) {
+		System.out.println("Please enter the tutorial index that you want to add the student into : ");
+		index = sc.nextInt();
+		if (!enr.EnrollCourse(stu, c, index)) {    //vacancy also get updated in the EnrollCourse func
+			System.out.println("Index not available ! ");
+		}
+		else break;
+        }
 	}
 	
 	private static void CheckVacancy() {
@@ -345,10 +361,14 @@ public class IOInterface {
 				break;
 			}
 		}
-		System.out.println("Please enter the index: "); // or we just print all indexes with all vacancies?
-		int index = sc.nextInt();
-		//check index is inside or not
-		//if yes, check vacancy
+		// check all vacancies
+		ArrayList<Lecture> CourseLecture = c.getCourseLecture();
+		for (Lecture lec : CourseLecture ) {
+			ArrayList<Tutorial> tutorial = lec.getTutorial();
+			for (Tutorial tut : tutorial) {
+				System.out.println(tut.detailTutorial());
+			}
+		}
 	}
 	
 	private static void PrintStudent() {
@@ -362,6 +382,15 @@ public class IOInterface {
 			}
 			else {
 				break;
+			}
+			System.out.println("Student List by Tutorial Session :");
+			ArrayList<Lecture> CourseLecture = c.getCourseLecture();
+			for (Lecture lec : CourseLecture ) {
+				ArrayList<Tutorial> tutorial = lec.getTutorial();
+				for (Tutorial tut : tutorial) {
+					System.out.println("Tutorial index " + Integer.toString(tut.getIndex()));
+					System.out.println(tut.detailStudentList());
+				}
 			}
 		}
 		//for all index in the course, print studentlist from tutorial
