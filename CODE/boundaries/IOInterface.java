@@ -25,7 +25,7 @@ public class IOInterface {
 			System.out.println("5. Register Course"); // done
 			System.out.println("6. Check Available Slots");// done
 			System.out.println("7. Print Student List of a Course");// done
-			System.out.println("8. Enter course assessment components weightage");
+			System.out.println("8. Enter course assessment components weightage");//done
 			System.out.println("9. Enter coursework mark C inclusive of its components");
 			System.out.println("10. Enter exam mark");
 			System.out.println("11. Print course statistics");
@@ -79,6 +79,7 @@ public class IOInterface {
 				break;
 				
 			case 8:
+				EditAssessment();
 				break;
 				
 			case 9:
@@ -387,5 +388,51 @@ public class IOInterface {
 		crs.printCourseStudentList(c);
 		//for all index in the course, print studentlist from tutorial
 		//iterate through arraylist of lecture, iterate through array list of tutorial and print studentlist
+	}
+	private static void EditAssessment() {
+		Course c;
+		while (true) {
+			System.out.println("Please enter the courseID that you want to edit the assessment : ");
+			String ID = sc.nextLine();
+			c = crs.checkCourse(ID);
+			if (c == null) {
+				System.out.println("Invalid courseID");
+			}
+			else {
+				break;
+			}
+		}
+		System.out.println("Do you want to edit the weightage of an existing component or add a new component ? ");
+		System.out.println("1: Edit the weightage of an existing component , 2: Add a new component  ,  others: Quit");
+		int choice = sc.nextInt();
+		sc.nextLine();
+		switch(choice) {
+		case 1: 
+			crs.printAssessmentWeightage(c);
+
+			
+			while (true) {
+				System.out.println("Enter the component name that you want to edit weightage : ");
+				String compname = sc.nextLine();
+				Component comp = crs.checkComponent(c, compname);
+				if (comp == null) {
+					System.out.println("Invalid component");
+				}
+				else {
+					break;
+				}
+				System.out.println("Enter the new weightage that you want to for this component : ");
+				int weight = sc.nextInt();
+				sc.nextLine();
+				crs.editAssessmentComponent(c, compname, weight);
+			}	
+			break;
+		case 2 :
+			NewAssessment(c);
+			break;
+		default:
+			break;
+		}
+		
 	}
 }
