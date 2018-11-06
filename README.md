@@ -32,7 +32,7 @@ https://github.com/clarencecastillo/NTUOSS-GitWorkshop
 - Tutorial : modified detailTutorial func , added detailStudenList func
 - StudenController : added checkStudent(String StudentID) func
 - IoInterface : Completed RegisterCourse , CheckVacancy() , PrintStudent() function 
-# Duke , Modification Evening 6th 2018
+# Duke , Modification Evening Nov 6th 2018
 - fixed input scanning bugs
 - StudentController : added printStudentDetail() function
 - CourseController : added checkTutorialinLecture (Lecture lec , int index)
@@ -47,4 +47,9 @@ https://github.com/clarencecastillo/NTUOSS-GitWorkshop
                      printCourseVacancy(Course c)
  - TimeSlot : changed StartTime & FinishTime data types from long to float 
               also changed the createTimeSlot() func in CourseController due to related issues
-                     
+         
+# DUKE , Modification Nov 7th 2018
+- Component : added a copy constructor
+- CourseController : added printAssessmentWeightage() and checkComponent(..) func
+- StudentCourse : added calculateTotal() func which will calculate the final mark of a student in a course
+- Field : added a getDistribution() func
