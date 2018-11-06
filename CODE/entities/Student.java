@@ -6,13 +6,14 @@ public class Student {
 	private String StudentID;
 	private String Faculty;
 	private int Year;
-	private ArrayList<StudentCourse> RegisteredCourses;
+	private ArrayList<StudentCourse> RegisteredCourses ;
 	
 	public Student(String studentName, String studentID, String faculty, int year){
 		this.StudentName = studentName;
 		this.StudentID = studentID;
 		this.Faculty = faculty;
 		this.Year = year;
+		this.RegisteredCourses = new ArrayList<StudentCourse>();
 	}
 	
 	public void setName(String studentName) {
