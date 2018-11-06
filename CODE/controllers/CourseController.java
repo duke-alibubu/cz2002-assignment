@@ -174,4 +174,19 @@ public class CourseController {
 			printLectureVacancy(lec);
 		}
 	}
+	public void printAssessmentWeightage(Course c) {
+		Assessment assess = c.getCourseAssessment();
+		for (Component comp : assess.getDistribution()) {
+			System.out.println(comp.getName() + " weightage " + Float.toString(comp.getValue()));
+		}
+	}
+	public Component checkComponent(Course c , String CompName) {
+		Assessment assess = c.getCourseAssessment();
+		for (Component comp : assess.getDistribution()) {
+			if (comp.getName().equals(CompName)) {
+				return comp; 
+			}
+		}
+		return null;
+	}
 }
