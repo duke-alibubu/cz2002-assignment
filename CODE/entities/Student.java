@@ -87,4 +87,7 @@ public class Student {
 	
 		return RegisteredCourses.get(index).setGrade(componentName, grade);
 	}
+	public String detailStudent() {
+		return StudentName + " ID " + StudentID + " faculty " + Faculty + " year " + Integer.toString(Year); 
+	}
 }
