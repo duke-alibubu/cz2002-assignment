@@ -53,3 +53,4 @@ https://github.com/clarencecastillo/NTUOSS-GitWorkshop
 - CourseController : added printAssessmentWeightage() and checkComponent(..) func
 - StudentCourse : added calculateTotal() func which will calculate the final mark of a student in a course
 - Field : added a getDistribution() func
+- IOInterface : EditAssessment()
