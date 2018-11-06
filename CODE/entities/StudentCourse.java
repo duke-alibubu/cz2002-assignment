@@ -48,4 +48,7 @@ package entities;
 		}
 		TotalMark =  totalMark / totalWeight;
 	}
+	public float getTotalMark() {
+		return TotalMark;
+	}
 }
