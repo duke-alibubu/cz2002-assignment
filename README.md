@@ -24,3 +24,8 @@ https://github.com/clarencecastillo/NTUOSS-GitWorkshop
 - CourseController class need to be edited a lot 
 - Added a Copy constructor for TimeSlot class
 - Lecture and Tutorial classed got new setLabTimeSlot , setTutTimeSlot , setLectureTime which accepts only a TimeSlot object as pass-in parameter
+# DUKE , Modification Nov 6th 2018
+- Student  : added detailStudent func which returns a string if student detail
+- Tutorial : modified detailTutorial func , added detailStudenList func
+- StudenController : added checkStudent(String StudentID) func
+- IoInterface : Completed RegisterCourse , CheckVacancy() , PrintStudent() function 
