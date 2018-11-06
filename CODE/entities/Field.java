@@ -55,4 +55,11 @@ public class Field
 		Distribution.remove(index);
 		return true;
 	}
+	public ArrayList<Component> getDistribution(){
+		ArrayList<Component> CopyDistribution = new ArrayList<Component>();
+		for (Component comp : Distribution) {
+			CopyDistribution.add(new Component(comp));
+		}
+		return CopyDistribution;
+	}
 }
