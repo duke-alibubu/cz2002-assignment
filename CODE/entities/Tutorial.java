@@ -14,10 +14,14 @@ public class Tutorial {
 	{
 		this.TutorName = new String(TutorName);
 		this.Vacancy = Vacancy;
-		this.LabSupervisorName = new String(LabSupervisorName);
-		this.LabTimeSlot = new TimeSlot(LabTime);
+		if (LabSupervisorName != null) {
+		this.LabSupervisorName = new String(LabSupervisorName);}
+		else this.LabSupervisorName = null;
+		if (LabTime == null) this.LabTimeSlot = null;
+		else	this.LabTimeSlot = new TimeSlot(LabTime);
 		this.TutTimeSlot = new TimeSlot(TutTime);
 		this.Index = Index;
+		this.StudentList = new ArrayList<Student>();
 	}
 	
 	public int getIndex() {
