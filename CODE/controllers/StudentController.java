@@ -56,35 +56,14 @@ public class StudentController {
 		return removeStudent(getStudent(ID));
 	}
 	
-	public boolean EditParticulars(String ID, String Name, String Faculty, int Year) {
-		Iterator iter = StudentList.iterator();
-		int loop=0;
-		while (iter.hasNext()) {
-			Student edit = StudentList.get(loop);
-			if (edit.getID() == ID) {
-				edit.setName(Name);
-				edit.setFaculty(Faculty);
-				edit.setYear(Year);
-				this.StudentList.remove(loop);
-				this.StudentList.add(loop, edit);
-				return true;
-			}
-			loop ++;
-		}
-		return false;
+	public void EditParticulars(Student stud, String Name, String Faculty, int Year) {
+				stud.setName(Name);
+				stud.setFaculty(Faculty);
+				stud.setYear(Year);
 	}
 	
-	public boolean EditGrade(String studentID, Course aCourse, String component, float value) {
-		Iterator iter = StudentList.iterator();
-		int loop=0;
-		while (iter.hasNext()) {
-			Student check = StudentList.get(loop);
-			if (check.getID() == studentID) {
-				return check.EditCourseGrade(aCourse, component, value);
-			}
-			loop ++;
-		}
-		return false;
+	public boolean EditGrade(Student stud, Course aCourse, String component, float value) {
+		return stud.EditCourseGrade(aCourse, component, value);
 	}
 	public Student checkStudent(String StudentID) {
 		for (Student stud : StudentList) {
@@ -97,6 +76,8 @@ public class StudentController {
 	public void printStudentDetails(Student stud) {
 		System.out.println(stud.detailStudent());
 	}
-	
+	public boolean checkRegisteredCourseforStudent(Student stud , Course c) {
+		return stud.checkRegistered(c);
+	}
 	
 }
