@@ -22,12 +22,12 @@ public class IOInterface {
 			System.out.println("2. Add Course"); //done
 			System.out.println("3. Add lecture/tutorial/lab slot"); //done
 			System.out.println("4. Add course assessment"); // done
-			System.out.println("5. Register Course"); // done
+			System.out.println("5. Register Course"); // have to consider the case of no-tutorial course
 			System.out.println("6. Check Available Slots");// done
-			System.out.println("7. Print Student List of a Course");// done
+			System.out.println("7. Print Student List of a Course");// done , but have to consider the case of no-tutorial course
 			System.out.println("8. Enter course assessment components weightage");//done
-			System.out.println("9. Enter coursework mark C inclusive of its components");
-			System.out.println("10. Enter exam mark");
+			System.out.println("9. Enter coursework mark C inclusive of its components");//done
+			System.out.println("10. Enter exam mark");//done
 			System.out.println("11. Print course statistics");
 			System.out.println("12. Print student transcript");
 			System.out.println("13. Edit Student Particulars");
@@ -83,9 +83,11 @@ public class IOInterface {
 				break;
 				
 			case 9:
+				EnterComponentMark();
 				break;
 				
 			case 10:
+				EnterExamMark();
 				break;
 				
 			case 11:	
@@ -402,37 +404,105 @@ public class IOInterface {
 				break;
 			}
 		}
-		System.out.println("Do you want to edit the weightage of an existing component or add a new component ? ");
-		System.out.println("1: Edit the weightage of an existing component , 2: Add a new component  ,  others: Quit");
-		int choice = sc.nextInt();
-		sc.nextLine();
-		switch(choice) {
-		case 1: 
+		crs.printAssessmentWeightage(c);
+		while (true) {
+			System.out.println("Enter the component name that you want to edit weightage : ");
+			String compname = sc.nextLine();
+			Component comp = crs.checkComponent(c, compname);
+			if (comp == null) {
+				System.out.println("Invalid component");
+			}
+			else {
+				break;
+			}
+			System.out.println("Enter the new weightage that you want to for this component : ");
+			float weight = sc.nextFloat();
+			sc.nextLine();
+			crs.editAssessmentComponent(c, compname, weight);
+		}	
+	}
+	private static void EnterComponentMark() {
+		Student stu;
+		while(true) {
+			System.out.println("Please enter the Student ID thay you want to enter coursework mark : ");
+			String studentID = sc.nextLine();
+			stu = std.checkStudent(studentID);
+			if (stu == null) {
+				System.out.println("Invalid studentID");
+			}
+			else {
+				break;
+			}
+		}
+		Course c;
+		while (true) {
+			System.out.println("Please enter the courseID that you want to enter mark  : ");
+			String ID = sc.nextLine();
+			c = crs.checkCourse(ID);
+			if (c == null) {
+				System.out.println("Invalid courseID");
+			}
+			else {
+				break;
+			}
+		}
+		if (std.checkRegisteredCourseforStudent(stu, c)) {
 			crs.printAssessmentWeightage(c);
-
-			
 			while (true) {
-				System.out.println("Enter the component name that you want to edit weightage : ");
+				System.out.println("Enter the component name that you want to enter mark : ");
 				String compname = sc.nextLine();
 				Component comp = crs.checkComponent(c, compname);
 				if (comp == null) {
 					System.out.println("Invalid component");
 				}
 				else {
+					System.out.println("Enter the mark that you want to for this component : ");
+					float mark = sc.nextFloat();
+					sc.nextLine();
+					std.EditGrade(stu, c, compname , mark);
 					break;
 				}
-				System.out.println("Enter the new weightage that you want to for this component : ");
-				int weight = sc.nextInt();
-				sc.nextLine();
-				crs.editAssessmentComponent(c, compname, weight);
-			}	
-			break;
-		case 2 :
-			NewAssessment(c);
-			break;
-		default:
-			break;
+			}
 		}
-		
+		else System.out.println("Student " + stu.getName() + " is not registered for the course " + c.getCourseID() );
+	}
+	private static void EnterExamMark() {
+		Student stu;
+		while(true) {
+			System.out.println("Please enter the Student ID thay you want to enter exam mark : ");
+			String studentID = sc.nextLine();
+			stu = std.checkStudent(studentID);
+			if (stu == null) {
+				System.out.println("Invalid studentID");
+			}
+			else {
+				break;
+			}
+		}
+		Course c;
+		while (true) {
+			System.out.println("Please enter the courseID that you want to enter exam mark  : ");
+			String ID = sc.nextLine();
+			c = crs.checkCourse(ID);
+			if (c == null) {
+				System.out.println("Invalid courseID");
+			}
+			else {
+				break;
+			}
+		}
+		if (std.checkRegisteredCourseforStudent(stu, c)) {
+			Component comp = crs.checkComponent(c, "exam");
+			if (comp == null) {
+				System.out.println("This course does not have an exam component! ");
+			}
+			else {
+				System.out.println("Enter the mark that you want to for the exam : ");
+				float mark = sc.nextFloat();
+				sc.nextLine();
+				std.EditGrade(stu, c, "exam" , mark);
+			}
+		}
+		else System.out.println("Student " + stu.getName() + " is not registered for the course " + c.getCourseID() );
 	}
 }
