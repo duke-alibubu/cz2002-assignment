@@ -91,4 +91,10 @@ public class Student {
 	public String detailStudent() {
 		return StudentName + " ID " + StudentID + " faculty " + Faculty + " year " + Integer.toString(Year); 
 	}
+	public boolean checkRegistered(Course c ) {
+		int index = find(c);
+		if (-1 == index)
+			return false;
+		return true;
+	}
 }
