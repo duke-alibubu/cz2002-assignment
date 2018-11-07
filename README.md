@@ -52,5 +52,11 @@ https://github.com/clarencecastillo/NTUOSS-GitWorkshop
 - Component : added a copy constructor
 - CourseController : added printAssessmentWeightage() and checkComponent(..) func
 - StudentCourse : added calculateTotal() func which will calculate the final mark of a student in a course
+                  EditGrade(..) and EditParticulars(..) func accept Student obj as parameter instead of StudentID
+                  added checkRegisteredCourseforStudent(Student stud , Course c)
 - Field : added a getDistribution() func
+- Student : added checkRegistered(Course c) func
 - IOInterface : EditAssessment()
+                EnterComponentMark()
+                EnterExamMark()
+                Have to re-consider the case of no-tutorial courses
