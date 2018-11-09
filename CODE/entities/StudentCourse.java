@@ -51,4 +51,7 @@ package entities;
 		calculateTotal();
 		return TotalMark;
 	}
+	public void addGradeComponent(String compname) {
+		aGrade.addComponent(compname);
+	}
 }
