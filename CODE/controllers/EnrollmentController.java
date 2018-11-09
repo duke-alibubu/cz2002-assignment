@@ -6,6 +6,13 @@ public class EnrollmentController {
 	private ArrayList<Student> StudentEnroll = new ArrayList<Student>();
 	private ArrayList<Course> CourseEnroll = new ArrayList<Course>();
 	private ArrayList<Enrollment> Enrollments = new ArrayList<Enrollment>();
+	private DatabaseController dbc = new DatabaseController();
+	
+	public void save(){
+		dbc.addEnrollmentRecord(Enrollments, "C:/Users/cyuqi/Desktop/EnrollmentList.ser");}
+	
+	public void load() {
+		Enrollments = dbc.readEnrollmentRecord("C:/Users/cyuqi/Desktop/EnrollmentList.ser");}
 	
 	public boolean EnrollCourse(Student stud , Course course , int index) {
 		StudentEnroll.add(stud);
