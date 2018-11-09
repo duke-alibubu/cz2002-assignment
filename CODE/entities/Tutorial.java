@@ -1,7 +1,8 @@
 package entities;
 import java.util.ArrayList;
+import java.io.Serializable;
 
-public class Tutorial {
+public class Tutorial implements Serializable{
 	private String TutorName;
 	private ArrayList<Student> StudentList;
 	private int Vacancy; 
