@@ -1,16 +1,24 @@
 package controllers;
 import java.util.ArrayList;
-
 import entities.*;
 
 public class CourseController {
 	private ArrayList<Course> CourseList;
 	private ArrayList<Course> Constructing;
+	private DatabaseController dbc;
+	
 	public CourseController()
 	{	
 		CourseList = new ArrayList<Course>();
 		Constructing = new ArrayList<Course>();
+		dbc = new DatabaseController();
 	}
+	
+	public void save(){
+		dbc.addCourseRecord(CourseList, "C:/Users/cyuqi/Desktop/CourseList.ser");}
+	
+	public void load() {
+		CourseList = dbc.readCourseRecord("C:/Users/cyuqi/Desktop/CourseList.ser");}
 	
 	public TimeSlot createTimeSlot(String WeekDay, float StartTime, float FinishTime)
 	{
