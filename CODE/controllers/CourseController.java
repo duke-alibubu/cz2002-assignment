@@ -5,16 +5,18 @@ import entities.*;
 
 public class CourseController {
 	private ArrayList<Course> CourseList;
+	private ArrayList<Course> Constructing;
 	public CourseController()
 	{	
 		CourseList = new ArrayList<Course>();
+		Constructing = new ArrayList<Course>();
 	}
 	
 	public TimeSlot createTimeSlot(String WeekDay, float StartTime, float FinishTime)
 	{
 		return new TimeSlot(WeekDay, StartTime, FinishTime);
 	}
-	public Lecture createLecture(String ProfessorName, TimeSlot Time)
+	public Lecture createLecture(String ProfessorName, ArrayList<TimeSlot> Time)
 	{
 		return new Lecture(ProfessorName, Time);
 	}
@@ -46,6 +48,12 @@ public class CourseController {
 		c.setCourseID(cid);
 		return true;
 		}
+		else if (Constructing.contains(c)) {
+		c.setCourseName(cname);
+		c.setCourseCoordinatorName(coorname);
+		c.setCourseID(cid);
+		return true;
+		}
 		else {
 			return false;
 		}
@@ -56,6 +64,11 @@ public class CourseController {
 		    c = null;
 		    return true;
 		}
+		else if (Constructing.contains(c)) {
+			Constructing.remove(c);
+		    c = null;
+		    return true;
+		}
 		else {
 			return false;
 		}
@@ -63,9 +76,9 @@ public class CourseController {
 	public void addLectureToCourse(Course c , Lecture l) {
 		c.addLecture(l);
 	}
-	public void editLecture(Lecture l , String ProfessorName , TimeSlot LectureTime ) {
+	public void editLecture(Lecture l , String ProfessorName , TimeSlot LectureTime , int index ) {
 		l.setProfessorName(ProfessorName);
-		l.setLectureTime(LectureTime);
+		l.setLectureTime(LectureTime , index);
 	}
 	public boolean removeLecture(Course c , Lecture l)
 	{
@@ -149,6 +162,27 @@ public class CourseController {
 				return c;
 			}
 		}
+		for (Course c : Constructing) {
+			if (c.getCourseID().equals(CourseID)){
+				return c;
+			}
+		}
+		return null;
+	}
+	public Course checkConstructingCourse(String CourseID) {
+		for (Course c : Constructing) {
+			if (c.getCourseID().equals(CourseID)){
+				return c;
+			}
+		}
+		return null;
+	}
+	public Course checkConstructedCourse(String CourseID) {
+		for (Course c : CourseList) {
+			if (c.getCourseID().equals(CourseID)){
+				return c;
+			}
+		}
 		return null;
 	}
 	public void printTutorialStudentList(Tutorial tut) {
@@ -157,9 +191,7 @@ public class CourseController {
 	public void printLectureStudentList(Lecture lec ) {
 		ArrayList<Tutorial> tutorial = lec.getTutorial();
 		for (Tutorial tut : tutorial) {
-			if ((tutorial.size()==1)||(tut.getIndex()!= -1)) {
 			System.out.println(tut.detailStudentList());
-			}
 		}
 	}
 	public void printCourseStudentList(Course c) {
@@ -190,6 +222,17 @@ public class CourseController {
 		ArrayList<Tutorial> tutorial = lec.getTutorial();
 		for (Tutorial tut : tutorial) {
 			if (tut.getIndex()==index) return tut;
+		}
+		return null;
+	}
+	public Tutorial checkTutorialinCourse(Course c , int index) {
+		if (index == -1) return null;
+		ArrayList<Lecture> CourseLec = c.getCourseLecture();
+		for (Lecture lec : CourseLec) {
+			ArrayList<Tutorial> tutorial = lec.getTutorial();
+			for (Tutorial tut : tutorial) {
+				if (tut.getIndex()==index) return tut;
+			}
 		}
 		return null;
 	}
@@ -373,5 +416,18 @@ public class CourseController {
 		}
 		printPercentageTotal(c);
 	}
-
+	public void constructingFinish(Course c) {
+		Constructing.remove(c);
+		CourseList.add(c);
+	}
+	public boolean addConstructingCourse(Course aCourse) {
+		for(Course check : CourseList) {	
+			String checkid = check.getCourseID();
+			if (aCourse.getCourseID().equals(checkid)) {
+				return false;
+			}
+		}
+		Constructing.add(aCourse);
+		return true;
+	}
 }
