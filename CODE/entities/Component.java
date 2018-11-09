@@ -1,7 +1,8 @@
 package entities;
 import java.util.ArrayList;
+import java.io.Serializable;
 
-public class Component
+public class Component implements Serializable
 {
 	private String Name;
 	private float Value;
