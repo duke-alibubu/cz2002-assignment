@@ -62,3 +62,5 @@ https://github.com/clarencecastillo/NTUOSS-GitWorkshop
                 Have to re-consider the case of no-tutorial courses
  # DUKE , Modification Nov 8th 2018
  - IOInterface (hopefully) done !
+# DUKE , Modification Nov 9th 2018
+- Fixed bugs in NewAssessment() which grade component doesn't get updated as well
