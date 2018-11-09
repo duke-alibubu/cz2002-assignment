@@ -25,16 +25,17 @@ public class IOInterface {
 			System.out.println("4. Add Course");
 			System.out.println("5. Edit Course");
 			System.out.println("6. Remove Course");
-			System.out.println(". Add lecture/tutorial/lab slot"); 
-			System.out.println("4. Add course assessment"); 
-			System.out.println("5. Register Course"); 
-			System.out.println("6. Check Available Slots");
-			System.out.println("7. Print Student List of a Course");
-			System.out.println("8. Enter course assessment components weightage");
-			System.out.println("9. Enter coursework mark C inclusive of its components");
-			System.out.println("10. Enter exam mark");
-			System.out.println("11. Print course statistics");
-			System.out.println("12. Print student transcript");
+			System.out.println("7. Add lecture/tutorial/lab slot"); 
+			System.out.println("8. Add course assessment"); 
+			System.out.println("9. Register Course"); 
+			System.out.println("10. Check Available Slots");
+			System.out.println("11. Print Student List of a Course");
+			System.out.println("12. Enter course assessment components weightage");
+			System.out.println("13. Enter coursework mark C inclusive of its components");
+			System.out.println("14. Enter exam mark");
+			System.out.println("15. Print course statistics");
+			System.out.println("16. Print student transcript");
+			System.out.println("-----------------------------------------------------------------------");
 
 			choice = sc.nextInt();
 			sc.nextLine();
@@ -45,14 +46,30 @@ public class IOInterface {
 				break;
 				
 			case 2:
-				NewCourse();
+				EditStudentParticulars();
 				break;
 				
 			case 3:
-				NewSection();
+				RemoveStudent();
 				break;
 				
 			case 4:
+				NewCourse();
+				break;
+				
+			case 5:
+				EditCourse();
+				break;
+				
+			case 6:
+				RemoveCourse();
+				break;
+				
+			case 7:
+				NewSection();
+				break;
+				
+			case 8:
 				while (true) {
 					System.out.println("Please enter the courseID that you want to insert the new section into: ");
 					String ID = sc.nextLine();
@@ -67,52 +84,36 @@ public class IOInterface {
 				}
 				break;
 				
-			case 5:
+			case 9:
 				RegisterCourse();
 				break;
 				
-			case 6:
+			case 10:
 				CheckVacancy(); // actually checkVacancy function can be used in registerCourse, if needed then input courseID will be at here
 				break;
 				
-			case 7:
+			case 11:
 				PrintStudent();
 				break;
 				
-			case 8:
+			case 12:
 				EditAssessment();
 				break;
 				
-			case 9:
+			case 13:
 				EnterComponentMark();
 				break;
 				
-			case 10:
+			case 14:
 				EnterExamMark();
 				break;
 				
-			case 11:	
+			case 15:
 				printCourseStatistics();
 				break;
 				
-			case 12:
-				printStudentTranscript();
-				break;
-				
-			case 13:
-				EditStudentParticulars();
-				break;
-				
-			case 14:
-				EditCourse();
-				break;
-				
-			case 15:
-				RemoveStudent();
-				break;
-				
 			case 16:
-				RemoveCourse();
+				printStudentTranscript();
 				break;
 			
 			default:
