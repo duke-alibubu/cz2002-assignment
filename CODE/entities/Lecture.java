@@ -1,7 +1,8 @@
 package entities;
 import java.util.ArrayList;
+import java.io.Serializable;
 
-public class Lecture {
+public class Lecture implements Serializable {
 	private String ProfessorName;
 	private TimeSlot LectureTime ;
 	private ArrayList<Tutorial> tutorial;
