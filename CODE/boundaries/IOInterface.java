@@ -17,6 +17,9 @@ public class IOInterface {
 		enr = new EnrollmentController();
 		sc = new Scanner(System.in);
 		int choice = 0;
+		std.load();
+		crs.load();
+		enr.load();
 		do {
 			System.out.println("----------------------------------------------------------------------");
 			System.out.println("Please choose on one of the following function(-1 to terminate): ");
@@ -130,6 +133,9 @@ public class IOInterface {
 					break;
 				}
 			}
+		std.save();
+		crs.save();
+		enr.save();
 		} while (choice != -1);
 	}
 	
