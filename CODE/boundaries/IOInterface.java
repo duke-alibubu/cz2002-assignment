@@ -17,23 +17,24 @@ public class IOInterface {
 		sc = new Scanner(System.in);
 		int choice;
 		do {
+			System.out.println("----------------------------------------------------------------------");
 			System.out.println("Please choose on one of the following function(-1 to terminate): ");
-			System.out.println("1. Add Student"); //done
-			System.out.println("2. Add Course"); //done
-			System.out.println("3. Add lecture/tutorial/lab slot"); //done
-			System.out.println("4. Add course assessment"); // done
-			System.out.println("5. Register Course"); // done
-			System.out.println("6. Check Available Slots");// done
-			System.out.println("7. Print Student List of a Course");// done
-			System.out.println("8. Enter course assessment components weightage");//done
-			System.out.println("9. Enter coursework mark C inclusive of its components");//done
-			System.out.println("10. Enter exam mark");//done
+			System.out.println("1. Add Student"); 
+			System.out.println("2. Edit Student Particulars");
+			System.out.println("3. Remove Student");
+			System.out.println("4. Add Course");
+			System.out.println("5. Edit Course");
+			System.out.println("6. Remove Course");
+			System.out.println(". Add lecture/tutorial/lab slot"); 
+			System.out.println("4. Add course assessment"); 
+			System.out.println("5. Register Course"); 
+			System.out.println("6. Check Available Slots");
+			System.out.println("7. Print Student List of a Course");
+			System.out.println("8. Enter course assessment components weightage");
+			System.out.println("9. Enter coursework mark C inclusive of its components");
+			System.out.println("10. Enter exam mark");
 			System.out.println("11. Print course statistics");
 			System.out.println("12. Print student transcript");
-			System.out.println("13. Edit Student Particulars");
-			System.out.println("14. Edit Course");
-			System.out.println("15. Remove Student");
-			System.out.println("16. Remove Course");
 
 			choice = sc.nextInt();
 			sc.nextLine();
