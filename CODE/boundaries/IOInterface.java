@@ -140,11 +140,11 @@ public class IOInterface {
 		String studentID = sc.nextLine();
 		System.out.println("Please enter the faculty of the new student:");
 		String faculty = sc.nextLine();
-		System.out.println("Please enter the year of the new student:");
 		int year = 0;
 		while (true) {
 			boolean flag = true;
 			try {
+				System.out.println("Please enter the year of the new student:");
 				year = sc.nextInt();
 				sc.nextLine();
 			}
@@ -157,7 +157,6 @@ public class IOInterface {
 				break;
 			}
 		}
-
 		boolean result = std.addStudent(studentName, studentID, faculty, year);
 		if (result == true) {
 			System.out.println("Successfully added the new student");
@@ -189,21 +188,63 @@ public class IOInterface {
 	private static void NewLecture(Course c) {
 		System.out.println("Add lecture day: "); 
 		String weekDay = sc.nextLine();
-		System.out.println("Add lecture start time: ");
-		float startTime = sc.nextFloat();
-		sc.nextLine();
-		System.out.println("Add lecture end time: ");
-		float endTime = sc.nextFloat();
-		sc.nextLine();
+		float startTime = 0;
+		while (true) {
+			boolean flag = true;
+			try {
+				System.out.println("Add lecture start time: ");
+				startTime = sc.nextFloat();
+				sc.nextLine();
+			}
+			catch (InputMismatchException e) {
+				flag = false;
+				System.out.println("Wrong type of input.");
+				String flush = sc.next();
+			}
+			if (flag) {
+				break;
+			}
+		}
+		float endTime = 0;
+		while (true) {
+			boolean flag = true;
+			try {
+				System.out.println("Add lecture end time: ");
+				endTime = sc.nextFloat();
+				sc.nextLine();
+			}
+			catch (InputMismatchException e) {
+				flag = false;
+				System.out.println("Wrong type of input.");
+				String flush = sc.next();
+			}
+			if (flag) {
+				break;
+			}
+		}		
 		TimeSlot ts = crs.createTimeSlot(weekDay, startTime, endTime);
 		System.out.println("Enter the name of the professor teaching this lecture section: ");
 		String prof = sc.nextLine();
 		Lecture lect = crs.createLecture(prof, ts);
 		crs.addLectureToCourse(c, lect);
 		if (crs.checkNoTutCourse(c)) {
-			System.out.println("This course is currently a no - tutorial course . Please enter an initial vacancy for this lecture : ");
-			int vacancy = sc.nextInt();
-			sc.nextLine();
+			int vacancy = 0;
+			while (true) {
+				boolean flag = true;
+				try {
+					System.out.println("This course is currently a no - tutorial course . Please enter an initial vacancy for this lecture : ");
+					vacancy = sc.nextInt();
+					sc.nextLine();
+				}
+				catch (InputMismatchException e) {
+					flag = false;
+					System.out.println("Wrong type of input.");
+					String flush = sc.next();
+				}
+				if (flag) {
+					break;
+				}
+			}
 			crs.setInitialVacancy(lect, vacancy);
 		}
 		System.out.println("New lecture added!");
@@ -213,35 +254,116 @@ public class IOInterface {
 	private static void NewTutorial(Course c) {
 		ArrayList<Lecture> CourseLecture = c.getCourseLecture();
 		crs.printCourseLectureDetails(c);
-		System.out.println("Enter the lecture where you want to add a new tuturial in : ");
-		int lecno = sc.nextInt(); 
-		sc.nextLine();
+		int lecno = 0;
+		while (true) {
+			boolean flag = true;
+			try {
+				System.out.println("Enter the lecture where you want to add a new tutorial in : ");
+				lecno = sc.nextInt();
+				sc.nextLine();
+			}
+			catch (InputMismatchException e) {
+				flag = false;
+				System.out.println("Wrong type of input.");
+				String flush = sc.next();
+			}
+			if (flag) {
+				break;
+			}
+		}
 		//Handle errors where user does not input a valid lecture number 
 		while ((lecno < 1)||(lecno > CourseLecture.size())){
-			System.out.println("Lecture not valid ! Enter the lecture where you want to add a new tuturial in(Between 1 and "+ CourseLecture.size() + " ) : ");
-			lecno = sc.nextInt(); 
-			sc.nextLine();
+			System.out.println("Lecture not valid ! Enter the lecture where you want to add a new tutorial in(Between 1 and "+ CourseLecture.size() + " ) : ");
+			while (true) {
+				boolean flag = true;
+				try {
+					System.out.println("Enter the lecture where you want to add a new tutorial in : ");
+					lecno = sc.nextInt();
+					sc.nextLine();
+				}
+				catch (InputMismatchException e) {
+					flag = false;
+					System.out.println("Wrong type of input.");
+					String flush = sc.next();
+				}
+				if (flag) {
+					break;
+				}
+			}
 		}
 		System.out.println("Add tutorial day: "); 
 		String weekDay = sc.nextLine();
-		System.out.println("Add tutorial start time: ");
-		float startTime = sc.nextFloat();
-		sc.nextLine();
-		System.out.println("Add tutorial end time: ");
-		float endTime = sc.nextFloat();
-		sc.nextLine();
+		float startTime = 0;
+		while (true) {
+			boolean flag = true;
+			try {
+				System.out.println("Add tutorial start time: ");
+				startTime = sc.nextFloat();
+				sc.nextLine();
+			}
+			catch (InputMismatchException e) {
+				flag = false;
+				System.out.println("Wrong type of input.");
+				String flush = sc.next();
+			}
+			if (flag) {
+				break;
+			}
+		}
+		float endTime = 0;
+		while (true) {
+			boolean flag = true;
+			try {
+				System.out.println("Add tutorial end time: ");
+				endTime = sc.nextFloat();
+				sc.nextLine();
+			}
+			catch (InputMismatchException e) {
+				flag = false;
+				System.out.println("Wrong type of input.");
+				String flush = sc.next();
+			}
+			if (flag) {
+				break;
+			}
+		}
 		TimeSlot ts = crs.createTimeSlot(weekDay, startTime, endTime);
 		System.out.println("Enter the name of the tutor for this tutorial section: ");
 		String tutor = sc.nextLine();
-		int index;
-		do {
-		System.out.println("Enter the index of this tutorial section: ");
-		index = sc.nextInt();
-		sc.nextLine();
-		} while (index ==-1);
-		System.out.println("Enter the vacancy for this tutorial section: ");
-		int vacancy = sc.nextInt();
-		sc.nextLine();
+		int index = 0;
+		while (true) {
+			boolean flag = true;
+			try {
+				System.out.println("Enter the index of this tutorial section: ");
+				index = sc.nextInt();
+				sc.nextLine();
+			}
+			catch (InputMismatchException e) {
+				flag = false;
+				System.out.println("Wrong type of input.");
+				String flush = sc.next();
+			}
+			if (flag) {
+				break;
+			}
+		}
+		int vacancy = 0;
+		while (true) {
+			boolean flag = true;
+			try {
+				System.out.println("Enter the vacancy for this tutorial section: ");
+				vacancy = sc.nextInt();
+				sc.nextLine();
+			}
+			catch (InputMismatchException e) {
+				flag = false;
+				System.out.println("Wrong type of input.");
+				String flush = sc.next();
+			}
+			if (flag) {
+				break;
+			}
+		}
 		Tutorial newTut = crs.createTutorial(tutor, vacancy, null, null, ts, index);
 		//no Lab is created yet
 		crs.addTutorialToLecture(CourseLecture.get(lecno-1), newTut);
@@ -252,35 +374,104 @@ public class IOInterface {
 	private static void NewLab(Course c) {
 		ArrayList<Lecture> CourseLecture = c.getCourseLecture();
 		crs.printCourseLectureDetails(c);
-		System.out.println("Enter the lecture where you want to add a new lab in(Between 1 and "+ CourseLecture.size() + " ) : ");
-		int lecno = sc.nextInt(); 
-		sc.nextLine();
+		int lecno = 0;
+		while (true) {
+			boolean flag = true;
+			try {
+				System.out.println("Enter the lecture where you want to add a new lab in(Between 1 and "+ CourseLecture.size() + " ) : ");
+				lecno = sc.nextInt();
+				sc.nextLine();
+			}
+			catch (InputMismatchException e) {
+				flag = false;
+				System.out.println("Wrong type of input.");
+				String flush = sc.next();
+			}
+			if (flag) {
+				break;
+			}
+		}
 		//Handle errors where user does not input a valid lecture number 
 		while ((lecno < 1)||(lecno > CourseLecture.size())){
-			System.out.println("Lecture not valid ! Enter the lecture where you want to add a new lab in : ");
-			lecno = sc.nextInt(); 
-			sc.nextLine();
+			while (true) {
+				boolean flag = true;
+				try {
+					System.out.println("Lecture not valid ! Enter the lecture where you want to add a new lab in : ");
+					lecno = sc.nextInt();
+					sc.nextLine();
+				}
+				catch (InputMismatchException e) {
+					flag = false;
+					System.out.println("Wrong type of input.");
+					String flush = sc.next();
+				}
+				if (flag) {
+					break;
+				}
+			}
 		}
 		System.out.println("Tutorials in this lecture : ");
 		crs.printTutorialInLecture(CourseLecture.get(lecno-1));
 
 		//Handle errors where user does not input a valid tutorial index
 		do {
-			System.out.println("Enter the tutorial index where you want to add a new lab in : ");
-			int checkindex = sc.nextInt();
-			sc.nextLine();
+			int checkindex = 0;
+			while (true) {
+				boolean flag = true;
+				try {
+					System.out.println("Enter the tutorial index where you want to add a new lab in : ");
+					checkindex = sc.nextInt();
+					sc.nextLine();
+				}
+				catch (InputMismatchException e) {
+					flag = false;
+					System.out.println("Wrong type of input.");
+					String flush = sc.next();
+				}
+				if (flag) {
+					break;
+				}
+			}
 			Tutorial tut = crs.checkTutorialinLecture(CourseLecture.get(lecno-1), checkindex);
 			if (tut != null) {
 				System.out.println("Enter the Lab Supervisor Name : ");
 				String LabSupervisorName = sc.nextLine();
 				System.out.println("Add lab day: "); 
 				String weekDay = sc.nextLine();
-				System.out.println("Add lab start time: ");
-				float startTime = sc.nextFloat();
-				sc.nextLine();
-				System.out.println("Add lab end time: ");
-				float endTime = sc.nextFloat();
-				sc.nextLine();
+				float startTime = 0;
+				while (true) {
+					boolean flag = true;
+					try {
+						System.out.println("Add lab start time: ");
+						startTime = sc.nextFloat();
+						sc.nextLine();
+					}
+					catch (InputMismatchException e) {
+						flag = false;
+						System.out.println("Wrong type of input.");
+						String flush = sc.next();
+					}
+					if (flag) {
+						break;
+					}
+				}
+				float endTime = 0;
+				while (true) {
+					boolean flag = true;
+					try {
+						System.out.println("Add lab end time: ");
+						endTime = sc.nextFloat();
+						sc.nextLine();
+					}
+					catch (InputMismatchException e) {
+						flag = false;
+						System.out.println("Wrong type of input.");
+						String flush = sc.next();
+					}
+					if (flag) {
+						break;
+					}
+				}
 				TimeSlot ts = crs.createTimeSlot(weekDay, startTime, endTime);
 				tut.setLabSupervisorName(LabSupervisorName);
 				tut.setLabTimeSlot(ts);
@@ -304,12 +495,25 @@ public class IOInterface {
 				break;
 			}
 		}
-		int choice;
+		int choice = 0;
 		do {
-			System.out.println("Please choose the section you want to insert");
-			System.out.println("1 for lecture section, 2 for tutorial section, 3 for lab section, -1 to terminate");
-			choice = sc.nextInt();
-			sc.nextLine();
+			while (true) {
+				boolean flag = true;
+				try {
+					System.out.println("Please choose the section you want to insert");
+					System.out.println("1 for lecture section, 2 for tutorial section, 3 for lab section, -1 to terminate");
+					choice = sc.nextInt();
+					sc.nextLine();
+				}
+				catch (InputMismatchException e) {
+					flag = false;
+					System.out.println("Wrong type of input.");
+					String flush = sc.next();
+				}
+				if (flag) {
+					break;
+				}
+			}
 			switch (choice) {
 			case 1:
 				NewLecture(c);
@@ -332,9 +536,23 @@ public class IOInterface {
 		while (loop == 0) {
 			System.out.println("Please enter the name of the component: ");
 			String componentName = sc.nextLine();
-			System.out.println("Please enter the weightage of the component: ");
-			float weightage = sc.nextFloat();
-			sc.nextLine();
+			float weightage = 0;
+			while (true) {
+				boolean flag = true;
+				try {
+					System.out.println("Please enter the weightage of the component: ");
+					weightage = sc.nextFloat();
+					sc.nextLine();
+				}
+				catch (InputMismatchException e) {
+					flag = false;
+					System.out.println("Wrong type of input.");
+					String flush = sc.next();
+				}
+				if (flag) {
+					break;
+				}
+			}
 			boolean result = crs.addAssessmentComponent(c, componentName, weightage);
 			if(result) {
 				System.out.println("Successfully added!");
@@ -343,9 +561,22 @@ public class IOInterface {
 			else {
 				System.out.println("Error! Assessment component already existed ! ");
 			}
-			System.out.println("Do you want to add another component? (0 to add another, -1 to terminate) ");
-			loop = sc.nextInt();
-			sc.nextLine();
+			while (true) {
+				boolean flag = true;
+				try {
+					System.out.println("Do you want to add another component? (0 to add another, -1 to terminate) ");
+					loop = sc.nextInt();
+					sc.nextLine();
+				}
+				catch (InputMismatchException e) {
+					flag = false;
+					System.out.println("Wrong type of input.");
+					String flush = sc.next();
+				}
+				if (flag) {
+					break;
+				}
+			}
 		}
 		
 	}
@@ -382,11 +613,24 @@ public class IOInterface {
 				crs.printLectureDetails(lec);
 				crs.printTutorialInLecture(lec);
 		} 
-			int index;
+			int index = 0;
 			while(true) {
-				System.out.println("Please enter the tutorial index that you want to add the student into : ");
-				index = sc.nextInt();
-				sc.nextLine();
+				while (true) {
+					boolean flag = true;
+					try {
+						System.out.println("Please enter the tutorial index that you want to add the student into : ");
+						index = sc.nextInt();
+						sc.nextLine();
+					}
+					catch (InputMismatchException e) {
+						flag = false;
+						System.out.println("Wrong type of input.");
+						String flush = sc.next();
+					}
+					if (flag) {
+						break;
+					}
+				}
 				if (!enr.EnrollCourse(stu, c, index)) {    //vacancy also get updated in the EnrollCourse func
 					System.out.println("Index not available or the tutorial is already full ! ");
 				}
@@ -399,14 +643,41 @@ public class IOInterface {
 		else {
 			crs.printCourseLectureDetails(c);
 			int nooflec = crs.NoOfLec(c);
-			System.out.println("Enter the lecture where you want to register the student into (Between 1 and "+ nooflec + " ) : ");
-			int lecno = sc.nextInt(); 
-			sc.nextLine();
+			int lecno = 0;
+			while (true) {
+				boolean flag = true;
+				try {
+					System.out.println("Enter the lecture where you want to register the student into (Between 1 and "+ nooflec + " ) : ");
+					lecno = sc.nextInt(); 
+					sc.nextLine();
+				}
+				catch (InputMismatchException e) {
+					flag = false;
+					System.out.println("Wrong type of input.");
+					String flush = sc.next();
+				}
+				if (flag) {
+					break;
+				}
+			}
 			//Handle errors where user does not input a valid lecture number 
 			while ((lecno < 1)||(lecno > nooflec)){
-				System.out.println("Lecture not valid ! Enter the lecture where you want to add a new lab in : ");
-				lecno = sc.nextInt(); 
-				sc.nextLine();
+				while (true) {
+					boolean flag = true;
+					try {
+						System.out.println("Lecture not valid ! Enter the lecture where you want to add a new lab in : ");
+						lecno = sc.nextInt(); 
+						sc.nextLine();
+					}
+					catch (InputMismatchException e) {
+						flag = false;
+						System.out.println("Wrong type of input.");
+						String flush = sc.next();
+					}
+					if (flag) {
+						break;
+					}
+				}
 			}
 			ArrayList<Lecture> CourseLecture = c.getCourseLecture();
 			Lecture lec = CourseLecture.get(lecno-1);
@@ -476,13 +747,27 @@ public class IOInterface {
 			if (comp == null) {
 				System.out.println("Invalid component");
 			}
-			else {	
-			System.out.println("Enter the new weightage that you want to for this component : ");
-			float weight = sc.nextFloat();
-			sc.nextLine();
-			crs.editAssessmentComponent(c, compname, weight);
-			System.out.println("Assessment edited !");
-			break;
+			else {
+				float weight = 0;
+				while (true) {
+					boolean flag = true;
+					try {
+						System.out.println("Enter the new weightage that you want to for this component : ");
+						weight = sc.nextFloat();
+						sc.nextLine();
+					}
+					catch (InputMismatchException e) {
+						flag = false;
+						System.out.println("Wrong type of input.");
+						String flush = sc.next();
+					}
+					if (flag) {
+						break;
+					}
+				}
+				crs.editAssessmentComponent(c, compname, weight);
+				System.out.println("Assessment edited !");
+				break;
 			}
 		}	
 	}
@@ -523,9 +808,22 @@ public class IOInterface {
 				else {
 					float mark = 0;
 					do {
-					System.out.println("Enter the mark that you want to for this component (Maximum 100) : ");
-					mark = sc.nextFloat();
-					sc.nextLine();
+						while (true) {
+							boolean flag = true;
+							try {
+								System.out.println("Enter the mark that you want to for this component (Maximum 100) : ");
+								mark = sc.nextFloat();
+								sc.nextLine();
+							}
+							catch (InputMismatchException e) {
+								flag = false;
+								System.out.println("Wrong type of input.");
+								String flush = sc.next();
+							}
+							if (flag) {
+								break;
+							}
+						}
 					} while ((mark>100)||(mark<0));
 					std.EditGrade(stu, c, compname , mark);
 					System.out.println("Mark entered !");
@@ -569,9 +867,22 @@ public class IOInterface {
 			else {
 				float mark = 0;
 				do {
-				System.out.println("Enter the mark that you want to for the exam (Maximum 100) : ");
-				mark = sc.nextFloat();
-				sc.nextLine();
+					while (true) {
+						boolean flag = true;
+						try {
+							System.out.println("Enter the mark that you want to for the exam (Maximum 100) : ");
+							mark = sc.nextFloat();
+							sc.nextLine();
+						}
+						catch (InputMismatchException e) {
+							flag = false;
+							System.out.println("Wrong type of input.");
+							String flush = sc.next();
+						}
+						if (flag) {
+							break;
+						}
+					}
 				} while ((mark>100)||(mark<0));
 				std.EditGrade(stu, c, "exam" , mark);
 				System.out.println("Exam mark entered !");
@@ -631,9 +942,23 @@ public class IOInterface {
 		String studentID = sc.nextLine();
 		System.out.println("Please enter the faculty of the new student:");
 		String faculty = sc.nextLine();
-		System.out.println("Please enter the year of the new student:");
-		int year = sc.nextInt();
-		sc.nextLine();
+		int year = 0;
+		while (true) {
+			boolean flag = true;
+			try {
+				System.out.println("Please enter the year of the new student:");
+				year = sc.nextInt();
+				sc.nextLine();
+			}
+			catch (InputMismatchException e) {
+				flag = false;
+				System.out.println("Wrong type of input.");
+				String flush = sc.next();
+			}
+			if (flag) {
+				break;
+			}
+		}
 		std.EditParticulars(stu, studentName,studentID, faculty, year);
 		System.out.println("Student particulars edited !");
 	}
