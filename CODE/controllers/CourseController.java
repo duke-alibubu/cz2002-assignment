@@ -157,7 +157,9 @@ public class CourseController {
 	public void printLectureStudentList(Lecture lec ) {
 		ArrayList<Tutorial> tutorial = lec.getTutorial();
 		for (Tutorial tut : tutorial) {
+			if ((tutorial.size()==1)||(tut.getIndex()!= -1)) {
 			System.out.println(tut.detailStudentList());
+			}
 		}
 	}
 	public void printCourseStudentList(Course c) {
