@@ -4,6 +4,7 @@ import entities.*;
 
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 
 public class IOInterface {
 	static CourseController crs;
@@ -15,7 +16,7 @@ public class IOInterface {
 		crs = new CourseController();
 		enr = new EnrollmentController();
 		sc = new Scanner(System.in);
-		int choice;
+		int choice = 0;
 		do {
 			System.out.println("----------------------------------------------------------------------");
 			System.out.println("Please choose on one of the following function(-1 to terminate): ");
@@ -36,90 +37,98 @@ public class IOInterface {
 			System.out.println("15. Print course statistics");
 			System.out.println("16. Print student transcript");
 			System.out.println("-----------------------------------------------------------------------");
-
-			choice = sc.nextInt();
-			sc.nextLine();
-			
-			switch(choice) {
-			case 1:
-				NewStudent();
-				break;
-				
-			case 2:
-				EditStudentParticulars();
-				break;
-				
-			case 3:
-				RemoveStudent();
-				break;
-				
-			case 4:
-				NewCourse();
-				break;
-				
-			case 5:
-				EditCourse();
-				break;
-				
-			case 6:
-				RemoveCourse();
-				break;
-				
-			case 7:
-				NewSection();
-				break;
-				
-			case 8:
-				while (true) {
-					System.out.println("Please enter the courseID that you want to insert the new section into: ");
-					String ID = sc.nextLine();
-					Course c = crs.checkCourse(ID);
-					if (c == null) {
-						System.out.println("Invalid courseID");
-					}
-					else {
-						NewAssessment(c);
+			boolean flag = true;
+				try {
+				choice = sc.nextInt();
+				sc.nextLine();
+				}
+				catch (InputMismatchException e) {
+					flag = false;
+					System.out.println("Wrong type of input.");
+					String flush = sc.next();
+				}
+				if (flag) {
+					switch(choice) {
+					case 1:
+						NewStudent();
+						break;
+						
+					case 2:
+						EditStudentParticulars();
+						break;
+						
+					case 3:
+						RemoveStudent();
+						break;
+						
+					case 4:
+						NewCourse();
+						break;
+						
+					case 5:
+						EditCourse();
+						break;
+						
+					case 6:
+						RemoveCourse();
+						break;
+						
+					case 7:
+						NewSection();
+						break;
+						
+					case 8:
+						while (true) {
+							System.out.println("Please enter the courseID that you want to insert the new section into: ");
+							String ID = sc.nextLine();
+							Course c = crs.checkCourse(ID);
+							if (c == null) {
+								System.out.println("Invalid courseID");
+							}
+							else {
+								NewAssessment(c);
+								break;
+							}
+						}
+						break;
+						
+					case 9:
+						RegisterCourse();
+						break;
+						
+					case 10:
+						CheckVacancy(); // actually checkVacancy function can be used in registerCourse, if needed then input courseID will be at here
+						break;
+						
+					case 11:
+						PrintStudent();
+						break;
+						
+					case 12:
+						EditAssessment();
+						break;
+						
+					case 13:
+						EnterComponentMark();
+						break;
+						
+					case 14:
+						EnterExamMark();
+						break;
+						
+					case 15:
+						printCourseStatistics();
+						
+						break;
+						
+					case 16:
+						printStudentTranscript();
+						break;
+					
+					default:
 						break;
 					}
 				}
-				break;
-				
-			case 9:
-				RegisterCourse();
-				break;
-				
-			case 10:
-				CheckVacancy(); // actually checkVacancy function can be used in registerCourse, if needed then input courseID will be at here
-				break;
-				
-			case 11:
-				PrintStudent();
-				break;
-				
-			case 12:
-				EditAssessment();
-				break;
-				
-			case 13:
-				EnterComponentMark();
-				break;
-				
-			case 14:
-				EnterExamMark();
-				break;
-				
-			case 15:
-				printCourseStatistics();
-				
-				break;
-				
-			case 16:
-				printStudentTranscript();
-				break;
-			
-			default:
-				break;
-			}
 			
 		} while (choice != -1);
 	}
@@ -132,8 +141,23 @@ public class IOInterface {
 		System.out.println("Please enter the faculty of the new student:");
 		String faculty = sc.nextLine();
 		System.out.println("Please enter the year of the new student:");
-		int year = sc.nextInt();
-		sc.nextLine();
+		int year = 0;
+		while (true) {
+			boolean flag = true;
+			try {
+				year = sc.nextInt();
+				sc.nextLine();
+			}
+			catch (InputMismatchException e) {
+				flag = false;
+				System.out.println("Wrong type of input.");
+				String flush = sc.next();
+			}
+			if (flag) {
+				break;
+			}
+		}
+
 		boolean result = std.addStudent(studentName, studentID, faculty, year);
 		if (result == true) {
 			System.out.println("Successfully added the new student");
