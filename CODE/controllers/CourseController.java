@@ -114,7 +114,30 @@ public class CourseController {
 		Assessment assess;
 		assess = c.getCourseAssessment();
 		return assess.addComponent(compname,weight);
-	}	
+	}
+	public void allStudentupdateGradeComponent(Course c , String compname) {
+		ArrayList<Lecture> CourseLecture = c.getCourseLecture();
+		for (Lecture lec : CourseLecture) {
+			if (!checkNoTutCourse(c)) {
+				ArrayList<Tutorial> tutorial = lec.getTutorial();
+				for (Tutorial tut : tutorial) {
+					if(tut.getIndex()!=-1) {
+						ArrayList<Student> StudentList = tut.getStudentList();
+						for (Student stud : StudentList) {
+							stud.addGradeComponentforCourse(c, compname);
+						}
+					}
+				}
+			}
+			else {
+				ArrayList<Tutorial> tutorial = lec.getTutorial();
+				ArrayList<Student> StudentList = tutorial.get(0).getStudentList();
+				for (Student stud : StudentList) {
+					stud.addGradeComponentforCourse(c, compname);
+				}
+			}
+		}
+	}
 	public boolean removeAssessmentComponent(Course c , String compname , float weight ) {
 		Assessment assess;
 		assess = c.getCourseAssessment();
@@ -209,9 +232,8 @@ public class CourseController {
 		ArrayList<Lecture> CourseLecture = c.getCourseLecture();
 		for (Lecture lec : CourseLecture) {
 			ArrayList<Tutorial> tutorial = lec.getTutorial();
-			for (Tutorial tut : tutorial) {
-				if ((tut.getStudentList().size() > 0)&&(tut.getIndex()!=-1))
-					return false;
+			if (tutorial.size()>1) {
+				return false;
 			}
 		}
 		return true;
