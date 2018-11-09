@@ -65,7 +65,7 @@ public class StudentController {
 					stud.setID(ID);
 				}
 				else {
-					System.out.println("ID is unchanged . A student with the ID "+ID+ "had already existed in the Student List");
+					System.out.println("ID is unchanged . A student with the ID "+ID+ " had already existed in the Student List");
 				}
 	}
 	

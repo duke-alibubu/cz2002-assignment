@@ -110,6 +110,7 @@ public class IOInterface {
 				
 			case 15:
 				printCourseStatistics();
+				
 				break;
 				
 			case 16:
@@ -154,6 +155,7 @@ public class IOInterface {
 		if (result) {
 			NewLecture(c);
 			NewAssessment(c);
+			System.out.println("New course added !");
 		}
 		else {
 			System.out.println("Course with the same courseID exists");
@@ -180,6 +182,7 @@ public class IOInterface {
 			sc.nextLine();
 			crs.setInitialVacancy(lect, vacancy);
 		}
+		System.out.println("New lecture added!");
 		// successfully added
 	}
 	
@@ -218,6 +221,7 @@ public class IOInterface {
 		Tutorial newTut = crs.createTutorial(tutor, vacancy, null, null, ts, index);
 		//no Lab is created yet
 		crs.addTutorialToLecture(CourseLecture.get(lecno-1), newTut);
+		System.out.println("New tutorial added !");
 		 
 	}
 	
@@ -256,6 +260,7 @@ public class IOInterface {
 				TimeSlot ts = crs.createTimeSlot(weekDay, startTime, endTime);
 				tut.setLabSupervisorName(LabSupervisorName);
 				tut.setLabTimeSlot(ts);
+				System.out.println("New lab added !");
 				break;
 			}
 			else System.out.println("Index not available ! ");
@@ -361,7 +366,10 @@ public class IOInterface {
 				if (!enr.EnrollCourse(stu, c, index)) {    //vacancy also get updated in the EnrollCourse func
 					System.out.println("Index not available or the tutorial is already full ! ");
 				}
-				else break;
+				else {
+					System.out.println("Registration done !");
+					break;
+				}
 				}
 			}
 		else {
@@ -379,6 +387,7 @@ public class IOInterface {
 			ArrayList<Lecture> CourseLecture = c.getCourseLecture();
 			Lecture lec = CourseLecture.get(lecno-1);
 			enr.EnrollCourse(stu,c,lec);
+			System.out.println("Registration done !");
 		}
 	}
 	
@@ -448,6 +457,7 @@ public class IOInterface {
 			float weight = sc.nextFloat();
 			sc.nextLine();
 			crs.editAssessmentComponent(c, compname, weight);
+			System.out.println("Assessment edited !");
 			break;
 			}
 		}	
@@ -494,6 +504,7 @@ public class IOInterface {
 					sc.nextLine();
 					} while ((mark>100)||(mark<0));
 					std.EditGrade(stu, c, compname , mark);
+					System.out.println("Mark entered !");
 					break;
 				}
 			}
@@ -539,6 +550,7 @@ public class IOInterface {
 				sc.nextLine();
 				} while ((mark>100)||(mark<0));
 				std.EditGrade(stu, c, "exam" , mark);
+				System.out.println("Exam mark entered !");
 			}
 		}
 		else System.out.println("Student " + stu.getName() + " is not registered for the course " + c.getCourseID() );
@@ -583,6 +595,7 @@ public class IOInterface {
 			stu = std.checkStudent(studentID);
 			if (stu == null) {
 				System.out.println("Invalid studentID");
+				System.out.println("");
 			}
 			else {
 				break;
@@ -598,6 +611,7 @@ public class IOInterface {
 		int year = sc.nextInt();
 		sc.nextLine();
 		std.EditParticulars(stu, studentName,studentID, faculty, year);
+		System.out.println("Student particulars edited !");
 	}
 	private static void EditCourse() {
 		Course c;
@@ -619,6 +633,7 @@ public class IOInterface {
 		System.out.println("Please enter the coordinator name for the course: ");
 		String coorname = sc.nextLine();
 		crs.editCourse(c, cname, cid, coorname);
+		System.out.println("Course edited !");
 	}
 	private static void RemoveStudent() {
 		Student stu;
@@ -635,6 +650,7 @@ public class IOInterface {
 		}
 		enr.DropAllCourse(stu);
 		std.removeStudent(stu);
+		System.out.println("Student removed !");
 	}
 	private static void RemoveCourse() {
 		Course c;
@@ -651,5 +667,6 @@ public class IOInterface {
 		}
 		enr.AllStudentDropCourse(c);
 		crs.removeCourse(c);
+		System.out.println("Course removed !");
 	}
 }
