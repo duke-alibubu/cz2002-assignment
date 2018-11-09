@@ -4,12 +4,20 @@ import entities.*;
 
 public class StudentController {
 	private ArrayList<Student> StudentList;
+	private DatabaseController dbc;
 
 	public StudentController()
 	{
 		StudentList = new ArrayList<Student>();
+		dbc = new DatabaseController();
 	}
 
+	public void save(){
+		dbc.addStudentRecord(StudentList, "C:/Users/cyuqi/Desktop/StudentList.ser");}
+	
+	public void load() {
+		StudentList = dbc.readStudentRecord("C:/Users/cyuqi/Desktop/StudentList.ser");}
+	
 	private int find(Student aStudent)
 	{
 		return StudentList.indexOf(aStudent);
