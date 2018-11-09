@@ -1,6 +1,7 @@
 package entities;
+import java.io.Serializable;
 
- public class StudentCourse {
+ public class StudentCourse implements Serializable{
 	private Course aCourse;
 	private Grade aGrade;
 	private int anIndex;
