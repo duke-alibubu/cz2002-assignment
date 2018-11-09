@@ -1,7 +1,8 @@
 package entities;
 import java.util.ArrayList;
+import java.io.Serializable;
 
-public class Field
+public class Field implements Serializable
 {
 	protected ArrayList<Component> Distribution;
 	private int find(String Name)
