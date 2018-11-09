@@ -33,12 +33,10 @@ public class DatabaseController {
             fis.close();
             return arraylist;
          }catch(IOException ioe){
-             ioe.printStackTrace();
-             return null;
+        	 return arraylist;
           }catch(ClassNotFoundException c){
              System.out.println("Class not found");
-             c.printStackTrace();
-             return null;
+             return arraylist;
           }
 	}
 	
@@ -69,14 +67,43 @@ public class DatabaseController {
             fis.close();
             return arraylist;
          }catch(IOException ioe){
-             ioe.printStackTrace();
-             return null;
+        	 return arraylist;
           }catch(ClassNotFoundException c){
              System.out.println("Class not found");
-             c.printStackTrace();
-             return null;
+             return arraylist;
           }
 	}
 	
+	public void addEnrollmentRecord(ArrayList<Enrollment> EnrollmentList, String FileNames) {
+		
+		try{
+	         FileOutputStream fos= new FileOutputStream(FileNames);
+	         ObjectOutputStream oos= new ObjectOutputStream(fos);
+	         oos.writeObject(EnrollmentList);
+	         oos.close();
+	         fos.close();
+	       }catch(IOException ioe){
+	            ioe.printStackTrace();
+	        }
+	}
 	
+	public ArrayList<Enrollment> readEnrollmentRecord(String FileNames){
+		
+		ArrayList<Enrollment> arraylist = new ArrayList<Enrollment>();
+		
+		try
+        {
+            FileInputStream fis = new FileInputStream(FileNames);
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            arraylist = (ArrayList<Enrollment>) ois.readObject();
+            ois.close();
+            fis.close();
+            return arraylist;
+         }catch(IOException ioe){
+        	 return arraylist;
+          }catch(ClassNotFoundException c){
+             System.out.println("Class not found");
+             return arraylist;
+          }
+	}
 }
