@@ -1,7 +1,8 @@
 package entities;
 import java.util.ArrayList;
+import java.io.Serializable;
 
-public class Grade extends Field
+public class Grade extends Field implements Serializable
 {
 	Grade(Assessment Assess)
 	{
