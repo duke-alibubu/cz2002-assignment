@@ -96,8 +96,8 @@ public class StudentController {
 		System.out.println(" Total grade : " + stud.getFinalGrade(c));
 	}
 	public void printStudentTranscript(Student stud) {
-		 ArrayList<StudentCourse> RegisteredCourses = stud.getRegisteredCourses();
-		 for (StudentCourse stucour : RegisteredCourses) {
+		 ArrayList<Enrollment> RegisteredCourses = stud.getRegisteredCourses();
+		 for (Enrollment stucour : RegisteredCourses) {
 			 Course c = stucour.getCourse();
 			 printStudentCourseTranscript(stud , c);
 		 }

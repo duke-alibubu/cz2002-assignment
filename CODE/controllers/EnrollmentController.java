@@ -5,18 +5,27 @@ import entities.*;
 public class EnrollmentController {
 	private ArrayList<Student> StudentEnroll = new ArrayList<Student>();
 	private ArrayList<Course> CourseEnroll = new ArrayList<Course>();
+	private ArrayList<Enrollment> Enrollments = new ArrayList<Enrollment>();
 	
 	public boolean EnrollCourse(Student stud , Course course , int index) {
 		StudentEnroll.add(stud);
 		CourseEnroll.add(course);
-		stud.addCourse(course , index);
+
+		Enrollment anEnrollment = new Enrollment(stud, course, index);
+		Enrollments.add(anEnrollment);
+
+		stud.addCourse(anEnrollment);
 		return course.addStudenttoCourse(stud, index);
 	}
 	//method overloading for no-tut courses
 	public boolean EnrollCourse(Student stud , Course course , Lecture lec) {
 		StudentEnroll.add(stud);
 		CourseEnroll.add(course);
-		stud.addCourse(course , -1);
+		
+		Enrollment anEnrollment = new Enrollment(stud, course, -1);
+		Enrollments.add(anEnrollment);
+
+		stud.addCourse(anEnrollment);
 		return course.addStudenttoNoTutCourse(stud, lec);
 	}
 	public boolean DropCourse(Student stud , Course course) {
@@ -31,8 +40,8 @@ public class EnrollmentController {
 		return false;
 	}
 	public void DropAllCourse(Student stud) {
-		ArrayList<StudentCourse> RegisteredCourses = stud.getRegisteredCourses();
-		for (StudentCourse studcour : RegisteredCourses) {
+		ArrayList<Enrollment> RegisteredCourses = stud.getRegisteredCourses();
+		for (Enrollment studcour : RegisteredCourses) {
 			DropCourse(stud,studcour.getCourse());
 		}
 	}
@@ -58,7 +67,7 @@ public class EnrollmentController {
 		}
 		for (int i = 0 ; i < StudentEnroll.size();i++) {
 			if ((stud == StudentEnroll.get(i))&&(course == CourseEnroll.get(i))) {
-				ArrayList<StudentCourse> RegisteredCourses;
+				ArrayList<Enrollment> RegisteredCourses;
 				RegisteredCourses = stud.getRegisteredCourses();
 				for (int j = 0 ; j < RegisteredCourses.size();j++) {
 					if (RegisteredCourses.get(j).getCourse() == course) {

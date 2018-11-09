@@ -1,14 +1,16 @@
 package entities;
 import java.io.Serializable;
 
- public class StudentCourse implements Serializable{
+public class Enrollment implements Serializable {
+	private Student aStudent;
 	private Course aCourse;
 	private Grade aGrade;
 	private int anIndex;
 	private float TotalMark;
 	
-	public StudentCourse(Course aCourse, int anIndex)
+	public Enrollment(Student aStudent, Course aCourse, int anIndex)
 	{
+		this.aStudent = aStudent;
 		this.aCourse = aCourse;
 		this.anIndex = anIndex;
 		this.aGrade = new Grade(aCourse.getCourseAssessment());

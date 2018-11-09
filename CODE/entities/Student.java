@@ -7,14 +7,14 @@ public class Student implements Serializable{
 	private String StudentID;
 	private String Faculty;
 	private int Year;
-	private ArrayList<StudentCourse> RegisteredCourses ;
+	private ArrayList<Enrollment> RegisteredCourses ;
 	
 	public Student(String studentName, String studentID, String faculty, int year){
 		this.StudentName = studentName;
 		this.StudentID = studentID;
 		this.Faculty = faculty;
 		this.Year = year;
-		this.RegisteredCourses = new ArrayList<StudentCourse>();
+		this.RegisteredCourses = new ArrayList<Enrollment>();
 	}
 	
 	public void setName(String studentName) {
@@ -62,11 +62,12 @@ public class Student implements Serializable{
 		return index;
 	}
 	
-	public boolean addCourse(Course aCourse, int index)
+	public boolean addCourse(Enrollment anEnrollment)
 	{
+		Course aCourse = anEnrollment.getCourse();
 		if (-1 != find(aCourse))
 			return false;
-		this.RegisteredCourses.add(new StudentCourse(aCourse, index));
+		this.RegisteredCourses.add(anEnrollment);
 		return true;
 	}
 	
@@ -80,7 +81,7 @@ public class Student implements Serializable{
 		return true;
 	}
 
-	public ArrayList<StudentCourse> getRegisteredCourses()
+	public ArrayList<Enrollment> getRegisteredCourses()
 	{
 		return RegisteredCourses;
 	}
