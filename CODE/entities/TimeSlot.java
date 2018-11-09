@@ -1,6 +1,7 @@
 package entities;
+import java.io.Serializable;
 
-public class TimeSlot {
+public class TimeSlot implements Serializable{
 	private String WeekDay;
 	private float StartTime;
 	private float FinishTime;
