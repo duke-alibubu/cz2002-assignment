@@ -307,9 +307,10 @@ public class IOInterface {
 			boolean result = crs.addAssessmentComponent(c, componentName, weightage);
 			if(result) {
 				System.out.println("Successfully added!");
+				crs.allStudentupdateGradeComponent(c, componentName);
 			}
 			else {
-				System.out.println("Error");
+				System.out.println("Error! Assessment component already existed ! ");
 			}
 			System.out.println("Do you want to add another component? (0 to add another, -1 to terminate) ");
 			loop = sc.nextInt();
@@ -569,6 +570,7 @@ public class IOInterface {
 				break;
 			}
 		}
+		std.printStudentDetails(stu);
 		std.printStudentTranscript(stu);
 	}
 	private static void EditStudentParticulars() {
