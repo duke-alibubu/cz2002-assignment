@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 public class Component implements Serializable
 {
+	private static final long serialVersionUID = 1L;
 	private String Name;
 	private float Value;
 	public Component(String Name, float Value)
