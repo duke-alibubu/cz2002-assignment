@@ -5,34 +5,18 @@ import entities.*;
 public class EnrollmentController {
 	private ArrayList<Student> StudentEnroll = new ArrayList<Student>();
 	private ArrayList<Course> CourseEnroll = new ArrayList<Course>();
-	private ArrayList<Enrollment> Enrollments = new ArrayList<Enrollment>();
-	private DatabaseController dbc = new DatabaseController();
-	
-	public void save(){
-		dbc.addEnrollmentRecord(Enrollments, "C:/Users/cyuqi/Desktop/EnrollmentList.ser");}
-	
-	public void load() {
-		Enrollments = dbc.readEnrollmentRecord("C:/Users/cyuqi/Desktop/EnrollmentList.ser");}
 	
 	public boolean EnrollCourse(Student stud , Course course , int index) {
 		StudentEnroll.add(stud);
 		CourseEnroll.add(course);
-
-		Enrollment anEnrollment = new Enrollment(stud, course, index);
-		Enrollments.add(anEnrollment);
-
-		stud.addCourse(anEnrollment);
+		stud.addCourse(course , index);
 		return course.addStudenttoCourse(stud, index);
 	}
 	//method overloading for no-tut courses
 	public boolean EnrollCourse(Student stud , Course course , Lecture lec) {
 		StudentEnroll.add(stud);
 		CourseEnroll.add(course);
-		
-		Enrollment anEnrollment = new Enrollment(stud, course, -1);
-		Enrollments.add(anEnrollment);
-
-		stud.addCourse(anEnrollment);
+		stud.addCourse(course , -1);
 		return course.addStudenttoNoTutCourse(stud, lec);
 	}
 	public boolean DropCourse(Student stud , Course course) {
@@ -47,8 +31,8 @@ public class EnrollmentController {
 		return false;
 	}
 	public void DropAllCourse(Student stud) {
-		ArrayList<Enrollment> RegisteredCourses = stud.getRegisteredCourses();
-		for (Enrollment studcour : RegisteredCourses) {
+		ArrayList<StudentCourse> RegisteredCourses = stud.getRegisteredCourses();
+		for (StudentCourse studcour : RegisteredCourses) {
 			DropCourse(stud,studcour.getCourse());
 		}
 	}
@@ -74,7 +58,7 @@ public class EnrollmentController {
 		}
 		for (int i = 0 ; i < StudentEnroll.size();i++) {
 			if ((stud == StudentEnroll.get(i))&&(course == CourseEnroll.get(i))) {
-				ArrayList<Enrollment> RegisteredCourses;
+				ArrayList<StudentCourse> RegisteredCourses;
 				RegisteredCourses = stud.getRegisteredCourses();
 				for (int j = 0 ; j < RegisteredCourses.size();j++) {
 					if (RegisteredCourses.get(j).getCourse() == course) {
@@ -91,5 +75,22 @@ public class EnrollmentController {
 			}
 		}
 		return false;
+	}
+	public void printStudentCourseTranscript(Student stud , Course c ) {
+		System.out.println("Course " + c.getCourseName() + ":");
+		Assessment assess = c.getCourseAssessment();
+		ArrayList<Component> CourseDistribution = assess.getDistribution();
+		for (Component comp : CourseDistribution) {
+			System.out.println(" Component " + comp.getName() +" : "+ stud.getComponentGrade(c, comp.getName()));
+		}
+		System.out.println(" Total grade : " + stud.getFinalGrade(c));
+	}
+	
+	public void printStudentTranscript(Student stud) {
+		 ArrayList<StudentCourse> RegisteredCourses = stud.getRegisteredCourses();
+		 for (StudentCourse stucour : RegisteredCourses) {
+			 Course c = stucour.getCourse();
+			 printStudentCourseTranscript(stud , c);
+		 }
 	}
 }
