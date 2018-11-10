@@ -15,7 +15,10 @@ public class Enrollment implements Serializable {
 		this.anIndex = anIndex;
 		this.aGrade = new Grade(aCourse.getCourseAssessment());
 	}
-	
+	public Student getStudent()
+	{
+		return aStudent;
+	}
 	public Course getCourse()
 	{
 		return this.aCourse;

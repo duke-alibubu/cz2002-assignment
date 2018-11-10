@@ -3,8 +3,8 @@ import java.util.ArrayList;
 import entities.*;
 
 public class EnrollmentController {
-	private ArrayList<Student> StudentEnroll = new ArrayList<Student>();
-	private ArrayList<Course> CourseEnroll = new ArrayList<Course>();
+	//private ArrayList<Student> StudentEnroll = new ArrayList<Student>();
+	//private ArrayList<Course> CourseEnroll = new ArrayList<Course>();
 	private ArrayList<Enrollment> Enrollments = new ArrayList<Enrollment>();
 	private DatabaseController dbc = new DatabaseController();
 	
@@ -15,8 +15,8 @@ public class EnrollmentController {
 		Enrollments = dbc.readEnrollmentRecord("C:/Users/cyuqi/Desktop/EnrollmentList.ser");}
 	
 	public boolean EnrollCourse(Student stud , Course course , int index) {
-		StudentEnroll.add(stud);
-		CourseEnroll.add(course);
+		//StudentEnroll.add(stud);
+		//CourseEnroll.add(course);
 
 		Enrollment anEnrollment = new Enrollment(stud, course, index);
 		Enrollments.add(anEnrollment);
@@ -26,8 +26,8 @@ public class EnrollmentController {
 	}
 	//method overloading for no-tut courses
 	public boolean EnrollCourse(Student stud , Course course , Lecture lec) {
-		StudentEnroll.add(stud);
-		CourseEnroll.add(course);
+		//StudentEnroll.add(stud);
+		//CourseEnroll.add(course);
 		
 		Enrollment anEnrollment = new Enrollment(stud, course, -1);
 		Enrollments.add(anEnrollment);
@@ -36,10 +36,13 @@ public class EnrollmentController {
 		return course.addStudenttoNoTutCourse(stud, lec);
 	}
 	public boolean DropCourse(Student stud , Course course) {
-		for (int i = 0 ; i < StudentEnroll.size();i++) {
-			if ((stud == StudentEnroll.get(i))&&(course == CourseEnroll.get(i))) {
-				StudentEnroll.remove(i);
-				CourseEnroll.remove(i);
+		//for (int i = 0 ; i < StudentEnroll.size();i++) {
+		for (int i = 0 ; i < Enrollments.size();i++) {
+			//if ((stud == StudentEnroll.get(i))&&(course == CourseEnroll.get(i))) {
+			if ((stud == Enrollments.get(i).getStudent())&&(course == Enrollments.get(i).getCourse())) {
+				//StudentEnroll.remove(i);
+				//CourseEnroll.remove(i);
+				Enrollments.remove(i);
 				stud.removeCourse(course);
 				return course.removeStudentfromCourse(stud);
 			}
@@ -72,8 +75,9 @@ public class EnrollmentController {
 		if (index == -1) {
 			return false;
 		}
-		for (int i = 0 ; i < StudentEnroll.size();i++) {
-			if ((stud == StudentEnroll.get(i))&&(course == CourseEnroll.get(i))) {
+		for (int i = 0 ; i < Enrollments.size();i++) {
+			//if ((stud == StudentEnroll.get(i))&&(course == CourseEnroll.get(i))) {
+			if ((stud == Enrollments.get(i).getStudent())&&(course == Enrollments.get(i).getCourse())) {
 				ArrayList<Enrollment> RegisteredCourses;
 				RegisteredCourses = stud.getRegisteredCourses();
 				for (int j = 0 ; j < RegisteredCourses.size();j++) {
