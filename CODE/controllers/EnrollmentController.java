@@ -92,4 +92,20 @@ public class EnrollmentController {
 		}
 		return false;
 	}
+	public void printStudentCourseTranscript(Student stud , Course c ) {
+		System.out.println("Course " + c.getCourseName() + ":");
+		Assessment assess = c.getCourseAssessment();
+		ArrayList<Component> CourseDistribution = assess.getDistribution();
+		for (Component comp : CourseDistribution) {
+			System.out.println(" Component " + comp.getName() +" : "+ stud.getComponentGrade(c, comp.getName()));
+		}
+		System.out.println(" Total grade : " + stud.getFinalGrade(c));
+	}
+	public void printStudentTranscript(Student stud) {
+		 ArrayList<Enrollment> RegisteredCourses = stud.getRegisteredCourses();
+		 for (Enrollment stucour : RegisteredCourses) {
+			 Course c = stucour.getCourse();
+			 printStudentCourseTranscript(stud , c);
+		 }
+	}
 }
