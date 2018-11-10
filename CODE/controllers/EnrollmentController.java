@@ -9,10 +9,10 @@ public class EnrollmentController {
 	private DatabaseController dbc = new DatabaseController();
 	
 	public void save(){
-		dbc.addEnrollmentRecord(Enrollments, "C:/Users/cyuqi/Desktop/EnrollmentList.ser");}
+		dbc.addEnrollmentRecord(Enrollments, "Database/EnrollmentList.ser");}
 	
 	public void load() {
-		Enrollments = dbc.readEnrollmentRecord("C:/Users/cyuqi/Desktop/EnrollmentList.ser");}
+		Enrollments = dbc.readEnrollmentRecord("Database/EnrollmentList.ser");}
 	
 	public boolean EnrollCourse(Student stud , Course course , int index) {
 		//StudentEnroll.add(stud);
