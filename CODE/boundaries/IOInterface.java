@@ -97,35 +97,38 @@ public class IOInterface {
 					break;
 					
 				case 9:
-					RegisterCourse();
+					finishConstruct();
 					break;
 					
 				case 10:
-					CheckVacancy(); // actually checkVacancy function can be used in registerCourse, if needed then input courseID will be at here
+					RegisterCourse();
 					break;
 					
 				case 11:
-					PrintStudent();
+					CheckVacancy(); // actually checkVacancy function can be used in registerCourse, if needed then input courseID will be at here
 					break;
 					
 				case 12:
-					EditAssessment();
+					PrintStudent();
 					break;
 					
 				case 13:
-					EnterComponentMark();
+					EditAssessment();
 					break;
 					
 				case 14:
-					EnterExamMark();
+					EnterComponentMark();
 					break;
 					
 				case 15:
-					printCourseStatistics();
-					
+					EnterExamMark();
 					break;
 					
 				case 16:
+					printCourseStatistics();
+					break;
+					
+				case 17:
 					printStudentTranscript();
 					break;
 				
@@ -987,7 +990,7 @@ public class IOInterface {
 			}
 		}
 		std.printStudentDetails(stu);
-		std.printStudentTranscript(stu);
+		enr.printStudentTranscript(stu);
 	}
 	private static void EditStudentParticulars() {
 		Student stu;
