@@ -15,10 +15,12 @@ public class CourseController {
 	}
 	
 	public void save(){
-		dbc.addCourseRecord(CourseList, "Database/CourseList.ser");}
+		dbc.addCourseRecord(CourseList, "Database/CourseList.ser");
+		dbc.addCourseRecord(Constructing, "Database/Constructing.ser");}
 	
 	public void load() {
-		CourseList = dbc.readCourseRecord("Database/CourseList.ser");}
+		CourseList = dbc.readCourseRecord("Database/CourseList.ser");
+		Constructing = dbc.readCourseRecord("Database/Constructing.ser");}
 	
 	public TimeSlot createTimeSlot(String WeekDay, float StartTime, float FinishTime)
 	{
