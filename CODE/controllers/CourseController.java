@@ -134,7 +134,11 @@ public class CourseController {
 	public boolean addAssessmentComponent(Course c , String compname , float weight ) {
 		Assessment assess;
 		assess = c.getCourseAssessment();
-		return assess.addComponent(compname,weight);
+		if (assess.addComponent(compname,weight)) {
+			allStudentupdateGradeComponent(c, compname);
+			return true;
+		}
+		else return false;
 	}
 	public void allStudentupdateGradeComponent(Course c , String compname) {
 		ArrayList<Lecture> CourseLecture = c.getCourseLecture();
@@ -438,4 +442,10 @@ public class CourseController {
 		Constructing.add(aCourse);
 		return true;
 	}
+	public void printAllCourseDetails() {
+		for (Course c : CourseList) {
+			System.out.println(c.DetailCourse());
+		}
+	}
+	
 }
