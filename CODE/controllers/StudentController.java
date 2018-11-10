@@ -4,20 +4,12 @@ import entities.*;
 
 public class StudentController {
 	private ArrayList<Student> StudentList;
-	private DatabaseController dbc;
 
 	public StudentController()
 	{
 		StudentList = new ArrayList<Student>();
-		dbc = new DatabaseController();
 	}
 
-	public void save(){
-		dbc.addStudentRecord(StudentList, "C:/Users/cyuqi/Desktop/StudentList.ser");}
-	
-	public void load() {
-		StudentList = dbc.readStudentRecord("C:/Users/cyuqi/Desktop/StudentList.ser");}
-	
 	private int find(Student aStudent)
 	{
 		return StudentList.indexOf(aStudent);
@@ -73,7 +65,7 @@ public class StudentController {
 					stud.setID(ID);
 				}
 				else {
-					System.out.println("ID is unchanged . A student with the ID "+ID+ " had already existed in the Student List");
+					System.out.println("ID is unchanged . A student with the ID "+ID+ "had already existed in the Student List");
 				}
 	}
 	
@@ -94,22 +86,7 @@ public class StudentController {
 	public boolean checkRegisteredCourseforStudent(Student stud , Course c) {
 		return stud.checkRegistered(c);
 	}
-	public void printStudentCourseTranscript(Student stud , Course c ) {
-		System.out.println("Course " + c.getCourseName() + ":");
-		Assessment assess = c.getCourseAssessment();
-		ArrayList<Component> CourseDistribution = assess.getDistribution();
-		for (Component comp : CourseDistribution) {
-			System.out.println(" Component " + comp.getName() +" : "+ stud.getComponentGrade(c, comp.getName()));
-		}
-		System.out.println(" Total grade : " + stud.getFinalGrade(c));
-	}
-	public void printStudentTranscript(Student stud) {
-		 ArrayList<Enrollment> RegisteredCourses = stud.getRegisteredCourses();
-		 for (Enrollment stucour : RegisteredCourses) {
-			 Course c = stucour.getCourse();
-			 printStudentCourseTranscript(stud , c);
-		 }
-	}
+	
 	public boolean checkID(String ID) {
 		for (Student stu : StudentList) {
 			if (stu.getID().equals(ID)) {
