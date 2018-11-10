@@ -1,7 +1,9 @@
 package entities;
 import java.util.ArrayList;
+import java.io.Serializable;
 
-public class Lecture {
+public class Lecture implements Serializable{
+	private static final long serialVersionUID = 1L;
 	private String ProfessorName;
 	private ArrayList<TimeSlot> LectureTime ;
 	private ArrayList<Tutorial> tutorial;

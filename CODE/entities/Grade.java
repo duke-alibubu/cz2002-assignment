@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 public class Grade extends Field implements Serializable
 {
+
+	private static final long serialVersionUID = 1L;
 	Grade(Assessment Assess)
 	{
 		Distribution = Assess.emptyDistribution();

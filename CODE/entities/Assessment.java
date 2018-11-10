@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 public class Assessment extends Field implements Serializable
 {
+
+	private static final long serialVersionUID = 1L;
 	public Assessment()
 	{
 		Distribution = new ArrayList<Component>();

@@ -4,6 +4,7 @@ import java.util.*;
 import java.io.Serializable;
 
 public class Course implements Serializable {
+	private static final long serialVersionUID = 1L;
 	private String CourseID;
 	private String CourseName;
 	private String CourseCoordinatorName;

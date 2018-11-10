@@ -2,6 +2,7 @@ package entities;
 import java.io.Serializable;
 
 public class TimeSlot implements Serializable{
+	private static final long serialVersionUID = 1L;
 	private String WeekDay;
 	private float StartTime;
 	private float FinishTime;

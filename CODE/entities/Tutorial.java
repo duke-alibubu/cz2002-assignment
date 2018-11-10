@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import java.io.Serializable;
 
 public class Tutorial implements Serializable{
+	private static final long serialVersionUID = 1L;
 	private String TutorName;
 	private ArrayList<Student> StudentList;
 	private int Vacancy; 

@@ -2,6 +2,7 @@ package entities;
 import java.io.Serializable;
 
 public class Enrollment implements Serializable {
+	private static final long serialVersionUID = 1L;
 	private Student aStudent;
 	private Course aCourse;
 	private Grade aGrade;
