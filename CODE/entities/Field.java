@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 public class Field implements Serializable
 {
+	private static final long serialVersionUID = 1L;
 	protected ArrayList<Component> Distribution;
 	private int find(String Name)
 	{
