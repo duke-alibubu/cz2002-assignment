@@ -94,22 +94,7 @@ public class StudentController {
 	public boolean checkRegisteredCourseforStudent(Student stud , Course c) {
 		return stud.checkRegistered(c);
 	}
-	public void printStudentCourseTranscript(Student stud , Course c ) {
-		System.out.println("Course " + c.getCourseName() + ":");
-		Assessment assess = c.getCourseAssessment();
-		ArrayList<Component> CourseDistribution = assess.getDistribution();
-		for (Component comp : CourseDistribution) {
-			System.out.println(" Component " + comp.getName() +" : "+ stud.getComponentGrade(c, comp.getName()));
-		}
-		System.out.println(" Total grade : " + stud.getFinalGrade(c));
-	}
-	public void printStudentTranscript(Student stud) {
-		 ArrayList<Enrollment> RegisteredCourses = stud.getRegisteredCourses();
-		 for (Enrollment stucour : RegisteredCourses) {
-			 Course c = stucour.getCourse();
-			 printStudentCourseTranscript(stud , c);
-		 }
-	}
+
 	public boolean checkID(String ID) {
 		for (Student stu : StudentList) {
 			if (stu.getID().equals(ID)) {
