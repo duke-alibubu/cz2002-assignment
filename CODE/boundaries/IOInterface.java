@@ -143,6 +143,8 @@ public class IOInterface {
 	}
 	
 	private static void NewStudent() {
+		System.out.println("The current student list is : ");
+		std.printAllStudentDetails();
 		System.out.println("Please enter the name of the new student:");
 		String studentName = sc.nextLine();	
 		System.out.println("Please enter the id of the new student:");
@@ -176,6 +178,8 @@ public class IOInterface {
 	}
 	
 	private static void NewCourse() {
+		System.out.println("The current course list is : ");
+		crs.printAllCourseDetails();
 		System.out.println("Please enter the ID for the new course: ");
 		String courseID = sc.nextLine();
 		System.out.println("Please enter the name for the new course: ");
@@ -584,7 +588,6 @@ public class IOInterface {
 			boolean result = crs.addAssessmentComponent(c, componentName, weightage);
 			if(result) {
 				System.out.println("Successfully added!");
-				crs.allStudentupdateGradeComponent(c, componentName);
 			}
 			else {
 				System.out.println("Error! Assessment component already existed ! ");
