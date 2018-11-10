@@ -143,6 +143,8 @@ public class IOInterface {
 	}
 	
 	private static void NewStudent() {
+		System.out.println("The current student list is : ");
+		std.printAllStudentDetails();
 		System.out.println("Please enter the name of the new student:");
 		String studentName = sc.nextLine();	
 		System.out.println("Please enter the id of the new student:");

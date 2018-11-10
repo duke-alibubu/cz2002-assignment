@@ -103,4 +103,9 @@ public class StudentController {
 		}
 		return true;
 	}
+	public void printAllStudentDetails() {
+		for (Student stu : StudentList) {
+			System.out.println(stu.detailStudent());
+		}
+	}
 }
