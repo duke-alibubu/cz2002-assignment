@@ -3,4 +3,4 @@ all:
 	java boundaries/IOInterface
 
 clean:
-	rm boundaries/*.class controllers/*.class entities/*.class
+	rm -f boundaries/*.class controllers/*.class entities/*.class
