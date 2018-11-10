@@ -30,14 +30,14 @@ public class IOInterface {
 			System.out.println("5. Edit Course");
 			System.out.println("6. Remove Course");
 			System.out.println("7. Add lecture/tutorial/lab slot (only for constructing courses)"); 
-			System.out.println("8. Add course assessment"); 
+			System.out.println("8. Add course assessment");
 			System.out.println("9. Finish constructing a course");
 			System.out.println("10. Register Course (only for constructed courses)"); 
 			System.out.println("11. Check Available Slots (only for constructed courses)");
 			System.out.println("12. Print Student List of a Course (only for constructed courses)");
 			System.out.println("13. Enter course assessment components weightage (only for constructed courses)");
 			System.out.println("14. Enter coursework mark C inclusive of its components (only for constructed courses)");
-			System.out.println("15. Enter exam mark (only for constructed courses)" );
+			System.out.println("15. Enter exam mark (only for constructed courses)");
 			System.out.println("16. Print course statistics(only for constructed courses)");
 			System.out.println("17. Print student transcript");
 			System.out.println("-----------------------------------------------------------------------");
@@ -143,8 +143,6 @@ public class IOInterface {
 	}
 	
 	private static void NewStudent() {
-		System.out.println("The current student list is : ");
-		std.printAllStudentDetails();
 		System.out.println("Please enter the name of the new student:");
 		String studentName = sc.nextLine();	
 		System.out.println("Please enter the id of the new student:");
@@ -171,6 +169,8 @@ public class IOInterface {
 		boolean result = std.addStudent(studentName, studentID, faculty, year);
 		if (result == true) {
 			System.out.println("Successfully added the new student");
+			System.out.println("The current student list is : ");
+			std.printAllStudentDetails();
 		}
 		else {
 			System.out.println("Student with the same studentID exists");
@@ -178,8 +178,6 @@ public class IOInterface {
 	}
 	
 	private static void NewCourse() {
-		System.out.println("The current course list is : ");
-		crs.printAllCourseDetails();
 		System.out.println("Please enter the ID for the new course: ");
 		String courseID = sc.nextLine();
 		System.out.println("Please enter the name for the new course: ");
@@ -192,11 +190,16 @@ public class IOInterface {
 			NewLecture(c);
 			NewAssessment(c);
 			System.out.println("New course added !");
-			System.out.println("This course has just been created and not finished constructing yet . Note that once you have done constructing a course , you cannot add new lecture , tutorial or lab to it .");
+			System.out.println("This course has just been created and not finished constructing yet .");
+			System.out.println("Note that once you have done constructing a course , you cannot add new lecture , tutorial or lab to it .");
 			System.out.println("You can register students to a course only after that course has been constructed .");
+			System.out.println("The constructed course list is : ");
+			crs.printAllConstructedCourseDetails();
+			System.out.println("The constructing course list is : ");
+			crs.printAllConstructingCourseDetails();
 		}
 		else {
-			System.out.println("Course with the same courseID exists");
+			System.out.println("Course with the same courseID already exists or is under constructing ! ");
 		}
 	}
 	
@@ -767,7 +770,7 @@ public class IOInterface {
 			crs.printCourseStudentList(c);
 			}
 		else {
-			System.out.println("Student List :");
+			System.out.println("Student List by Lecture Session :");
 			crs.printCourseStudentList(c);
 			}
 
