@@ -97,6 +97,7 @@ public class Student implements Serializable{
 	public String detailStudent() {
 		return StudentName + " ID " + StudentID + " FACULTY " + Faculty + " YEAR " + Integer.toString(Year); 
 	}
+	
 	public boolean checkRegistered(Course c ) {
 		int index = find(c);
 		if (-1 == index)
@@ -121,6 +122,7 @@ public class Student implements Serializable{
 	public float getFinalGrade(Course c) {
 		return RegisteredCourses.get(find(c)).getTotalMark();
 	}
+	
 	public void addGradeComponentforCourse(Course c , String compname) {
 		RegisteredCourses.get(find(c)).addGradeComponent(compname);
 	}

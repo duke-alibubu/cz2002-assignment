@@ -78,4 +78,7 @@ public class Course implements Serializable {
 			return 100/totalWeight ;
 		else return 0;
 	}
+	public String DetailCourse() {
+		return "Course Name : " + CourseName + " , ID " + CourseID + " , Course Coordinator Name " + CourseCoordinatorName ;
+	}
 }
