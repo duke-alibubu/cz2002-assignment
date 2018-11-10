@@ -13,10 +13,10 @@ public class StudentController {
 	}
 
 	public void save(){
-		dbc.addStudentRecord(StudentList, "C:/Users/cyuqi/Desktop/StudentList.ser");}
+		dbc.addStudentRecord(StudentList, "Database/StudentList.ser");}
 	
 	public void load() {
-		StudentList = dbc.readStudentRecord("C:/Users/cyuqi/Desktop/StudentList.ser");}
+		StudentList = dbc.readStudentRecord("Database/StudentList.ser");}
 	
 	private int find(Student aStudent)
 	{
