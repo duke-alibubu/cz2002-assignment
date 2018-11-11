@@ -77,4 +77,20 @@ public class Lecture implements Serializable{
 		}
 		return  result;
 	}
+	public ArrayList<Student> getStudentList()
+	{
+		ArrayList<Student> aList = new ArrayList<Student>();
+		if (tutorial.size() < 1)
+			return aList;
+		if (tutorial.size() == 1)
+		{
+			aList.addAll(tutorial.get(0).getStudentList());
+		}
+		else
+		{
+			for (int i=1; i<tutorial.size(); i++)
+				aList.addAll(tutorial.get(i).getStudentList());
+		}
+		return aList;
+	}
 }

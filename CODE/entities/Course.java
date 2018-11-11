@@ -82,4 +82,12 @@ public class Course implements Serializable {
 	public String DetailCourse() {
 		return "Course Name : " + CourseName + " , ID " + CourseID + " , Course Coordinator Name " + CourseCoordinatorName ;
 	}
+	public ArrayList<Student> getStudentList()
+	{
+			ArrayList<Student> aList = new ArrayList<Student>();
+			for (int i=0; i<CourseLecture.size(); i++)
+				aList.addAll(CourseLecture.get(i).getStudentList());
+			return aList;
+
+	}
 }
