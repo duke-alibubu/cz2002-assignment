@@ -7,7 +7,6 @@ public class EnrollmentController {
 	//private ArrayList<Course> CourseEnroll = new ArrayList<Course>();
 	private ArrayList<Enrollment> Enrollments = new ArrayList<Enrollment>();
 	private DatabaseController dbc = new DatabaseController();
-	
 	public void save(){
 		dbc.addEnrollmentRecord(Enrollments, "Database/EnrollmentList.ser");}
 	
@@ -20,7 +19,6 @@ public class EnrollmentController {
 
 		Enrollment anEnrollment = new Enrollment(stud, course, index);
 		Enrollments.add(anEnrollment);
-
 		stud.addCourse(anEnrollment);
 		return course.addStudenttoCourse(stud, index);
 	}
@@ -51,9 +49,14 @@ public class EnrollmentController {
 	}
 	public void DropAllCourse(Student stud) {
 		ArrayList<Enrollment> RegisteredCourses = stud.getRegisteredCourses();
+		ArrayList<Enrollment> spare = new ArrayList<Enrollment>();
 		for (Enrollment studcour : RegisteredCourses) {
+			spare.add(studcour);
+		}
+		for (Enrollment studcour : spare) {
 			DropCourse(stud,studcour.getCourse());
 		}
+		spare = null;
 	}
 	public void AllStudentDropCourse(Course c) {
 		ArrayList<Lecture> CourseLecture = c.getCourseLecture();
@@ -68,6 +71,7 @@ public class EnrollmentController {
 				for (Student stud : spare) {
 					DropCourse(stud,c);
 				}
+				spare = null;
 			}
 		}
 	}

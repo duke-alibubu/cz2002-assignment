@@ -15,10 +15,12 @@ public class CourseController {
 	}
 	
 	public void save(){
-		dbc.addCourseRecord(CourseList, "Database/CourseList.ser");}
+		dbc.addCourseRecord(CourseList, "Database/CourseList.ser");
+		dbc.addCourseRecord(Constructing, "Database/Constructing.ser");}
 	
 	public void load() {
-		CourseList = dbc.readCourseRecord("Database/CourseList.ser");}
+		CourseList = dbc.readCourseRecord("Database/CourseList.ser");
+		Constructing = dbc.readCourseRecord("Database/Constructing.ser");}
 	
 	public TimeSlot createTimeSlot(String WeekDay, float StartTime, float FinishTime)
 	{
@@ -35,7 +37,8 @@ public class CourseController {
 	}
 	public Course createCourse(String ID, String Name, String CoordinatorName)
 	{
-		return new Course(ID, Name, CoordinatorName);
+		System.out.println("Da tao Course ! ");
+		return new Course(ID, Name, CoordinatorName);		
 	}
 
 	public boolean addCourse(Course aCourse) {
@@ -205,7 +208,13 @@ public class CourseController {
 	public void printLectureStudentList(Lecture lec ) {
 		ArrayList<Tutorial> tutorial = lec.getTutorial();
 		for (Tutorial tut : tutorial) {
-			System.out.println(tut.detailStudentList());
+			if (tut.getIndex() != -1 ) {
+				System.out.println("Index " + tut.getIndex());
+				System.out.println(tut.detailStudentList());
+			}
+		}
+		if (tutorial.size()==1) {
+			System.out.println(tutorial.get(0).detailStudentList());
 		}
 	}
 	public void printCourseStudentList(Course c) {
@@ -450,10 +459,14 @@ public class CourseController {
 		Constructing.add(aCourse);
 		return true;
 	}
-	public void printAllCourseDetails() {
+	public void printAllConstructedCourseDetails() {
 		for (Course c : CourseList) {
 			System.out.println(c.DetailCourse());
 		}
 	}
-	
+	public void printAllConstructingCourseDetails() {
+		for (Course c : Constructing) {
+			System.out.println(c.DetailCourse());
+		}
+	}
 }

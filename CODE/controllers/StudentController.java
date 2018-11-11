@@ -46,6 +46,7 @@ public class StudentController {
 		if (find(ID) != -1)
 			return false;
 		Student aStudent = new Student(Name, ID, Faculty, Year);
+		System.out.println("Da Tao Student");
 		StudentList.add(aStudent);
 		return true;
 	}

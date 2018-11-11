@@ -77,4 +77,5 @@ public class Lecture implements Serializable{
 		}
 		return  result;
 	}
+	
 }

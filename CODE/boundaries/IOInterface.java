@@ -131,7 +131,6 @@ public class IOInterface {
 				case 17:
 					printStudentTranscript();
 					break;
-				
 				default:
 					break;
 				}
@@ -143,8 +142,6 @@ public class IOInterface {
 	}
 	
 	private static void NewStudent() {
-		System.out.println("The current student list is : ");
-		std.printAllStudentDetails();
 		System.out.println("Please enter the name of the new student:");
 		String studentName = sc.nextLine();	
 		System.out.println("Please enter the id of the new student:");
@@ -171,6 +168,8 @@ public class IOInterface {
 		boolean result = std.addStudent(studentName, studentID, faculty, year);
 		if (result == true) {
 			System.out.println("Successfully added the new student");
+			System.out.println("The current student list is : ");
+			std.printAllStudentDetails();
 		}
 		else {
 			System.out.println("Student with the same studentID exists");
@@ -178,8 +177,6 @@ public class IOInterface {
 	}
 	
 	private static void NewCourse() {
-		System.out.println("The current course list is : ");
-		crs.printAllCourseDetails();
 		System.out.println("Please enter the ID for the new course: ");
 		String courseID = sc.nextLine();
 		System.out.println("Please enter the name for the new course: ");
@@ -192,11 +189,17 @@ public class IOInterface {
 			NewLecture(c);
 			NewAssessment(c);
 			System.out.println("New course added !");
-			System.out.println("This course has just been created and not finished constructing yet . Note that once you have done constructing a course , you cannot add new lecture , tutorial or lab to it .");
+			System.out.println("This course has just been created and not finished constructing yet .");
+			System.out.println("Note that once you have done constructing a course , you cannot add new lecture , tutorial or lab to it .");
 			System.out.println("You can register students to a course only after that course has been constructed .");
+			System.out.println("The constructed course list is : ");
+			crs.printAllConstructedCourseDetails();
+			System.out.println("The constructing course list is : ");
+			crs.printAllConstructingCourseDetails();
 		}
 		else {
 			System.out.println("Course with the same courseID already exists or is under constructing ! ");
+			c = null;
 		}
 	}
 	
@@ -628,6 +631,7 @@ public class IOInterface {
 				break;
 			}
 		}
+		
 		Course c;
 		while (true) {
 			System.out.println("Please enter the courseID that you want to add the student into: (-1 to terminate) ");
@@ -643,6 +647,12 @@ public class IOInterface {
 				break;
 			}
 		}
+		
+		if (std.checkRegisteredCourseforStudent(stu, c)) {
+			System.out.println("Student has already registered for this course !");
+			return;
+		}
+		
 		if(!crs.checkNoTutCourse(c)) {
 		// print out the lecture and tutorial details for the user to choose the index
 			ArrayList<Lecture> CourseLecture = c.getCourseLecture();
@@ -671,7 +681,7 @@ public class IOInterface {
 				if (index == -1) {
 					break;
 				}
-				if (!enr.EnrollCourse(stu, c, index)) {    //vacancy also get updated in the EnrollCourse func
+				if (!enr.EnrollCourse(stu, c, index)) { 
 					System.out.println("Index not available or the tutorial is already full ! ");
 				}
 				else {
@@ -705,7 +715,7 @@ public class IOInterface {
 				while (true) {
 					boolean flag = true;
 					try {
-						System.out.println("Lecture not valid ! Enter the lecture where you want to add a new lab in : ");
+						System.out.println("Lecture not valid ! Enter the lecture register the student into (Between 1 and "+ nooflec + " ) : ");
 						lecno = sc.nextInt(); 
 						sc.nextLine();
 					}
@@ -721,8 +731,12 @@ public class IOInterface {
 			}
 			ArrayList<Lecture> CourseLecture = c.getCourseLecture();
 			Lecture lec = CourseLecture.get(lecno-1);
-			enr.EnrollCourse(stu,c,lec);
-			System.out.println("Registration done !");
+			if (!enr.EnrollCourse(stu, c,lec )) { 
+				System.out.println("Lecture is already full ! ");
+			}
+			else {
+				System.out.println("Registration done !");
+			}
 		}
 	}
 	
@@ -1107,7 +1121,7 @@ public class IOInterface {
 	private static void finishConstruct() {
 		Course c;
 		while (true) {
-			System.out.println("Please enter the courseID that you want to insert the new section into: (-1 to terminate)");
+			System.out.println("Please enter the courseID that you want to finish constructing (-1 to terminate ) :");
 			String ID = sc.nextLine();
 			c = crs.checkConstructingCourse(ID);
 			if (ID.equals("-1")) {

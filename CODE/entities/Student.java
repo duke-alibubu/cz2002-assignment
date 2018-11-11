@@ -101,7 +101,7 @@ public class Student implements Serializable{
 	
 	public boolean checkRegistered(Course c ) {
 		int index = find(c);
-		if (-1 == index)
+		if (-1 == index) 
 			return false;
 		return true;
 	}

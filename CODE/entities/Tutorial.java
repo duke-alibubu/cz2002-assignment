@@ -61,8 +61,8 @@ public class Tutorial implements Serializable{
 	// manipulate the StudentList
 	public boolean addStudent( Student stud ) {
 		if (!(StudentList.contains(stud))) {
-			StudentList.add(stud);
 			if (Vacancy == 0) return false;
+			StudentList.add(stud);	
 			Vacancy--;
 			return true;
 		}
