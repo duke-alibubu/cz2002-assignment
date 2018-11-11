@@ -20,7 +20,12 @@ public class StudentController {
 	
 	private int find(Student aStudent)
 	{
-		return StudentList.indexOf(aStudent);
+		for (int i = 0 ; i < StudentList.size();i++) {
+			if (StudentList.get(i).getID().equals(aStudent.getID())) {
+				return i;
+			}
+		}
+		return -1;
 	}
 	private int find(String ID)
 	{
@@ -46,7 +51,6 @@ public class StudentController {
 		if (find(ID) != -1)
 			return false;
 		Student aStudent = new Student(Name, ID, Faculty, Year);
-		System.out.println("Da Tao Student");
 		StudentList.add(aStudent);
 		return true;
 	}
@@ -79,6 +83,8 @@ public class StudentController {
 	}
 	
 	public boolean EditGrade(Student stud, Course aCourse, String component, float value) {
+		Student temp = findStudent(aCourse , stud);
+		temp.EditCourseGrade(aCourse, component, value);
 		return stud.EditCourseGrade(aCourse, component, value);
 	}
 	public Student checkStudent(String StudentID) {
@@ -108,5 +114,12 @@ public class StudentController {
 		for (Student stu : StudentList) {
 			System.out.println(stu.detailStudent());
 		}
+	}
+	public Student findStudent (Course c , Student stdinList) {
+		for (Student stud : c.getStudentList()) {
+			if (stud.getID().equals(stdinList.getID()))
+				return stud;
+		}
+		return null;
 	}
 }

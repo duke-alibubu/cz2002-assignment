@@ -25,21 +25,21 @@ public class IOInterface {
 			System.out.println("Please choose on one of the following function(-1 to terminate): ");
 			System.out.println("1. Add Student"); 
 			System.out.println("2. Edit Student Particulars");
-			System.out.println("3. Remove Student");
-			System.out.println("4. Create a Course");
-			System.out.println("5. Edit Course");
-			System.out.println("6. Remove Course");
-			System.out.println("7. Add lecture/tutorial/lab slot (only for constructing courses)"); 
-			System.out.println("8. Add course assessment");
-			System.out.println("9. Finish constructing a course");
-			System.out.println("10. Register Course (only for constructed courses)"); 
-			System.out.println("11. Check Available Slots (only for constructed courses)");
-			System.out.println("12. Print Student List of a Course (only for constructed courses)");
-			System.out.println("13. Enter course assessment components weightage (only for constructed courses)");
-			System.out.println("14. Enter coursework mark C inclusive of its components (only for constructed courses)");
-			System.out.println("15. Enter exam mark (only for constructed courses)");
-			System.out.println("16. Print course statistics(only for constructed courses)");
-			System.out.println("17. Print student transcript");
+			//System.out.println("3. Remove Student");
+			System.out.println("3. Create a Course");
+			System.out.println("4. Edit Course");
+			//System.out.println("6. Remove Course");
+			System.out.println("5. Add lecture/tutorial/lab slot (only for constructing courses)"); 
+			System.out.println("6. Add course assessment");
+			System.out.println("7. Finish constructing a course");
+			System.out.println("8. Register Course (only for constructed courses)"); 
+			System.out.println("9. Check Available Slots (only for constructed courses)");
+			System.out.println("10. Print Student List of a Course (only for constructed courses)");
+			System.out.println("11. Enter course assessment components weightage (only for constructed courses)");
+			System.out.println("12. Enter coursework mark C inclusive of its components (only for constructed courses)");
+			System.out.println("13. Enter exam mark (only for constructed courses)");
+			System.out.println("14. Print course statistics(only for constructed courses)");
+			System.out.println("15. Print student transcript");
 			System.out.println("-----------------------------------------------------------------------");
 			boolean flag = true;
 			try {
@@ -62,26 +62,17 @@ public class IOInterface {
 					break;
 					
 				case 3:
-					RemoveStudent();
-					break;
-					
-				case 4:
 					NewCourse();
 					break;
 					
-				case 5:
+				case 4:
 					EditCourse();
 					break;
-					
-				case 6:
-					RemoveCourse();
-					break;
-					
-				case 7:
+				case 5:
 					NewSection();
 					break;
 					
-				case 8:
+				case 6:
 					while (true) {
 						System.out.println("Please enter the courseID that you want to insert the new section into: ");
 						String ID = sc.nextLine();
@@ -96,39 +87,39 @@ public class IOInterface {
 					}
 					break;
 					
-				case 9:
+				case 7:
 					finishConstruct();
 					break;
 					
-				case 10:
+				case 8:
 					RegisterCourse();
 					break;
 					
-				case 11:
+				case 9:
 					CheckVacancy(); // actually checkVacancy function can be used in registerCourse, if needed then input courseID will be at here
 					break;
 					
-				case 12:
+				case 10:
 					PrintStudent();
 					break;
 					
-				case 13:
+				case 11:
 					EditAssessment();
 					break;
 					
-				case 14:
+				case 12:
 					EnterComponentMark();
 					break;
 					
-				case 15:
+				case 13:
 					EnterExamMark();
 					break;
 					
-				case 16:
+				case 14:
 					printCourseStatistics();
 					break;
 					
-				case 17:
+				case 15:
 					printStudentTranscript();
 					break;
 				default:
@@ -784,7 +775,6 @@ public class IOInterface {
 			System.out.println("Student List by Lecture Session :");
 			crs.printCourseStudentList(c);
 			}
-
 	}
 	private static void EditAssessment() {
 		Course c;

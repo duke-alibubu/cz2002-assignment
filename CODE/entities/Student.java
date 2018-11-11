@@ -54,7 +54,7 @@ public class Student implements Serializable{
 		int index = -1;
 		for (int i=0; i<RegisteredCourses.size(); i++)
 		{
-			if (aCourse == RegisteredCourses.get(i).getCourse())
+			if (aCourse.getCourseID().equals(RegisteredCourses.get(i).getCourse().getCourseID()))
 			{
 				index = i;
 				break;

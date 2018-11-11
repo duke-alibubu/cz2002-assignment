@@ -37,7 +37,6 @@ public class CourseController {
 	}
 	public Course createCourse(String ID, String Name, String CoordinatorName)
 	{
-		System.out.println("Da tao Course ! ");
 		return new Course(ID, Name, CoordinatorName);		
 	}
 
@@ -53,13 +52,13 @@ public class CourseController {
 	}
 	
 	public boolean editCourse(Course c , String cname , String cid , String coorname) {
-		if (CourseList.contains(c)) {
+		if (checkConstructedContain(c)) {
 		c.setCourseName(cname);
 		c.setCourseCoordinatorName(coorname);
 		c.setCourseID(cid);
 		return true;
 		}
-		else if (Constructing.contains(c)) {
+		else if (checkConstructingContain(c)) {
 		c.setCourseName(cname);
 		c.setCourseCoordinatorName(coorname);
 		c.setCourseID(cid);
@@ -70,13 +69,13 @@ public class CourseController {
 		}
 	}
 	public boolean removeCourse(Course c) {
-		if (CourseList.contains(c)) {
-		    CourseList.remove(c);
+		if (checkConstructedContain(c)) {
+			removeCourse(CourseList , c);
 		    c = null;
 		    return true;
 		}
-		else if (Constructing.contains(c)) {
-			Constructing.remove(c);
+		else if (checkConstructingContain(c)) {
+			removeCourse(Constructing , c);
 		    c = null;
 		    return true;
 		}
@@ -94,7 +93,7 @@ public class CourseController {
 	public boolean removeLecture(Course c , Lecture l)
 	{
 		ArrayList<Lecture> CourseLecture = c.getCourseLecture();
-		if (CourseLecture.contains(l))
+		if (checkCourseLectureContain(CourseLecture , l))
 		{
 			c.removeLecture(l);
 			return true;
@@ -119,9 +118,9 @@ public class CourseController {
 	public boolean removeTutorial(Lecture l , Tutorial t) {
 		if (t.getIndex()==-1) {return false;}
 		ArrayList<Tutorial> tutorial = l.getTutorial();
-		if (tutorial.contains(t))
+		if (checkCourseTutorialContain(tutorial , t))
 		{
-			tutorial.remove(t);
+			removeTutorial(tutorial,t);
 			return true;
 		}
 		else
@@ -392,35 +391,14 @@ public class CourseController {
 	}
 	public void printPercentageTotal(Course c ) {
 		float no1 = 0 , no2 = 0 , no3 = 0 , no4 = 0 ;
-		ArrayList<Lecture> CourseLecture = c.getCourseLecture();
-		for (Lecture lec : CourseLecture) {
-			if (!checkNoTutCourse(c)) {
-				ArrayList<Tutorial> tutorial = lec.getTutorial();
-				for (Tutorial tut : tutorial) {
-					if(tut.getIndex()!=-1) {
-						ArrayList<Student> StudentList = tut.getStudentList();
-						for (Student stud : StudentList) {
-							float temp = stud.getFinalGrade(c);
-							if ((temp >=0)&&(temp<25)) no1++;
-							else if ((temp >=25)&&(temp<50)) no2++;
-							else if ((temp >=50)&&(temp<75))no3++;
-							else no4++;
-						}
-					}
-				}
-			}
-			else {
-				ArrayList<Tutorial> tutorial = lec.getTutorial();
-				ArrayList<Student> StudentList = tutorial.get(0).getStudentList();
-				for (Student stud : StudentList) {
-					float temp = stud.getFinalGrade(c);
-					if ((temp >=0)&&(temp<25)) no1++;
-					else if ((temp >=25)&&(temp<50)) no2++;
-					else if ((temp >=50)&&(temp<75))no3++;
-					else no4++;
-				}
-			}
+		for (Student stud : c.getStudentList()) {
+			float temp = stud.getFinalGrade(c);
+			if ((temp >=0)&&(temp<25)) no1++;
+			else if ((temp >=25)&&(temp<50)) no2++;
+			else if ((temp >=50)&&(temp<75))no3++;
+			else no4++;
 		}
+
 		float total = no1 + no2 + no3 + no4 ;
 		float no1per = no1/total * 100;
 		float no2per = no2/total * 100;
@@ -440,7 +418,7 @@ public class CourseController {
 		printPercentageTotal(c);
 	}
 	public void constructingFinish(Course c) {
-		Constructing.remove(c);
+		removeCourse(Constructing ,c);
 		CourseList.add(c);
 	}
 	public boolean addConstructingCourse(Course aCourse) {
@@ -468,5 +446,59 @@ public class CourseController {
 		for (Course c : Constructing) {
 			System.out.println(c.DetailCourse());
 		}
+	}
+	private boolean checkConstructedContain(Course c ) {
+		for (Course check : CourseList) {
+			if (check.getCourseID().equals(c.getCourseID())) {
+				return true;
+			}
+		}
+		return false;
+	}
+	private boolean checkConstructingContain(Course c ) {
+		for (Course check : Constructing) {
+			if (check.getCourseID().equals(c.getCourseID())) {
+				return true;
+			}
+		}
+		return false;
+	}
+	private boolean checkCourseLectureContain(ArrayList<Lecture> CourseLecture , Lecture l) {
+		for (Lecture lec : CourseLecture) {
+			if (lec.getProfessorName().equals(l.getProfessorName())) {
+				return true;
+			}
+		}
+		return false;
+	}
+	private boolean checkCourseTutorialContain(ArrayList<Tutorial> tutorial , Tutorial tut) {
+		for (Tutorial t : tutorial) {
+			if (t.getIndex() == tut.getIndex()) {
+				return true;
+			}
+		}
+		return false;
+	}
+	private void removeCourse(ArrayList<Course> carray , Course c ) {
+		int i = -1;
+		for (Course cour : carray ) {
+			if (cour.getCourseID().equals(c.getCourseID())) {
+				i = carray.indexOf(cour);
+				break;
+			}
+		}
+		if (i != -1)
+		    carray.remove(i);
+	}
+	private void removeTutorial(ArrayList<Tutorial> tarray , Tutorial t ) {
+		int i = -1;
+		for (Tutorial tut : tarray ) {
+			if (tut.getIndex()==t.getIndex()) {
+				i = tarray.indexOf(tut);
+				break;
+			}
+		}
+		if (i != -1)
+		    tarray.remove(i);
 	}
 }

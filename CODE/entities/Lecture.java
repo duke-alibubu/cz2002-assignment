@@ -36,12 +36,8 @@ public class Lecture implements Serializable{
 	}
 	public void setLectureTime(TimeSlot t, int index) {
 		LectureTime.remove(index);
-		LectureTime.add(index, t);
-		
+		LectureTime.add(index, t);	
 	}
-
-	
-	
 	//manipulate tutorial 
 	public ArrayList<Tutorial> getTutorial() {
 		return this.tutorial;
@@ -50,7 +46,12 @@ public class Lecture implements Serializable{
 		tutorial.add(tut);
 	}
 	public void removeTutorial(Tutorial tut) {
-		tutorial.remove(tut);
+		for (int i = 0;i<tutorial.size();i++) {
+			if (tutorial.get(i).getIndex()==tut.getIndex()) {
+				tutorial.remove(i);
+				break;
+			}
+		}
 	}
 	public boolean addStudenttoLec(Student stud , int index) {
 		for (Tutorial tut : tutorial) {
@@ -76,6 +77,23 @@ public class Lecture implements Serializable{
 			result = result + detailTS + "   ";
 		}
 		return  result;
+	}
+
+	public ArrayList<Student> getStudentList()
+	{
+		ArrayList<Student> aList = new ArrayList<Student>();
+		if (tutorial.size() < 1)
+			return aList;
+		if (tutorial.size() == 1)
+		{
+			aList.addAll(tutorial.get(0).getStudentList());
+		}
+		else
+		{
+			for (int i=1; i<tutorial.size(); i++)
+				aList.addAll(tutorial.get(i).getStudentList());
+		}
+		return aList;
 	}
 	
 }

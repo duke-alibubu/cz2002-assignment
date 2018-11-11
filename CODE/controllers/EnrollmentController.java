@@ -14,18 +14,13 @@ public class EnrollmentController {
 		Enrollments = dbc.readEnrollmentRecord("Database/EnrollmentList.ser");}
 	
 	public boolean EnrollCourse(Student stud , Course course , int index) {
-		//StudentEnroll.add(stud);
-		//CourseEnroll.add(course);
 
 		Enrollment anEnrollment = new Enrollment(stud, course, index);
 		Enrollments.add(anEnrollment);
 		stud.addCourse(anEnrollment);
 		return course.addStudenttoCourse(stud, index);
 	}
-	//method overloading for no-tut courses
 	public boolean EnrollCourse(Student stud , Course course , Lecture lec) {
-		//StudentEnroll.add(stud);
-		//CourseEnroll.add(course);
 		
 		Enrollment anEnrollment = new Enrollment(stud, course, -1);
 		Enrollments.add(anEnrollment);
@@ -36,10 +31,7 @@ public class EnrollmentController {
 	public boolean DropCourse(Student stud , Course course) {
 		//for (int i = 0 ; i < StudentEnroll.size();i++) {
 		for (int i = 0 ; i < Enrollments.size();i++) {
-			//if ((stud == StudentEnroll.get(i))&&(course == CourseEnroll.get(i))) {
-			if ((stud == Enrollments.get(i).getStudent())&&(course == Enrollments.get(i).getCourse())) {
-				//StudentEnroll.remove(i);
-				//CourseEnroll.remove(i);
+			if ((stud.getID().equals(Enrollments.get(i).getStudent().getID())&&(course.getCourseID().equals(Enrollments.get(i).getCourse().getCourseID())))) {
 				Enrollments.remove(i);
 				stud.removeCourse(course);
 				return course.removeStudentfromCourse(stud);
@@ -80,12 +72,11 @@ public class EnrollmentController {
 			return false;
 		}
 		for (int i = 0 ; i < Enrollments.size();i++) {
-			//if ((stud == StudentEnroll.get(i))&&(course == CourseEnroll.get(i))) {
-			if ((stud == Enrollments.get(i).getStudent())&&(course == Enrollments.get(i).getCourse())) {
+			if ((stud.getID().equals(Enrollments.get(i).getStudent().getID())&&(course.getCourseID().equals(Enrollments.get(i).getCourse().getCourseID())))) {
 				ArrayList<Enrollment> RegisteredCourses;
 				RegisteredCourses = stud.getRegisteredCourses();
 				for (int j = 0 ; j < RegisteredCourses.size();j++) {
-					if (RegisteredCourses.get(j).getCourse() == course) {
+					if (RegisteredCourses.get(j).getCourse().getCourseID().equals(course.getCourseID())) {
 						int oldindex = RegisteredCourses.get(j).getIndex();
 						RegisteredCourses.get(j).setIndex(index);
 						course.removeStudentfromCourse(stud);

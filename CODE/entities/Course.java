@@ -36,7 +36,7 @@ public class Course implements Serializable {
 	public void setCourseCoordinatorName(String CourseCoordinatorName) {this.CourseCoordinatorName = new String(CourseCoordinatorName);}
 	
 	public void addLecture(Lecture lecture1) {this.CourseLecture.add(lecture1);}
-  
+    //not used
   	public void removeLecture(Lecture lecture1) {this.CourseLecture.remove(lecture1);}
     
 	public boolean addAssessment(String assessName , float weight) {return this.CourseAssessment.addComponent(assessName , weight);}
@@ -65,10 +65,12 @@ public class Course implements Serializable {
 		return false;
 	}
 	public boolean addStudenttoNoTutCourse(Student stud , Lecture lec) {
-		if (!CourseLecture.contains(lec)) {
-			return false;
+		
+		for (Lecture lect : CourseLecture) {
+		 if (lect.getProfessorName().equals(lec.getProfessorName()))
+			return lec.addStudenttoLec(stud, -1);
 		}
-		else return lec.addStudenttoLec(stud, -1);
+		return false;
 	}
 	public float percentageFactor() {
 		float totalWeight = 0;
@@ -81,5 +83,13 @@ public class Course implements Serializable {
 	}
 	public String DetailCourse() {
 		return "Course Name : " + CourseName + " , ID " + CourseID + " , Course Coordinator Name " + CourseCoordinatorName ;
+	}
+	public ArrayList<Student> getStudentList()
+	{
+			ArrayList<Student> aList = new ArrayList<Student>();
+			for (int i=0; i<CourseLecture.size(); i++)
+				aList.addAll(CourseLecture.get(i).getStudentList());
+			return aList;
+
 	}
 }

@@ -60,19 +60,24 @@ public class Tutorial implements Serializable{
 	
 	// manipulate the StudentList
 	public boolean addStudent( Student stud ) {
-		if (!(StudentList.contains(stud))) {
-			if (Vacancy == 0) return false;
-			StudentList.add(stud);	
-			Vacancy--;
-			return true;
+		for (Student stu : StudentList) {
+			if (stu.getID().equals(stud.getID())) {
+				return false;
+			}
 		}
-		return false;
+		if (Vacancy == 0) return false;
+		StudentList.add(stud);	
+		Vacancy--;
+		return true;
 	}
 	public boolean removeStudent( Student stud ) {
-		if (StudentList.contains(stud)) {
-			StudentList.remove(stud);
-			Vacancy++;
-			return true;
+		int j = StudentList.size();
+		for (int i = 0 ;i<j;i++ ) {
+			if (StudentList.get(i).getID().equals(stud.getID())) {
+				StudentList.remove(i);				
+				Vacancy++;
+				return true;
+			}
 		}
 		return false;
 	}
@@ -117,4 +122,5 @@ public class Tutorial implements Serializable{
 		}
 		return detailSL;
 	}
+	
 }

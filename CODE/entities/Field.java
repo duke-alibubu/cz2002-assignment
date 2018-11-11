@@ -8,10 +8,9 @@ public class Field implements Serializable
 	protected ArrayList<Component> Distribution;
 	private int find(String Name)
 	{
-		for (Component comp : Distribution) {
-			if(comp.getName().equals(Name)) {
-				return this.Distribution.indexOf(comp);
-			}
+		for (int i = 0; i<Distribution.size();i++) {
+			if(Distribution.get(i).getName().equals(Name)) 
+				return i;
 		}
 		return -1;
 	}
