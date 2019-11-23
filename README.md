@@ -23,3 +23,16 @@
 - Drawbacks:
   + Inheritance maybe more useful when used in a 'IS-A' relationship. 
   + A design based on composition might include more objects
+### Facade:
+- When everything's too complex: Create an object that acts as a platform to talk ...?
+### Observer:
+- When u need some 'observers' to receive an *UPDATE* when a 'subject' change.
+- First- a set of 'observers' might choose to register / unregister to a 'subject'. The subject will store the reference to the observer, so that whenever there's a change to it, the subject will notify the observers of the change.
+### Builder:
+- When u want to build a complex/composite object using other objects, and follow by a step-by-step approach. 
+(Seperate the construction of a complex object from its representation).
+- 2 steps:
+  1. Encapsulate creating and assembling the parts of a complex object in a seperate 'Builder' object. (E.g: building the parts!!!)
+  2. A class delegates object creation to the 'Builder' object.
+- We might have a "director" class holding reference to the "builder" class. Through the director, we set the parts to be constructed by the builder. Then the builder returns the object.  
+
