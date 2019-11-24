@@ -36,3 +36,15 @@
   2. A class delegates object creation to the 'Builder' object.
 - We might have a "director" class holding reference to the "builder" class. Through the director, we set the parts to be constructed by the builder. Then the builder returns the object.  
 
+## Architectures
+### Model-View-Controller
+- Layered architecture not good for apps with UI, since UI is prone to change. Layered architecture is not good because up-call from bottom to top layers might break dependencies.
+--> Model - View - Controller: A non-hierarchical approach !!!
+- Model: Contains the data and processing operations involving the data.
+- View: Presents the output data.
+- Controller: Manages user interactions, captures user input. Each View is associated with a Controller that captures user input & modifies the data Model. (User interacts with system solely thru Controller)
+
+Design pattern used:
+- Each "View" observers the "Model" so as to update corresponding changes to the view from the change in the model. --> Observer Pattern
+- The data from the model might be presented in different ways, and reacts to inputs differently --> Strategy Pattern for View & Controller.
+### Model-View-ViewModel 
