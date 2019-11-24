@@ -48,3 +48,8 @@ Design pattern used:
 - Each "View" observers the "Model" so as to update corresponding changes to the view from the change in the model. --> Observer Pattern
 - The data from the model might be presented in different ways, and reacts to inputs differently --> Strategy Pattern for View & Controller.
 ### Model-View-ViewModel 
+- Model: Same
+- View: What the user sees on the screen. Also it receives user's interactions with the views and forward the action to the ViewModel via the data binding (View interacts to ViewModel via DataBinding).
+- ViewModel: Acts as an intermediary between the Model and the View. MVVM has a binder, which automates communication between the view and its bound properties in the view model, which it's then able to receive and call updates. When the data changes, the observable data in the ViewModel notifies.
+
+(To function efficiently, this requires a binding technology or generating boilerplate code to do the binding.)
