@@ -53,3 +53,17 @@ Design pattern used:
 - ViewModel: Acts as an intermediary between the Model and the View. MVVM has a binder, which automates communication between the view and its bound properties in the view model, which it's then able to receive and call updates. When the data changes, the observable data in the ViewModel notifies.
 
 (To function efficiently, this requires a binding technology or generating boilerplate code to do the binding.)
+
+## Functional Programming
+- FP is the process of building software by composing PURE FUNCTIONS, avoiding SHARED STATE & MUTABLE DATA & SIDE EFFECTS. 
+- Pure Functions - given the same inputs, always returns the same output & has no side-effects (any application state change that is observable outside the called function other than its return value).
+- DECLARATIVE PROGRAMMING: abstract the flow control process & instead describe the DATA FLOW: WHAT TO DO.
+- IMPERATIVE PROGRAMMING: describe the specific steps used to achieve the desired result - in other words, HOW TO DO things.
+
+### Functional programming vs OOP
+- Object-oriented languages are good when you have a fixed set of operations on things ... 
+- Functional languages are good when you have a fixed set of things ... 
+
+![FP vs OOP](https://miro.medium.com/max/875/1*9OCTlnrfdIvV6dsBv-ECow.jpeg)
+
+
